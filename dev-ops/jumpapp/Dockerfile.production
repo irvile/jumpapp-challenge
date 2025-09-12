@@ -1,0 +1,36 @@
+FROM oven/bun:1.2.21 as build
+
+# Set the working directory inside the container
+WORKDIR /app
+
+ENV NODE_ENV="production"
+
+COPY apps/backend/package.json apps/backend/
+COPY apps/backend/bun.lock apps/backend/
+COPY apps/backend/src apps/backend/src
+COPY apps/backend/prisma apps/backend/prisma
+COPY apps/backend/tsconfig.json apps/backend/
+COPY tsconfig.base.json .
+COPY package.json .
+COPY bun.lock .
+
+RUN bun install
+
+WORKDIR /app/apps/backend
+RUN bun install
+RUN bunx prisma generate
+
+RUN bun build --compile --minify src/index.ts --outfile backend
+
+CMD ["./backend"]
+
+EXPOSE 3005
+
+#RUN cd apps/backend
+#RUN bun install
+#RUN bun db:generate
+
+# Run tail -f to keep the container running
+# CMD ["tail", "-f", "/dev/null"]
+# run script start:prod
+# CMD ["bun", "src/index.ts"]

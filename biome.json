@@ -1,0 +1,91 @@
+{
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"root": true,
+	"files": {
+		"includes": [
+			"**",
+			"!**/node_modules",
+			"!**/.expo",
+			"!**/.next",
+			"!**/.vinxi",
+			"!**/*.d.ts",
+			"!**/dist",
+			"!**/.vercel",
+			"!**/.output",
+			"!**/build",
+			"!**/generated",
+			"!**/routeTree.gen.ts",
+			"!**/worker-configuration.d.ts",
+			"!**/ios",
+			"!**/android",
+			"!**/google-services.json",
+			"!**/GoogleService-Info.plist"
+		]
+	},
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"defaultBranch": "main",
+		"useIgnoreFile": true
+	},
+	"assist": { "actions": { "source": { "organizeImports": "on" } } },
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"correctness": {
+				"recommended": true,
+				"noUnusedImports": "error",
+				"noUnusedVariables": "error",
+				"noUnusedLabels": "error",
+				"noUnusedFunctionParameters": "error"
+			},
+			"suspicious": {
+				"recommended": true,
+				"noConsole": "off",
+				"noReactSpecificProps": "off"
+			},
+			"style": {
+				"recommended": true,
+				"useSelfClosingElements": "off",
+				"noProcessEnv": "error"
+			},
+			"a11y": {
+				"recommended": true,
+				"noSvgWithoutTitle": "off",
+				"useKeyWithClickEvents": "off",
+				"useFocusableInteractive": "off",
+				"useSemanticElements": "off"
+			},
+			"nursery": {
+				"recommended": true
+			},
+			"complexity": {
+				"recommended": true
+			},
+			"security": {
+				"recommended": true
+			},
+			"performance": {
+				"recommended": true
+			}
+		}
+	},
+	"formatter": {
+		"enabled": true,
+		"formatWithErrors": true,
+		"indentStyle": "tab",
+		"indentWidth": 2,
+		"lineWidth": 120,
+		"lineEnding": "lf"
+	},
+	"javascript": {
+		"formatter": {
+			"enabled": true,
+			"semicolons": "asNeeded",
+			"quoteStyle": "single",
+			"quoteProperties": "preserve",
+			"trailingCommas": "none"
+		}
+	}
+}

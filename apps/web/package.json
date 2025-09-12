@@ -1,0 +1,50 @@
+{
+	"name": "web",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"typecheck": "tsc --noEmit",
+		"dev": "dotenv -e ../../dev-ops/monorepo/.env.development -- vite --host",
+		"build": "vite build",
+		"serve": "vite preview",
+		"start": "vite",
+		"lint:check": "cd ../.. && bun lint:web",
+		"check": "bun run typecheck && bun run lint:check",
+		"deps:up": "cd ../backend && bun deps:up && bun dev"
+	},
+	"devDependencies": {
+		"@tanstack/router-plugin": "1.131.41",
+		"@types/node": "^22.18.1",
+		"@types/react": "^19.1.12",
+		"@types/react-dom": "^19.1.9",
+		"@vitejs/plugin-react": "5.0.2",
+		"dotenv-cli": "^10.0.0",
+		"tw-animate-css": "^1.3.8",
+		"vite": "7.1.5"
+	},
+	"dependencies": {
+		"@elysiajs/eden": "1.3.3",
+		"@hookform/resolvers": "5.2.1",
+		"@radix-ui/react-slot": "^1.2.3",
+		"@tailwindcss/vite": "^4.1.13",
+		"@tanstack/react-query": "5.87.4",
+		"@tanstack/react-router": "1.131.41",
+		"@tanstack/router-devtools": "1.131.42",
+		"@vercel/analytics": "1.5.0",
+		"better-auth": "1.3.9",
+		"class-variance-authority": "^0.7.1",
+		"clsx": "^2.1.1",
+		"dayjs": "1.11.18",
+		"lucide-react": "^0.544.0",
+		"motion": "^12.23.12",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"react-hook-form": "^7.62.0",
+		"sonner": "^2.0.7",
+		"tailwind-merge": "^3.3.1",
+		"tailwindcss": "^4.1.13",
+		"tailwindcss-animate": "^1.0.7",
+		"zod": "4.1.8"
+	}
+}

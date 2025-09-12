@@ -1,0 +1,6 @@
+node_modules
+.vscode
+.zed
+
+apps/web
+apps/mobile

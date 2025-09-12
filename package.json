@@ -1,0 +1,26 @@
+{
+	"private": true,
+	"name": "@jumpapp/monorepo",
+	"packageManager": "bun@1.2.21",
+	"type": "module",
+	"scripts": {
+		"check": "biome check .",
+		"check:fix": "biome check --fix .",
+		"clean": "rm -rf node_modules && rm -rf apps/*/node_modules",
+		"lint": "bunx @biomejs/biome lint --write apps",
+		"lint:backend": "bunx @biomejs/biome lint --write apps/backend",
+		"lint:web": "bunx @biomejs/biome lint --write apps/web",
+		"lint:mobile": "bunx @biomejs/biome lint --write apps/mobile",
+		"build:backend-prod": "docker build -f dev-ops/backend/Dockerfile.production -t backend .",
+		"start:backend-local": "docker run --env-file apps/backend/.env.development -p 3005:3005 monorepo-backend:latest",
+		"deploy:backend": "fly deploy -c dev-ops/monorepo/fly.toml --dockerfile dev-ops/monorepo/Dockerfile.production"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.2.4",
+		"@flydotio/dockerfile": "^0.7.10",
+		"@types/bun": "1.2.21"
+	},
+	"peerDependencies": {
+		"typescript": "^5.5.3"
+	}
+}

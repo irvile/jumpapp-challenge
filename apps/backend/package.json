@@ -1,0 +1,35 @@
+{
+	"name": "backend",
+	"version": "1.0.0",
+	"main": "./src/index.ts",
+	"module": "src/index.ts",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "bun run --watch src/index.ts",
+		"db:generate": "bunx --env-file=.env.development.local prisma generate",
+		"db:push": "bun --env-file=.env.development.local prisma db push --force-reset --accept-data-loss",
+		"db:seed": "bun --env-file=.env.development.local run prisma/seeds.ts",
+		"deps:up": "bun db:generate && bun compose:up && bun db:push  && bun db:seed",
+		"compose:up": "docker compose -f dev-ops/docker-compose.yaml up -d",
+		"lint:check": "cd ../.. && bun lint:backend",
+		"check": "bun lint:check && bun typecheck",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@elysiajs/cors": "1.3.3",
+		"@elysiajs/swagger": "1.3.1",
+		"@prisma/client": "6.16.1",
+		"better-auth": "1.3.9",
+		"dayjs": "1.11.18",
+		"elysia": "1.3.21",
+		"nanoid": "5.1.5",
+		"neverthrow": "^8.2.0",
+		"xlsx": "^0.18.5",
+		"zod": "4.1.8"
+	},
+	"devDependencies": {
+		"@elysiajs/eden": "1.3.3",
+		"bun-types": "1.2.21",
+		"prisma": "6.16.1"
+	}
+}

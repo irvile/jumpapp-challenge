@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"strict": true,
+		"target": "es2022",
+		"module": "ESNext",
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"baseUrl": ".",
+		"paths": {
+			"@backend": ["./apps/backend/src"],
+			"@backend/*": ["./apps/backend/src/*"],
+			"@mobile": ["./apps/mobile/src/"],
+			"@mobile/*": ["./apps/mobile/src/*"],
+			"@web": ["./apps/web/src/"],
+			"@web/*": ["./apps/web/src/*"]
+		}
+	}
+}
