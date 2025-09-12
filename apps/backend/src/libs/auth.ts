@@ -2,6 +2,7 @@ import { betterAuth } from 'better-auth'
 import { prismaAdapter } from 'better-auth/adapters/prisma'
 import { bearer } from 'better-auth/plugins'
 import { db } from './db'
+import { envs } from './envs'
 
 const isProduction = Bun.env.NODE_ENV === 'production'
 
@@ -11,6 +12,14 @@ export const auth = betterAuth({
 		provider: 'postgresql'
 	}),
 	trustedOrigins: isProduction ? [] : ['http://localhost:5173', 'http://192.168.15.3:5173', 'http://192.168.15.3:6173'],
+	socialProviders: {
+		google: {
+			accessType: 'offline',
+			prompt: 'select_account consent',
+			clientId: envs.GOOGLE_CLIENT_ID,
+			clientSecret: envs.GOOGLE_CLIENT_SECRET
+		}
+	},
 	emailAndPassword: {
 		enabled: true,
 		disableSignUp: false,
@@ -42,16 +51,8 @@ export const auth = betterAuth({
 			}
 		}
 	},
-
 	user: {
-		modelName: 'User',
-		additionalFields: {
-			phone: {
-				type: 'string',
-				required: true,
-				input: true
-			}
-		}
+		modelName: 'User'
 	},
 	session: {
 		modelName: 'Session',
@@ -73,13 +74,12 @@ async function justForInferSession() {
 
 export type AuthSession = NonNullable<Awaited<ReturnType<typeof justForInferSession>>>
 export type AuthUserLogged = AuthSession['user']
-export async function signUp(name: string, email: string, password: string, phone: string) {
+export async function signUp(name: string, email: string, password: string) {
 	const response = await auth.api.signUpEmail({
 		body: {
 			name,
 			email,
-			password,
-			phone
+			password
 		}
 	})
 

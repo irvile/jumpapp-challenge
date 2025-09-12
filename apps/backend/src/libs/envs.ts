@@ -7,7 +7,10 @@ const envsSchema = z.object({
 	DATABASE_URL: z.string(),
 
 	BETTER_AUTH_URL: z.string(),
-	BACKEND_API_URL: z.string().optional()
+	BACKEND_API_URL: z.string().optional(),
+
+	GOOGLE_CLIENT_ID: z.string(),
+	GOOGLE_CLIENT_SECRET: z.string()
 })
 
 // biome-ignore lint/style/noProcessEnv: >

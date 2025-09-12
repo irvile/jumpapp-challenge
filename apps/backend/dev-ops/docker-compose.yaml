@@ -1,8 +1,8 @@
 name: jumpapp
 
 services:
-  database:
-    container_name: database
+  jumpapp-database:
+    container_name: jumpapp-database
     image: postgres:17-alpine
     restart: always
     ports:

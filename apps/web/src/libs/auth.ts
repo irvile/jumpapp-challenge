@@ -71,3 +71,15 @@ export async function updatePassword(currentPassword: string, newPassword: strin
 
 	return { data, error: null }
 }
+
+export const signInWithGoogle = async () => {
+	const data = await authClient.signIn.social({
+		provider: 'google'
+	})
+
+	if (data.error) {
+		throw new Error(data.error.message)
+	}
+
+	return data
+}

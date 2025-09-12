@@ -12,8 +12,8 @@
 		"lint:web": "bunx @biomejs/biome lint --write apps/web",
 		"lint:mobile": "bunx @biomejs/biome lint --write apps/mobile",
 		"build:backend-prod": "docker build -f dev-ops/backend/Dockerfile.production -t backend .",
-		"start:backend-local": "docker run --env-file apps/backend/.env.development -p 3005:3005 monorepo-backend:latest",
-		"deploy:backend": "fly deploy -c dev-ops/monorepo/fly.toml --dockerfile dev-ops/monorepo/Dockerfile.production"
+		"start:backend-local": "docker run --env-file apps/backend/.env.development -p 3005:3005 jumpapp-backend:latest",
+		"deploy:backend": "fly deploy -c dev-ops/jumpapp/fly.toml --dockerfile dev-ops/jumpapp/Dockerfile.production"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.2.4",

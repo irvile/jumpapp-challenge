@@ -24,7 +24,7 @@ RUN bun build --compile --minify src/index.ts --outfile backend
 
 CMD ["./backend"]
 
-EXPOSE 3005
+EXPOSE 3000
 
 #RUN cd apps/backend
 #RUN bun install
