@@ -1,0 +1,457 @@
+[
+  {
+    "participant": {
+      "id": 100,
+      "name": "Irvile Rodrigues",
+      "extra_data": {
+        "google_meet": {
+          "static_participant_id": "ucOUK7a50yI2S7E57B58v4708mKissla2qF2pTCsF_o="
+        }
+      },
+      "is_host": true,
+      "platform": "unknown"
+    },
+    "words": [
+      {
+        "text": "Good",
+        "start_timestamp": {
+          "relative": 11.537663,
+          "absolute": "2025-09-13T11:39:34.094Z"
+        },
+        "end_timestamp": {
+          "relative": 11.737663,
+          "absolute": "2025-09-13T11:39:34.294Z"
+        }
+      },
+      {
+        "text": "morning.",
+        "start_timestamp": {
+          "relative": 11.737663,
+          "absolute": "2025-09-13T11:39:34.294Z"
+        },
+        "end_timestamp": {
+          "relative": 12.097663,
+          "absolute": "2025-09-13T11:39:34.654Z"
+        }
+      },
+      {
+        "text": "How",
+        "start_timestamp": {
+          "relative": 12.257663,
+          "absolute": "2025-09-13T11:39:34.814Z"
+        },
+        "end_timestamp": {
+          "relative": 12.577663,
+          "absolute": "2025-09-13T11:39:35.134Z"
+        }
+      },
+      {
+        "text": "are",
+        "start_timestamp": {
+          "relative": 12.577663,
+          "absolute": "2025-09-13T11:39:35.134Z"
+        },
+        "end_timestamp": {
+          "relative": 12.817663,
+          "absolute": "2025-09-13T11:39:35.374Z"
+        }
+      },
+      {
+        "text": "you",
+        "start_timestamp": {
+          "relative": 12.817663,
+          "absolute": "2025-09-13T11:39:35.374Z"
+        },
+        "end_timestamp": {
+          "relative": 13.137663,
+          "absolute": "2025-09-13T11:39:35.694Z"
+        }
+      },
+      {
+        "text": "today?",
+        "start_timestamp": {
+          "relative": 13.617663,
+          "absolute": "2025-09-13T11:39:36.174Z"
+        },
+        "end_timestamp": {
+          "relative": 14.017663,
+          "absolute": "2025-09-13T11:39:36.574Z"
+        }
+      },
+      {
+        "text": "We",
+        "start_timestamp": {
+          "relative": 14.017663,
+          "absolute": "2025-09-13T11:39:36.574Z"
+        },
+        "end_timestamp": {
+          "relative": 14.337663,
+          "absolute": "2025-09-13T11:39:36.894Z"
+        }
+      },
+      {
+        "text": "gonna",
+        "start_timestamp": {
+          "relative": 14.337663,
+          "absolute": "2025-09-13T11:39:36.894Z"
+        },
+        "end_timestamp": {
+          "relative": 14.777663,
+          "absolute": "2025-09-13T11:39:37.334Z"
+        }
+      },
+      {
+        "text": "start",
+        "start_timestamp": {
+          "relative": 14.777663,
+          "absolute": "2025-09-13T11:39:37.334Z"
+        },
+        "end_timestamp": {
+          "relative": 15.137663,
+          "absolute": "2025-09-13T11:39:37.694Z"
+        }
+      },
+      {
+        "text": "to",
+        "start_timestamp": {
+          "relative": 15.377663,
+          "absolute": "2025-09-13T11:39:37.934Z"
+        },
+        "end_timestamp": {
+          "relative": 15.777663,
+          "absolute": "2025-09-13T11:39:38.334Z"
+        }
+      },
+      {
+        "text": "test",
+        "start_timestamp": {
+          "relative": 16.177662,
+          "absolute": "2025-09-13T11:39:38.734Z"
+        },
+        "end_timestamp": {
+          "relative": 16.577662,
+          "absolute": "2025-09-13T11:39:39.134Z"
+        }
+      },
+      {
+        "text": "the",
+        "start_timestamp": {
+          "relative": 17.297663,
+          "absolute": "2025-09-13T11:39:39.854Z"
+        },
+        "end_timestamp": {
+          "relative": 17.697662,
+          "absolute": "2025-09-13T11:39:40.254Z"
+        }
+      },
+      {
+        "text": "recall",
+        "start_timestamp": {
+          "relative": 17.697662,
+          "absolute": "2025-09-13T11:39:40.254Z"
+        },
+        "end_timestamp": {
+          "relative": 18.377663,
+          "absolute": "2025-09-13T11:39:40.934Z"
+        }
+      },
+      {
+        "text": "AI",
+        "start_timestamp": {
+          "relative": 18.377663,
+          "absolute": "2025-09-13T11:39:40.934Z"
+        },
+        "end_timestamp": {
+          "relative": 18.977661,
+          "absolute": "2025-09-13T11:39:41.534Z"
+        }
+      },
+      {
+        "text": "API",
+        "start_timestamp": {
+          "relative": 18.977661,
+          "absolute": "2025-09-13T11:39:41.534Z"
+        },
+        "end_timestamp": {
+          "relative": 19.697662,
+          "absolute": "2025-09-13T11:39:42.254Z"
+        }
+      },
+      {
+        "text": "and",
+        "start_timestamp": {
+          "relative": 20.417662,
+          "absolute": "2025-09-13T11:39:42.974Z"
+        },
+        "end_timestamp": {
+          "relative": 20.817661,
+          "absolute": "2025-09-13T11:39:43.374Z"
+        }
+      },
+      {
+        "text": "see",
+        "start_timestamp": {
+          "relative": 20.897661,
+          "absolute": "2025-09-13T11:39:43.454Z"
+        },
+        "end_timestamp": {
+          "relative": 21.297663,
+          "absolute": "2025-09-13T11:39:43.854Z"
+        }
+      },
+      {
+        "text": "what",
+        "start_timestamp": {
+          "relative": 21.297663,
+          "absolute": "2025-09-13T11:39:43.854Z"
+        },
+        "end_timestamp": {
+          "relative": 21.697662,
+          "absolute": "2025-09-13T11:39:44.254Z"
+        }
+      },
+      {
+        "text": "the",
+        "start_timestamp": {
+          "relative": 21.777662,
+          "absolute": "2025-09-13T11:39:44.334Z"
+        },
+        "end_timestamp": {
+          "relative": 22.177662,
+          "absolute": "2025-09-13T11:39:44.734Z"
+        }
+      },
+      {
+        "text": "transcript",
+        "start_timestamp": {
+          "relative": 22.497662,
+          "absolute": "2025-09-13T11:39:45.054Z"
+        },
+        "end_timestamp": {
+          "relative": 23.617662,
+          "absolute": "2025-09-13T11:39:46.174Z"
+        }
+      },
+      {
+        "text": "and",
+        "start_timestamp": {
+          "relative": 23.937662,
+          "absolute": "2025-09-13T11:39:46.494Z"
+        },
+        "end_timestamp": {
+          "relative": 24.257662,
+          "absolute": "2025-09-13T11:39:46.814Z"
+        }
+      },
+      {
+        "text": "after",
+        "start_timestamp": {
+          "relative": 24.257662,
+          "absolute": "2025-09-13T11:39:46.814Z"
+        },
+        "end_timestamp": {
+          "relative": 24.577662,
+          "absolute": "2025-09-13T11:39:47.134Z"
+        }
+      },
+      {
+        "text": "I",
+        "start_timestamp": {
+          "relative": 25.377663,
+          "absolute": "2025-09-13T11:39:47.934Z"
+        },
+        "end_timestamp": {
+          "relative": 25.657661,
+          "absolute": "2025-09-13T11:39:48.214Z"
+        }
+      },
+      {
+        "text": "will",
+        "start_timestamp": {
+          "relative": 25.657661,
+          "absolute": "2025-09-13T11:39:48.214Z"
+        },
+        "end_timestamp": {
+          "relative": 25.897661,
+          "absolute": "2025-09-13T11:39:48.454Z"
+        }
+      },
+      {
+        "text": "use",
+        "start_timestamp": {
+          "relative": 25.897661,
+          "absolute": "2025-09-13T11:39:48.454Z"
+        },
+        "end_timestamp": {
+          "relative": 26.257662,
+          "absolute": "2025-09-13T11:39:48.814Z"
+        }
+      },
+      {
+        "text": "generative",
+        "start_timestamp": {
+          "relative": 26.417662,
+          "absolute": "2025-09-13T11:39:48.974Z"
+        },
+        "end_timestamp": {
+          "relative": 27.137663,
+          "absolute": "2025-09-13T11:39:49.694Z"
+        }
+      },
+      {
+        "text": "content",
+        "start_timestamp": {
+          "relative": 28.757662,
+          "absolute": "2025-09-13T11:39:51.314Z"
+        },
+        "end_timestamp": {
+          "relative": 28.997662,
+          "absolute": "2025-09-13T11:39:51.554Z"
+        }
+      },
+      {
+        "text": "with",
+        "start_timestamp": {
+          "relative": 29.957663,
+          "absolute": "2025-09-13T11:39:52.514Z"
+        },
+        "end_timestamp": {
+          "relative": 30.357662,
+          "absolute": "2025-09-13T11:39:52.914Z"
+        }
+      },
+      {
+        "text": "AI",
+        "start_timestamp": {
+          "relative": 30.597662,
+          "absolute": "2025-09-13T11:39:53.154Z"
+        },
+        "end_timestamp": {
+          "relative": 31.277662,
+          "absolute": "2025-09-13T11:39:53.834Z"
+        }
+      },
+      {
+        "text": "SDK.",
+        "start_timestamp": {
+          "relative": 31.277662,
+          "absolute": "2025-09-13T11:39:53.834Z"
+        },
+        "end_timestamp": {
+          "relative": 32.11766,
+          "absolute": "2025-09-13T11:39:54.674Z"
+        }
+      },
+      {
+        "text": "Thank",
+        "start_timestamp": {
+          "relative": 32.917664,
+          "absolute": "2025-09-13T11:39:55.474Z"
+        },
+        "end_timestamp": {
+          "relative": 33.27766,
+          "absolute": "2025-09-13T11:39:55.834Z"
+        }
+      },
+      {
+        "text": "you",
+        "start_timestamp": {
+          "relative": 33.27766,
+          "absolute": "2025-09-13T11:39:55.834Z"
+        },
+        "end_timestamp": {
+          "relative": 33.557663,
+          "absolute": "2025-09-13T11:39:56.114Z"
+        }
+      },
+      {
+        "text": "to",
+        "start_timestamp": {
+          "relative": 33.63766,
+          "absolute": "2025-09-13T11:39:56.194Z"
+        },
+        "end_timestamp": {
+          "relative": 33.99766,
+          "absolute": "2025-09-13T11:39:56.554Z"
+        }
+      },
+      {
+        "text": "being",
+        "start_timestamp": {
+          "relative": 33.99766,
+          "absolute": "2025-09-13T11:39:56.554Z"
+        },
+        "end_timestamp": {
+          "relative": 34.27766,
+          "absolute": "2025-09-13T11:39:56.834Z"
+        }
+      },
+      {
+        "text": "here.",
+        "start_timestamp": {
+          "relative": 34.27766,
+          "absolute": "2025-09-13T11:39:56.834Z"
+        },
+        "end_timestamp": {
+          "relative": 34.597664,
+          "absolute": "2025-09-13T11:39:57.154Z"
+        }
+      },
+      {
+        "text": "Thank",
+        "start_timestamp": {
+          "relative": 34.67766,
+          "absolute": "2025-09-13T11:39:57.234Z"
+        },
+        "end_timestamp": {
+          "relative": 35.037663,
+          "absolute": "2025-09-13T11:39:57.594Z"
+        }
+      },
+      {
+        "text": "you.",
+        "start_timestamp": {
+          "relative": 35.037663,
+          "absolute": "2025-09-13T11:39:57.594Z"
+        },
+        "end_timestamp": {
+          "relative": 35.31766,
+          "absolute": "2025-09-13T11:39:57.874Z"
+        }
+      },
+      {
+        "text": "See",
+        "start_timestamp": {
+          "relative": 35.397663,
+          "absolute": "2025-09-13T11:39:57.954Z"
+        },
+        "end_timestamp": {
+          "relative": 35.757664,
+          "absolute": "2025-09-13T11:39:58.314Z"
+        }
+      },
+      {
+        "text": "you",
+        "start_timestamp": {
+          "relative": 35.757664,
+          "absolute": "2025-09-13T11:39:58.314Z"
+        },
+        "end_timestamp": {
+          "relative": 36.11766,
+          "absolute": "2025-09-13T11:39:58.674Z"
+        }
+      },
+      {
+        "text": "soon.",
+        "start_timestamp": {
+          "relative": 36.11766,
+          "absolute": "2025-09-13T11:39:58.674Z"
+        },
+        "end_timestamp": {
+          "relative": 36.517662,
+          "absolute": "2025-09-13T11:39:59.074Z"
+        }
+      }
+    ]
+  }
+]
