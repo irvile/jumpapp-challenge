@@ -1,0 +1,1219 @@
+[
+	{
+		"participant": {
+			"id": 200,
+			"name": "Ada Lovelace",
+			"extra_data": {
+				"google_meet": {
+					"static_participant_id": "rl_5v3Vx3lEn6UtP5pml3aP4E_ktHj6fMLO6S7M4Myg="
+				}
+			},
+			"is_host": false,
+			"platform": "unknown"
+		},
+		"words": [
+			{
+				"text": "Hello?",
+				"start_timestamp": {
+					"relative": 10.340955,
+					"absolute": "2025-09-13T19:31:20.135Z"
+				},
+				"end_timestamp": {
+					"relative": 10.740955,
+					"absolute": "2025-09-13T19:31:20.535Z"
+				}
+			},
+			{
+				"text": "I.",
+				"start_timestamp": {
+					"relative": 10.820955,
+					"absolute": "2025-09-13T19:31:20.615Z"
+				},
+				"end_timestamp": {
+					"relative": 11.180955,
+					"absolute": "2025-09-13T19:31:20.975Z"
+				}
+			},
+			{
+				"text": "I",
+				"start_timestamp": {
+					"relative": 11.180955,
+					"absolute": "2025-09-13T19:31:20.975Z"
+				},
+				"end_timestamp": {
+					"relative": 11.540955,
+					"absolute": "2025-09-13T19:31:21.335Z"
+				}
+			},
+			{
+				"text": "don't",
+				"start_timestamp": {
+					"relative": 11.700955,
+					"absolute": "2025-09-13T19:31:21.495Z"
+				},
+				"end_timestamp": {
+					"relative": 12.060955,
+					"absolute": "2025-09-13T19:31:21.855Z"
+				}
+			},
+			{
+				"text": "hear",
+				"start_timestamp": {
+					"relative": 12.060955,
+					"absolute": "2025-09-13T19:31:21.855Z"
+				},
+				"end_timestamp": {
+					"relative": 12.300955,
+					"absolute": "2025-09-13T19:31:22.095Z"
+				}
+			},
+			{
+				"text": "you.",
+				"start_timestamp": {
+					"relative": 12.300955,
+					"absolute": "2025-09-13T19:31:22.095Z"
+				},
+				"end_timestamp": {
+					"relative": 12.660955,
+					"absolute": "2025-09-13T19:31:22.455Z"
+				}
+			},
+			{
+				"text": "Did",
+				"start_timestamp": {
+					"relative": 14.340955,
+					"absolute": "2025-09-13T19:31:24.135Z"
+				},
+				"end_timestamp": {
+					"relative": 14.660955,
+					"absolute": "2025-09-13T19:31:24.455Z"
+				}
+			},
+			{
+				"text": "you",
+				"start_timestamp": {
+					"relative": 14.660955,
+					"absolute": "2025-09-13T19:31:24.455Z"
+				},
+				"end_timestamp": {
+					"relative": 14.860955,
+					"absolute": "2025-09-13T19:31:24.655Z"
+				}
+			},
+			{
+				"text": "hear",
+				"start_timestamp": {
+					"relative": 14.860955,
+					"absolute": "2025-09-13T19:31:24.655Z"
+				},
+				"end_timestamp": {
+					"relative": 15.100955,
+					"absolute": "2025-09-13T19:31:24.895Z"
+				}
+			},
+			{
+				"text": "me?",
+				"start_timestamp": {
+					"relative": 15.100955,
+					"absolute": "2025-09-13T19:31:24.895Z"
+				},
+				"end_timestamp": {
+					"relative": 15.460955,
+					"absolute": "2025-09-13T19:31:25.255Z"
+				}
+			},
+			{
+				"text": "I.",
+				"start_timestamp": {
+					"relative": 19.380955,
+					"absolute": "2025-09-13T19:31:29.175Z"
+				},
+				"end_timestamp": {
+					"relative": 19.740953,
+					"absolute": "2025-09-13T19:31:29.535Z"
+				}
+			},
+			{
+				"text": "I",
+				"start_timestamp": {
+					"relative": 19.740953,
+					"absolute": "2025-09-13T19:31:29.535Z"
+				},
+				"end_timestamp": {
+					"relative": 19.980953,
+					"absolute": "2025-09-13T19:31:29.775Z"
+				}
+			},
+			{
+				"text": "can.",
+				"start_timestamp": {
+					"relative": 19.980953,
+					"absolute": "2025-09-13T19:31:29.775Z"
+				},
+				"end_timestamp": {
+					"relative": 20.260954,
+					"absolute": "2025-09-13T19:31:30.055Z"
+				}
+			},
+			{
+				"text": "I",
+				"start_timestamp": {
+					"relative": 20.420954,
+					"absolute": "2025-09-13T19:31:30.215Z"
+				},
+				"end_timestamp": {
+					"relative": 20.700954,
+					"absolute": "2025-09-13T19:31:30.495Z"
+				}
+			},
+			{
+				"text": "can",
+				"start_timestamp": {
+					"relative": 20.700954,
+					"absolute": "2025-09-13T19:31:30.495Z"
+				},
+				"end_timestamp": {
+					"relative": 20.980953,
+					"absolute": "2025-09-13T19:31:30.775Z"
+				}
+			},
+			{
+				"text": "listen",
+				"start_timestamp": {
+					"relative": 21.060953,
+					"absolute": "2025-09-13T19:31:30.855Z"
+				},
+				"end_timestamp": {
+					"relative": 21.660954,
+					"absolute": "2025-09-13T19:31:31.455Z"
+				}
+			},
+			{
+				"text": "you.",
+				"start_timestamp": {
+					"relative": 21.660954,
+					"absolute": "2025-09-13T19:31:31.455Z"
+				},
+				"end_timestamp": {
+					"relative": 22.020954,
+					"absolute": "2025-09-13T19:31:31.815Z"
+				}
+			},
+			{
+				"text": "So",
+				"start_timestamp": {
+					"relative": 22.820953,
+					"absolute": "2025-09-13T19:31:32.615Z"
+				},
+				"end_timestamp": {
+					"relative": 23.220955,
+					"absolute": "2025-09-13T19:31:33.015Z"
+				}
+			},
+			{
+				"text": "thank",
+				"start_timestamp": {
+					"relative": 37.550957,
+					"absolute": "2025-09-13T19:31:47.345Z"
+				},
+				"end_timestamp": {
+					"relative": 37.750957,
+					"absolute": "2025-09-13T19:31:47.545Z"
+				}
+			},
+			{
+				"text": "you.",
+				"start_timestamp": {
+					"relative": 37.750957,
+					"absolute": "2025-09-13T19:31:47.545Z"
+				},
+				"end_timestamp": {
+					"relative": 38.030956,
+					"absolute": "2025-09-13T19:31:47.825Z"
+				}
+			}
+		]
+	},
+	{
+		"participant": {
+			"id": 100,
+			"name": "John Doe",
+			"extra_data": {
+				"google_meet": {
+					"static_participant_id": "FJRpB5qLF1ERlDvcB8PRSR9OYC71cJImtfTSjmitIhw="
+				}
+			},
+			"is_host": true,
+			"platform": "unknown"
+		},
+		"words": [
+			{
+				"text": "So,",
+				"start_timestamp": {
+					"relative": 74.20095,
+					"absolute": "2025-09-13T19:32:23.995Z"
+				},
+				"end_timestamp": {
+					"relative": 74.44095,
+					"absolute": "2025-09-13T19:32:24.235Z"
+				}
+			},
+			{
+				"text": "thank",
+				"start_timestamp": {
+					"relative": 75.16095,
+					"absolute": "2025-09-13T19:32:24.955Z"
+				},
+				"end_timestamp": {
+					"relative": 75.52095,
+					"absolute": "2025-09-13T19:32:25.315Z"
+				}
+			},
+			{
+				"text": "you",
+				"start_timestamp": {
+					"relative": 75.52095,
+					"absolute": "2025-09-13T19:32:25.315Z"
+				},
+				"end_timestamp": {
+					"relative": 75.80095,
+					"absolute": "2025-09-13T19:32:25.595Z"
+				}
+			},
+			{
+				"text": "to",
+				"start_timestamp": {
+					"relative": 76.44095,
+					"absolute": "2025-09-13T19:32:26.235Z"
+				},
+				"end_timestamp": {
+					"relative": 76.760956,
+					"absolute": "2025-09-13T19:32:26.555Z"
+				}
+			},
+			{
+				"text": "be",
+				"start_timestamp": {
+					"relative": 76.760956,
+					"absolute": "2025-09-13T19:32:26.555Z"
+				},
+				"end_timestamp": {
+					"relative": 77.00095,
+					"absolute": "2025-09-13T19:32:26.795Z"
+				}
+			},
+			{
+				"text": "here.",
+				"start_timestamp": {
+					"relative": 77.00095,
+					"absolute": "2025-09-13T19:32:26.795Z"
+				},
+				"end_timestamp": {
+					"relative": 77.32095,
+					"absolute": "2025-09-13T19:32:27.115Z"
+				}
+			},
+			{
+				"text": "Ada Lovelace,",
+				"start_timestamp": {
+					"relative": 78.17095,
+					"absolute": "2025-09-13T19:32:27.965Z"
+				},
+				"end_timestamp": {
+					"relative": 78.77095,
+					"absolute": "2025-09-13T19:32:28.565Z"
+				}
+			},
+			{
+				"text": "let's",
+				"start_timestamp": {
+					"relative": 78.77095,
+					"absolute": "2025-09-13T19:32:28.565Z"
+				},
+				"end_timestamp": {
+					"relative": 79.21095,
+					"absolute": "2025-09-13T19:32:29.005Z"
+				}
+			},
+			{
+				"text": "start",
+				"start_timestamp": {
+					"relative": 79.21095,
+					"absolute": "2025-09-13T19:32:29.005Z"
+				},
+				"end_timestamp": {
+					"relative": 79.53095,
+					"absolute": "2025-09-13T19:32:29.325Z"
+				}
+			},
+			{
+				"text": "the",
+				"start_timestamp": {
+					"relative": 79.610954,
+					"absolute": "2025-09-13T19:32:29.405Z"
+				},
+				"end_timestamp": {
+					"relative": 79.89095,
+					"absolute": "2025-09-13T19:32:29.685Z"
+				}
+			},
+			{
+				"text": "conversation.",
+				"start_timestamp": {
+					"relative": 79.89095,
+					"absolute": "2025-09-13T19:32:29.685Z"
+				},
+				"end_timestamp": {
+					"relative": 80.650955,
+					"absolute": "2025-09-13T19:32:30.445Z"
+				}
+			},
+			{
+				"text": "Just",
+				"start_timestamp": {
+					"relative": 81.13095,
+					"absolute": "2025-09-13T19:32:30.925Z"
+				},
+				"end_timestamp": {
+					"relative": 81.49095,
+					"absolute": "2025-09-13T19:32:31.285Z"
+				}
+			},
+			{
+				"text": "three",
+				"start_timestamp": {
+					"relative": 81.49095,
+					"absolute": "2025-09-13T19:32:31.285Z"
+				},
+				"end_timestamp": {
+					"relative": 81.85095,
+					"absolute": "2025-09-13T19:32:31.645Z"
+				}
+			},
+			{
+				"text": "phrases",
+				"start_timestamp": {
+					"relative": 81.85095,
+					"absolute": "2025-09-13T19:32:31.645Z"
+				},
+				"end_timestamp": {
+					"relative": 82.57095,
+					"absolute": "2025-09-13T19:32:32.365Z"
+				}
+			},
+			{
+				"text": "Okay?",
+				"start_timestamp": {
+					"relative": 84.53095,
+					"absolute": "2025-09-13T19:32:34.325Z"
+				},
+				"end_timestamp": {
+					"relative": 85.05095,
+					"absolute": "2025-09-13T19:32:34.845Z"
+				}
+			}
+		]
+	},
+	{
+		"participant": {
+			"id": 200,
+			"name": "Ada Lovelace",
+			"extra_data": {
+				"google_meet": {
+					"static_participant_id": "rl_5v3Vx3lEn6UtP5pml3aP4E_ktHj6fMLO6S7M4Myg="
+				}
+			},
+			"is_host": false,
+			"platform": "unknown"
+		},
+		"words": [
+			{
+				"text": "Okay.",
+				"start_timestamp": {
+					"relative": 85.53095,
+					"absolute": "2025-09-13T19:32:35.325Z"
+				},
+				"end_timestamp": {
+					"relative": 86.09095,
+					"absolute": "2025-09-13T19:32:35.885Z"
+				}
+			},
+			{
+				"text": "Hi.",
+				"start_timestamp": {
+					"relative": 87.77095,
+					"absolute": "2025-09-13T19:32:37.565Z"
+				},
+				"end_timestamp": {
+					"relative": 88.25095,
+					"absolute": "2025-09-13T19:32:38.045Z"
+				}
+			},
+			{
+				"text": "Can",
+				"start_timestamp": {
+					"relative": 88.25095,
+					"absolute": "2025-09-13T19:32:38.045Z"
+				},
+				"end_timestamp": {
+					"relative": 88.53095,
+					"absolute": "2025-09-13T19:32:38.325Z"
+				}
+			},
+			{
+				"text": "I.",
+				"start_timestamp": {
+					"relative": 88.53095,
+					"absolute": "2025-09-13T19:32:38.325Z"
+				},
+				"end_timestamp": {
+					"relative": 88.81095,
+					"absolute": "2025-09-13T19:32:38.605Z"
+				}
+			},
+			{
+				"text": "Can",
+				"start_timestamp": {
+					"relative": 88.89095,
+					"absolute": "2025-09-13T19:32:38.685Z"
+				},
+				"end_timestamp": {
+					"relative": 89.21095,
+					"absolute": "2025-09-13T19:32:39.005Z"
+				}
+			},
+			{
+				"text": "I",
+				"start_timestamp": {
+					"relative": 89.21095,
+					"absolute": "2025-09-13T19:32:39.005Z"
+				},
+				"end_timestamp": {
+					"relative": 89.49095,
+					"absolute": "2025-09-13T19:32:39.285Z"
+				}
+			},
+			{
+				"text": "have",
+				"start_timestamp": {
+					"relative": 89.49095,
+					"absolute": "2025-09-13T19:32:39.285Z"
+				},
+				"end_timestamp": {
+					"relative": 89.77095,
+					"absolute": "2025-09-13T19:32:39.565Z"
+				}
+			},
+			{
+				"text": "a",
+				"start_timestamp": {
+					"relative": 89.77095,
+					"absolute": "2025-09-13T19:32:39.565Z"
+				},
+				"end_timestamp": {
+					"relative": 89.970955,
+					"absolute": "2025-09-13T19:32:39.765Z"
+				}
+			},
+			{
+				"text": "coffee,",
+				"start_timestamp": {
+					"relative": 89.970955,
+					"absolute": "2025-09-13T19:32:39.765Z"
+				},
+				"end_timestamp": {
+					"relative": 90.45095,
+					"absolute": "2025-09-13T19:32:40.245Z"
+				}
+			},
+			{
+				"text": "please?",
+				"start_timestamp": {
+					"relative": 90.45095,
+					"absolute": "2025-09-13T19:32:40.245Z"
+				},
+				"end_timestamp": {
+					"relative": 90.81095,
+					"absolute": "2025-09-13T19:32:40.605Z"
+				}
+			}
+		]
+	},
+	{
+		"participant": {
+			"id": 100,
+			"name": "John Doe",
+			"extra_data": {
+				"google_meet": {
+					"static_participant_id": "FJRpB5qLF1ERlDvcB8PRSR9OYC71cJImtfTSjmitIhw="
+				}
+			},
+			"is_host": true,
+			"platform": "unknown"
+		},
+		"words": [
+			{
+				"text": "Hello?",
+				"start_timestamp": {
+					"relative": 91.85095,
+					"absolute": "2025-09-13T19:32:41.645Z"
+				},
+				"end_timestamp": {
+					"relative": 92.330956,
+					"absolute": "2025-09-13T19:32:42.125Z"
+				}
+			},
+			{
+				"text": "Sure.",
+				"start_timestamp": {
+					"relative": 92.650955,
+					"absolute": "2025-09-13T19:32:42.445Z"
+				},
+				"end_timestamp": {
+					"relative": 93.05095,
+					"absolute": "2025-09-13T19:32:42.845Z"
+				}
+			},
+			{
+				"text": "What",
+				"start_timestamp": {
+					"relative": 93.37095,
+					"absolute": "2025-09-13T19:32:43.165Z"
+				},
+				"end_timestamp": {
+					"relative": 93.69095,
+					"absolute": "2025-09-13T19:32:43.485Z"
+				}
+			},
+			{
+				"text": "kind?",
+				"start_timestamp": {
+					"relative": 93.69095,
+					"absolute": "2025-09-13T19:32:43.485Z"
+				},
+				"end_timestamp": {
+					"relative": 94.010956,
+					"absolute": "2025-09-13T19:32:43.805Z"
+				}
+			}
+		]
+	},
+	{
+		"participant": {
+			"id": 200,
+			"name": "Ada Lovelace",
+			"extra_data": {
+				"google_meet": {
+					"static_participant_id": "rl_5v3Vx3lEn6UtP5pml3aP4E_ktHj6fMLO6S7M4Myg="
+				}
+			},
+			"is_host": false,
+			"platform": "unknown"
+		},
+		"words": [
+			{
+				"text": "Imagine",
+				"start_timestamp": {
+					"relative": 95.13095,
+					"absolute": "2025-09-13T19:32:44.925Z"
+				},
+				"end_timestamp": {
+					"relative": 95.970955,
+					"absolute": "2025-09-13T19:32:45.765Z"
+				}
+			},
+			{
+				"text": "late,",
+				"start_timestamp": {
+					"relative": 95.970955,
+					"absolute": "2025-09-13T19:32:45.765Z"
+				},
+				"end_timestamp": {
+					"relative": 96.330956,
+					"absolute": "2025-09-13T19:32:46.125Z"
+				}
+			},
+			{
+				"text": "please.",
+				"start_timestamp": {
+					"relative": 96.650955,
+					"absolute": "2025-09-13T19:32:46.445Z"
+				},
+				"end_timestamp": {
+					"relative": 97.05095,
+					"absolute": "2025-09-13T19:32:46.845Z"
+				}
+			}
+		]
+	},
+	{
+		"participant": {
+			"id": 100,
+			"name": "John Doe",
+			"extra_data": {
+				"google_meet": {
+					"static_participant_id": "FJRpB5qLF1ERlDvcB8PRSR9OYC71cJImtfTSjmitIhw="
+				}
+			},
+			"is_host": true,
+			"platform": "unknown"
+		},
+		"words": [
+			{
+				"text": "Great",
+				"start_timestamp": {
+					"relative": 98.09095,
+					"absolute": "2025-09-13T19:32:47.885Z"
+				},
+				"end_timestamp": {
+					"relative": 98.45095,
+					"absolute": "2025-09-13T19:32:48.245Z"
+				}
+			},
+			{
+				"text": "choice.",
+				"start_timestamp": {
+					"relative": 98.45095,
+					"absolute": "2025-09-13T19:32:48.245Z"
+				},
+				"end_timestamp": {
+					"relative": 98.89095,
+					"absolute": "2025-09-13T19:32:48.685Z"
+				}
+			},
+			{
+				"text": "Do",
+				"start_timestamp": {
+					"relative": 99.05095,
+					"absolute": "2025-09-13T19:32:48.845Z"
+				},
+				"end_timestamp": {
+					"relative": 99.330956,
+					"absolute": "2025-09-13T19:32:49.125Z"
+				}
+			},
+			{
+				"text": "you",
+				"start_timestamp": {
+					"relative": 99.330956,
+					"absolute": "2025-09-13T19:32:49.125Z"
+				},
+				"end_timestamp": {
+					"relative": 99.49095,
+					"absolute": "2025-09-13T19:32:49.285Z"
+				}
+			},
+			{
+				"text": "like",
+				"start_timestamp": {
+					"relative": 99.49095,
+					"absolute": "2025-09-13T19:32:49.285Z"
+				},
+				"end_timestamp": {
+					"relative": 99.69095,
+					"absolute": "2025-09-13T19:32:49.485Z"
+				}
+			},
+			{
+				"text": "this",
+				"start_timestamp": {
+					"relative": 99.69095,
+					"absolute": "2025-09-13T19:32:49.485Z"
+				},
+				"end_timestamp": {
+					"relative": 99.970955,
+					"absolute": "2025-09-13T19:32:49.765Z"
+				}
+			},
+			{
+				"text": "coffee?",
+				"start_timestamp": {
+					"relative": 99.970955,
+					"absolute": "2025-09-13T19:32:49.765Z"
+				},
+				"end_timestamp": {
+					"relative": 100.57095,
+					"absolute": "2025-09-13T19:32:50.365Z"
+				}
+			}
+		]
+	},
+	{
+		"participant": {
+			"id": 200,
+			"name": "Ada Lovelace",
+			"extra_data": {
+				"google_meet": {
+					"static_participant_id": "rl_5v3Vx3lEn6UtP5pml3aP4E_ktHj6fMLO6S7M4Myg="
+				}
+			},
+			"is_host": false,
+			"platform": "unknown"
+		},
+		"words": [
+			{
+				"text": "Yes,",
+				"start_timestamp": {
+					"relative": 101.21095,
+					"absolute": "2025-09-13T19:32:51.005Z"
+				},
+				"end_timestamp": {
+					"relative": 101.69095,
+					"absolute": "2025-09-13T19:32:51.485Z"
+				}
+			},
+			{
+				"text": "it's",
+				"start_timestamp": {
+					"relative": 101.69095,
+					"absolute": "2025-09-13T19:32:51.485Z"
+				},
+				"end_timestamp": {
+					"relative": 102.25095,
+					"absolute": "2025-09-13T19:32:52.045Z"
+				}
+			},
+			{
+				"text": "very",
+				"start_timestamp": {
+					"relative": 102.25095,
+					"absolute": "2025-09-13T19:32:52.045Z"
+				},
+				"end_timestamp": {
+					"relative": 102.49095,
+					"absolute": "2025-09-13T19:32:52.285Z"
+				}
+			},
+			{
+				"text": "nice.",
+				"start_timestamp": {
+					"relative": 102.49095,
+					"absolute": "2025-09-13T19:32:52.285Z"
+				},
+				"end_timestamp": {
+					"relative": 102.89095,
+					"absolute": "2025-09-13T19:32:52.685Z"
+				}
+			},
+			{
+				"text": "This",
+				"start_timestamp": {
+					"relative": 103.21095,
+					"absolute": "2025-09-13T19:32:53.005Z"
+				},
+				"end_timestamp": {
+					"relative": 103.53095,
+					"absolute": "2025-09-13T19:32:53.325Z"
+				}
+			},
+			{
+				"text": "coffee",
+				"start_timestamp": {
+					"relative": 103.53095,
+					"absolute": "2025-09-13T19:32:53.325Z"
+				},
+				"end_timestamp": {
+					"relative": 103.930954,
+					"absolute": "2025-09-13T19:32:53.725Z"
+				}
+			},
+			{
+				"text": "is",
+				"start_timestamp": {
+					"relative": 103.930954,
+					"absolute": "2025-09-13T19:32:53.725Z"
+				},
+				"end_timestamp": {
+					"relative": 104.09095,
+					"absolute": "2025-09-13T19:32:53.885Z"
+				}
+			},
+			{
+				"text": "very",
+				"start_timestamp": {
+					"relative": 104.09095,
+					"absolute": "2025-09-13T19:32:53.885Z"
+				},
+				"end_timestamp": {
+					"relative": 104.330956,
+					"absolute": "2025-09-13T19:32:54.125Z"
+				}
+			},
+			{
+				"text": "good.",
+				"start_timestamp": {
+					"relative": 104.330956,
+					"absolute": "2025-09-13T19:32:54.125Z"
+				},
+				"end_timestamp": {
+					"relative": 104.650955,
+					"absolute": "2025-09-13T19:32:54.445Z"
+				}
+			}
+		]
+	},
+	{
+		"participant": {
+			"id": 100,
+			"name": "John Doe",
+			"extra_data": {
+				"google_meet": {
+					"static_participant_id": "FJRpB5qLF1ERlDvcB8PRSR9OYC71cJImtfTSjmitIhw="
+				}
+			},
+			"is_host": true,
+			"platform": "unknown"
+		},
+		"words": [
+			{
+				"text": "I'm",
+				"start_timestamp": {
+					"relative": 105.98095,
+					"absolute": "2025-09-13T19:32:55.775Z"
+				},
+				"end_timestamp": {
+					"relative": 106.260956,
+					"absolute": "2025-09-13T19:32:56.055Z"
+				}
+			},
+			{
+				"text": "glad",
+				"start_timestamp": {
+					"relative": 106.260956,
+					"absolute": "2025-09-13T19:32:56.055Z"
+				},
+				"end_timestamp": {
+					"relative": 106.540955,
+					"absolute": "2025-09-13T19:32:56.335Z"
+				}
+			},
+			{
+				"text": "you",
+				"start_timestamp": {
+					"relative": 106.540955,
+					"absolute": "2025-09-13T19:32:56.335Z"
+				},
+				"end_timestamp": {
+					"relative": 106.74095,
+					"absolute": "2025-09-13T19:32:56.535Z"
+				}
+			},
+			{
+				"text": "like",
+				"start_timestamp": {
+					"relative": 106.74095,
+					"absolute": "2025-09-13T19:32:56.535Z"
+				},
+				"end_timestamp": {
+					"relative": 106.98095,
+					"absolute": "2025-09-13T19:32:56.775Z"
+				}
+			},
+			{
+				"text": "it.",
+				"start_timestamp": {
+					"relative": 106.98095,
+					"absolute": "2025-09-13T19:32:56.775Z"
+				},
+				"end_timestamp": {
+					"relative": 107.34095,
+					"absolute": "2025-09-13T19:32:57.135Z"
+				}
+			},
+			{
+				"text": "Please",
+				"start_timestamp": {
+					"relative": 107.42095,
+					"absolute": "2025-09-13T19:32:57.215Z"
+				},
+				"end_timestamp": {
+					"relative": 107.82095,
+					"absolute": "2025-09-13T19:32:57.615Z"
+				}
+			},
+			{
+				"text": "enjoy.",
+				"start_timestamp": {
+					"relative": 107.82095,
+					"absolute": "2025-09-13T19:32:57.615Z"
+				},
+				"end_timestamp": {
+					"relative": 108.38095,
+					"absolute": "2025-09-13T19:32:58.175Z"
+				}
+			},
+			{
+				"text": "So",
+				"start_timestamp": {
+					"relative": 110.78095,
+					"absolute": "2025-09-13T19:33:00.575Z"
+				},
+				"end_timestamp": {
+					"relative": 111.180954,
+					"absolute": "2025-09-13T19:33:00.975Z"
+				}
+			},
+			{
+				"text": "it's",
+				"start_timestamp": {
+					"relative": 112.14095,
+					"absolute": "2025-09-13T19:33:01.935Z"
+				},
+				"end_timestamp": {
+					"relative": 112.580956,
+					"absolute": "2025-09-13T19:33:02.375Z"
+				}
+			},
+			{
+				"text": "okay?",
+				"start_timestamp": {
+					"relative": 112.580956,
+					"absolute": "2025-09-13T19:33:02.375Z"
+				},
+				"end_timestamp": {
+					"relative": 113.10095,
+					"absolute": "2025-09-13T19:33:02.895Z"
+				}
+			},
+			{
+				"text": "Let's.",
+				"start_timestamp": {
+					"relative": 113.180954,
+					"absolute": "2025-09-13T19:33:02.975Z"
+				},
+				"end_timestamp": {
+					"relative": 113.74095,
+					"absolute": "2025-09-13T19:33:03.535Z"
+				}
+			},
+			{
+				"text": "Let's",
+				"start_timestamp": {
+					"relative": 113.74095,
+					"absolute": "2025-09-13T19:33:03.535Z"
+				},
+				"end_timestamp": {
+					"relative": 114.10095,
+					"absolute": "2025-09-13T19:33:03.895Z"
+				}
+			},
+			{
+				"text": "see",
+				"start_timestamp": {
+					"relative": 114.10095,
+					"absolute": "2025-09-13T19:33:03.895Z"
+				},
+				"end_timestamp": {
+					"relative": 114.260956,
+					"absolute": "2025-09-13T19:33:04.055Z"
+				}
+			},
+			{
+				"text": "what",
+				"start_timestamp": {
+					"relative": 114.260956,
+					"absolute": "2025-09-13T19:33:04.055Z"
+				},
+				"end_timestamp": {
+					"relative": 114.50095,
+					"absolute": "2025-09-13T19:33:04.295Z"
+				}
+			},
+			{
+				"text": "the",
+				"start_timestamp": {
+					"relative": 114.50095,
+					"absolute": "2025-09-13T19:33:04.295Z"
+				},
+				"end_timestamp": {
+					"relative": 114.82095,
+					"absolute": "2025-09-13T19:33:04.615Z"
+				}
+			},
+			{
+				"text": "boot",
+				"start_timestamp": {
+					"relative": 114.82095,
+					"absolute": "2025-09-13T19:33:04.615Z"
+				},
+				"end_timestamp": {
+					"relative": 115.260956,
+					"absolute": "2025-09-13T19:33:05.055Z"
+				}
+			},
+			{
+				"text": "will",
+				"start_timestamp": {
+					"relative": 115.260956,
+					"absolute": "2025-09-13T19:33:05.055Z"
+				},
+				"end_timestamp": {
+					"relative": 115.580956,
+					"absolute": "2025-09-13T19:33:05.375Z"
+				}
+			},
+			{
+				"text": "see.",
+				"start_timestamp": {
+					"relative": 117.180954,
+					"absolute": "2025-09-13T19:33:06.975Z"
+				},
+				"end_timestamp": {
+					"relative": 117.580956,
+					"absolute": "2025-09-13T19:33:07.375Z"
+				}
+			},
+			{
+				"text": "Thank",
+				"start_timestamp": {
+					"relative": 117.74095,
+					"absolute": "2025-09-13T19:33:07.535Z"
+				},
+				"end_timestamp": {
+					"relative": 118.10095,
+					"absolute": "2025-09-13T19:33:07.895Z"
+				}
+			},
+			{
+				"text": "you.",
+				"start_timestamp": {
+					"relative": 118.10095,
+					"absolute": "2025-09-13T19:33:07.895Z"
+				},
+				"end_timestamp": {
+					"relative": 118.38095,
+					"absolute": "2025-09-13T19:33:08.175Z"
+				}
+			},
+			{
+				"text": "Thank",
+				"start_timestamp": {
+					"relative": 118.46095,
+					"absolute": "2025-09-13T19:33:08.255Z"
+				},
+				"end_timestamp": {
+					"relative": 118.78095,
+					"absolute": "2025-09-13T19:33:08.575Z"
+				}
+			},
+			{
+				"text": "you.",
+				"start_timestamp": {
+					"relative": 118.78095,
+					"absolute": "2025-09-13T19:33:08.575Z"
+				},
+				"end_timestamp": {
+					"relative": 118.98095,
+					"absolute": "2025-09-13T19:33:08.775Z"
+				}
+			},
+			{
+				"text": "See",
+				"start_timestamp": {
+					"relative": 118.98095,
+					"absolute": "2025-09-13T19:33:08.775Z"
+				},
+				"end_timestamp": {
+					"relative": 119.180954,
+					"absolute": "2025-09-13T19:33:08.975Z"
+				}
+			},
+			{
+				"text": "you",
+				"start_timestamp": {
+					"relative": 119.180954,
+					"absolute": "2025-09-13T19:33:08.975Z"
+				},
+				"end_timestamp": {
+					"relative": 119.30095,
+					"absolute": "2025-09-13T19:33:09.095Z"
+				}
+			},
+			{
+				"text": "later.",
+				"start_timestamp": {
+					"relative": 119.30095,
+					"absolute": "2025-09-13T19:33:09.095Z"
+				},
+				"end_timestamp": {
+					"relative": 119.540955,
+					"absolute": "2025-09-13T19:33:09.335Z"
+				}
+			},
+			{
+				"text": "You're",
+				"start_timestamp": {
+					"relative": 119.540955,
+					"absolute": "2025-09-13T19:33:09.335Z"
+				},
+				"end_timestamp": {
+					"relative": 119.82095,
+					"absolute": "2025-09-13T19:33:09.615Z"
+				}
+			}
+		]
+	},
+	{
+		"participant": {
+			"id": 200,
+			"name": "Ada Lovelace",
+			"extra_data": {
+				"google_meet": {
+					"static_participant_id": "rl_5v3Vx3lEn6UtP5pml3aP4E_ktHj6fMLO6S7M4Myg="
+				}
+			},
+			"is_host": false,
+			"platform": "unknown"
+		},
+		"words": [
+			{
+				"text": "welcome.",
+				"start_timestamp": {
+					"relative": 119.82095,
+					"absolute": "2025-09-13T19:33:09.615Z"
+				},
+				"end_timestamp": {
+					"relative": 120.38095,
+					"absolute": "2025-09-13T19:33:10.175Z"
+				}
+			}
+		]
+	},
+	{
+		"participant": {
+			"id": 100,
+			"name": "John Doe",
+			"extra_data": {
+				"google_meet": {
+					"static_participant_id": "FJRpB5qLF1ERlDvcB8PRSR9OYC71cJImtfTSjmitIhw="
+				}
+			},
+			"is_host": true,
+			"platform": "unknown"
+		},
+		"words": [
+			{
+				"text": "Bye.",
+				"start_timestamp": {
+					"relative": 121.10095,
+					"absolute": "2025-09-13T19:33:10.895Z"
+				},
+				"end_timestamp": {
+					"relative": 121.46095,
+					"absolute": "2025-09-13T19:33:11.255Z"
+				}
+			},
+			{
+				"text": "Bye.",
+				"start_timestamp": {
+					"relative": 121.46095,
+					"absolute": "2025-09-13T19:33:11.255Z"
+				},
+				"end_timestamp": {
+					"relative": 121.82095,
+					"absolute": "2025-09-13T19:33:11.615Z"
+				}
+			}
+		]
+	}
+]
