@@ -3,11 +3,52 @@ import { prismaAdapter } from 'better-auth/adapters/prisma'
 import { bearer } from 'better-auth/plugins'
 import { db } from './db'
 import { envs } from './envs'
+import { genId } from './nanoid'
+
+async function createCalendarAccount(
+	account: {
+		accountId: string
+		userId: string
+		accessToken: string | null | undefined
+		refreshToken: string | null | undefined
+		accessTokenExpiresAt: Date | null | undefined
+	},
+	name: string,
+	email: string
+) {
+	try {
+		const existingAccount = await db.calendarAccount.findFirst({
+			where: {
+				googleId: account.accountId,
+				userId: account.userId
+			}
+		})
+
+		if (!existingAccount) {
+			console.log('Creating calendar account', account)
+			await db.calendarAccount.create({
+				data: {
+					id: genId('calendarAccount'),
+					userId: account.userId,
+					googleId: account.accountId,
+					email: email,
+					name: name,
+					accessToken: account.accessToken || '',
+					refreshToken: account.refreshToken,
+					expiresAt: account.accessTokenExpiresAt ? new Date(account.accessTokenExpiresAt) : null
+				}
+			})
+		}
+	} catch (error) {
+		console.error('Error creating calendar account:', error)
+	}
+}
 
 const isProduction = Bun.env.NODE_ENV === 'production'
 
 export const auth = betterAuth({
 	appName: 'backend',
+	baseURL: envs.BETTER_AUTH_URL,
 	database: prismaAdapter(db, {
 		provider: 'postgresql'
 	}),
@@ -17,7 +58,8 @@ export const auth = betterAuth({
 			accessType: 'offline',
 			prompt: 'select_account consent',
 			clientId: envs.GOOGLE_CLIENT_ID,
-			clientSecret: envs.GOOGLE_CLIENT_SECRET
+			clientSecret: envs.GOOGLE_CLIENT_SECRET,
+			scope: ['https://www.googleapis.com/auth/calendar.events.readonly']
 		}
 	},
 	emailAndPassword: {
@@ -60,7 +102,50 @@ export const auth = betterAuth({
 		updateAge: 60 * 60 * 4
 	},
 	account: {
-		modelName: 'Account'
+		modelName: 'Account',
+		accountLinking: {
+			enabled: true,
+			allowDifferentEmails: true,
+			trustedProviders: ['google', 'linkedin', 'facebook', 'microsoft']
+		}
+	},
+	databaseHooks: {
+		account: {
+			create: {
+				after: async (account, ctx) => {
+					let googleEmail = 'unknown@gmail.com'
+					let googleName = 'Unknown'
+
+					if (account.providerId === 'google') {
+						try {
+							const googleAccountInfo = await auth.api.accountInfo({
+								body: {
+									accountId: account.accountId
+								},
+								headers: ctx?.headers
+							})
+
+							googleEmail = googleAccountInfo?.data.email || 'unknown@gmail.com'
+							googleName = googleAccountInfo?.data.name || googleAccountInfo?.data.displayName || 'Unknown'
+						} catch (error) {
+							console.error('Error getting google account info', error)
+						}
+
+						await createCalendarAccount(
+							{
+								accountId: account.accountId,
+								userId: account.userId,
+								accessToken: account.accessToken,
+								refreshToken: account.refreshToken,
+								accessTokenExpiresAt: account.accessTokenExpiresAt
+							},
+							googleName,
+							googleEmail
+						)
+					}
+				}
+			}
+		}
 	},
 	plugins: [bearer()]
 })
