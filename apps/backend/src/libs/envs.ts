@@ -10,7 +10,9 @@ const envsSchema = z.object({
 	BACKEND_API_URL: z.string().optional(),
 
 	GOOGLE_CLIENT_ID: z.string(),
-	GOOGLE_CLIENT_SECRET: z.string()
+	GOOGLE_CLIENT_SECRET: z.string(),
+
+	RECALL_API_KEY: z.string()
 })
 
 // biome-ignore lint/style/noProcessEnv: >
