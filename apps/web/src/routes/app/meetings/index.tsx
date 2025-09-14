@@ -7,6 +7,7 @@ import {
 } from '@web/features/calendar-accounts/queries/use-calendar-events'
 import { WeekNavigation } from '@web/features/meetings/week-navigation'
 import { WeeklyMeetings } from '@web/features/meetings/weekly-meetings'
+import { useMultipleBotPolling } from '@web/features/meetings/hooks/use-multiple-bot-polling'
 import { dayjs } from '@web/libs/dayjs'
 import { AlertCircle, Video } from 'lucide-react'
 import { useState } from 'react'
@@ -25,6 +26,8 @@ function RouteComponent() {
 	const activeAccountId = selectedAccountId || primaryAccount?.id
 
 	const { data: eventsData, isLoading: isLoadingEvents } = useCalendarEvents(activeAccountId, currentWeek)
+	
+	useMultipleBotPolling(eventsData?.events || [], activeAccountId)
 
 	const goToPreviousWeek = () => {
 		setCurrentWeek((prev) => prev.subtract(1, 'week'))

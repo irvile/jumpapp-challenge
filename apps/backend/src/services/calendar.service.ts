@@ -105,6 +105,8 @@ async function getEventsFromDatabase(calendarAccountId: string, startDate: strin
 		attendees: event.attendees,
 		location: event.location,
 		hasBot: !!event.bot,
+		botStatus: event.bot?.status || null,
+		botLastCheck: event.bot?.lastStatusCheck || null,
 		googleAccountId: event.googleAccountId,
 		isSynced: false
 	}))
@@ -147,6 +149,8 @@ export async function syncCalendarEvents(
 				attendees: calendarEventWithBot.attendees,
 				location: calendarEventWithBot.location,
 				hasBot: !!calendarEventWithBot.bot,
+				botStatus: calendarEventWithBot.bot?.status || null,
+				botLastCheck: calendarEventWithBot.bot?.lastStatusCheck || null,
 				googleAccountId: calendarEventWithBot.googleAccountId,
 				isSynced: true
 			})
