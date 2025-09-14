@@ -133,11 +133,16 @@ export class BotManagementService {
 
 		try {
 			const recallBot = await getBot(bot.recallBotId)
+			console.log('recallBot', JSON.stringify(recallBot, null, 2))
 			const latestStatus = recallBot.status_changes[recallBot.status_changes.length - 1]
 
+			if (!latestStatus) {
+				return
+			}
+
 			let newStatus: BotStatus = bot.status
-			let joinedAt = bot.joinedAt
-			let leftAt = bot.leftAt
+			const joinedAt = bot.joinedAt
+			const leftAt = bot.leftAt
 
 			switch (latestStatus.code) {
 				case 'joining_call':
@@ -145,17 +150,14 @@ export class BotManagementService {
 					break
 				case 'in_call_recording':
 					newStatus = 'RECORDING'
-					if (!joinedAt) {
-						joinedAt = new Date(latestStatus.created_at)
-					}
+					// if (!joinedAt) {
+					// 	joinedAt = new Date(latestStatus.created_at)
+					// }
 					break
 				case 'call_ended':
 				case 'recording_done':
 				case 'done':
 					newStatus = 'COMPLETED'
-					if (!leftAt) {
-						leftAt = new Date(latestStatus.created_at)
-					}
 					break
 				default:
 					break

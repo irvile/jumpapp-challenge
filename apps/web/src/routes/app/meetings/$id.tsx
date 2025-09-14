@@ -51,7 +51,7 @@ function MeetingDetailsContent({ meeting }: { meeting: any }) {
 		<div className="min-h-screen bg-background">
 			<MeetingHeader title={meeting.title} />
 
-			<div className="container mx-auto px-4 py-6">
+			<div className="container mx-auto px-4 max-w-6xl">
 				<div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 					<div className="lg:col-span-1 space-y-6">
 						<MeetingInfoCard meeting={meeting} />
@@ -59,11 +59,13 @@ function MeetingDetailsContent({ meeting }: { meeting: any }) {
 						<MeetingTranscript meeting={meeting} isPastEvent={isPastEvent} botEnabled={meeting.hasBot} />
 					</div>
 
-					{isPastEvent && meeting.hasBot && (
-						<div className="lg:col-span-2">
-							<ContentPlayground transcript={transcript} meetingId={meeting.id} />
-						</div>
-					)}
+					<div className="lg:col-span-2">
+						<ContentPlayground 
+							transcript={transcript} 
+							meetingId={meeting.id} 
+							disabled={!isPastEvent || !meeting.hasBot}
+						/>
+					</div>
 				</div>
 			</div>
 		</div>

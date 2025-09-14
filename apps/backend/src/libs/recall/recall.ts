@@ -115,6 +115,8 @@ export const recallFetch = createFetch<RecallHttpSchema>({
 })
 
 export async function createBot(botData: CreateBotBodyRecall): Promise<BotResponseRecall> {
+	console.log('createBot', botData)
+
 	const response = await recallFetch('/bot', {
 		method: 'POST',
 		headers: {

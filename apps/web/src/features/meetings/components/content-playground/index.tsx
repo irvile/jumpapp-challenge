@@ -9,14 +9,51 @@ import { SocialPostsTab } from './social-posts-tab'
 interface ContentPlaygroundProps {
 	transcript: any
 	meetingId: string
+	disabled?: boolean
 }
 
-export function ContentPlayground({ transcript, meetingId }: ContentPlaygroundProps) {
+export function ContentPlayground({ transcript, meetingId, disabled = false }: ContentPlaygroundProps) {
 	const [activeTab, setActiveTab] = useState('followup')
 	const [generatedContents, setGeneratedContents] = useState<GeneratedContent[]>([])
 
 	const handleContentGenerated = (content: GeneratedContent) => {
 		setGeneratedContents((prev) => [...prev, content])
+	}
+
+	if (disabled) {
+		return (
+			<div className="bg-card rounded-lg border opacity-50">
+				<div className="p-6 border-b">
+					<h3 className="text-lg font-semibold mb-2">AI Content Generator</h3>
+					<p className="text-sm text-muted-foreground">
+						Content generation will be available after the meeting ends and the bot joins
+					</p>
+				</div>
+
+				<div className="p-6">
+					<Tabs value={activeTab} onValueChange={setActiveTab} className="h-full pointer-events-none">
+						<TabsList className="grid w-full grid-cols-3">
+							<TabsTrigger value="followup" className="flex items-center gap-2">
+								<Mail className="h-4 w-4" />
+								Follow-up Email
+							</TabsTrigger>
+							<TabsTrigger value="social-posts" className="flex items-center gap-2">
+								<MessageSquare className="h-4 w-4" />
+								Social Posts
+							</TabsTrigger>
+							<TabsTrigger value="draft-generator" className="flex items-center gap-2">
+								<FileText className="h-4 w-4" />
+								Draft Generator
+							</TabsTrigger>
+						</TabsList>
+
+						<div className="mt-6 text-center py-8">
+							<p className="text-muted-foreground">AI content generation is not available yet</p>
+						</div>
+					</Tabs>
+				</div>
+			</div>
+		)
 	}
 
 	return (

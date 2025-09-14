@@ -11,21 +11,22 @@ const ZOOM_PATTERNS = [
 	/[\w\d.-]*zoom\.us\/meeting\/\d+[^\s]*/i
 ]
 
-const MEET_PATTERNS = [
-	/meet\.google\.com\/[a-zA-Z0-9-]+/i,
-	/g\.co\/meet\/[a-zA-Z0-9-]+/i
-]
+const MEET_PATTERNS = [/meet\.google\.com\/[a-zA-Z0-9-]+/i, /g\.co\/meet\/[a-zA-Z0-9-]+/i]
 
 const TEAMS_PATTERNS = [
 	/https:\/\/teams\.microsoft\.com\/[^\s<>]+/i,
-	/https:\/\/teams\.live\.com\/meet\/[^\s<>?]+/i,
-	/teams\.live\.com\/meet\/[^\s<>?]+/i,
+	/https:\/\/teams\.live\.com\/meet\/[^\s<>]+/i,
+	/teams\.live\.com\/meet\/[^\s<>]+/i,
 	/join\.teams\.microsoft\.com\/[^\s<>]+/i
 ]
 
-export function extractMeetingLink(description?: string, location?: string, hangoutLink?: string): MeetingLinkData | null {
+export function extractMeetingLink(
+	description?: string,
+	location?: string,
+	hangoutLink?: string
+): MeetingLinkData | null {
 	const textToSearch = [description, location].filter(Boolean).join(' ')
-	
+
 	if (hangoutLink) {
 		return {
 			url: hangoutLink,
@@ -34,7 +35,7 @@ export function extractMeetingLink(description?: string, location?: string, hang
 	}
 
 	if (location === 'Microsoft Teams Meeting') {
-		const teamsMatch = TEAMS_PATTERNS.find(pattern => pattern.test(textToSearch))
+		const teamsMatch = TEAMS_PATTERNS.find((pattern) => pattern.test(textToSearch))
 		if (teamsMatch) {
 			const match = textToSearch.match(teamsMatch)
 			if (match) {
@@ -48,7 +49,7 @@ export function extractMeetingLink(description?: string, location?: string, hang
 
 	if (!textToSearch) return null
 
-	const zoomMatch = ZOOM_PATTERNS.find(pattern => pattern.test(textToSearch))
+	const zoomMatch = ZOOM_PATTERNS.find((pattern) => pattern.test(textToSearch))
 	if (zoomMatch) {
 		const match = textToSearch.match(zoomMatch)
 		if (match) {
@@ -59,7 +60,7 @@ export function extractMeetingLink(description?: string, location?: string, hang
 		}
 	}
 
-	const meetMatch = MEET_PATTERNS.find(pattern => pattern.test(textToSearch))
+	const meetMatch = MEET_PATTERNS.find((pattern) => pattern.test(textToSearch))
 	if (meetMatch) {
 		const match = textToSearch.match(meetMatch)
 		if (match) {
@@ -70,7 +71,7 @@ export function extractMeetingLink(description?: string, location?: string, hang
 		}
 	}
 
-	const teamsMatch = TEAMS_PATTERNS.find(pattern => pattern.test(textToSearch))
+	const teamsMatch = TEAMS_PATTERNS.find((pattern) => pattern.test(textToSearch))
 	if (teamsMatch) {
 		const match = textToSearch.match(teamsMatch)
 		if (match) {
@@ -89,7 +90,8 @@ export function detectPlatform(url: string): Platform | null {
 
 	if (url.includes('zoom.us')) return 'ZOOM'
 	if (url.includes('meet.google.com') || url.includes('g.co/meet')) return 'GOOGLE_MEET'
-	if (url.includes('teams.microsoft.com') || url.includes('teams.live.com') || url.includes('join.teams.microsoft.com')) return 'MICROSOFT_TEAMS'
+	if (url.includes('teams.microsoft.com') || url.includes('teams.live.com') || url.includes('join.teams.microsoft.com'))
+		return 'MICROSOFT_TEAMS'
 
 	return null
 }

@@ -49,7 +49,7 @@ ________________________________________________________________________________
 		expect(result).not.toBeNull()
 		if (result) {
 			expect(result.platform).toBe('MICROSOFT_TEAMS')
-			expect(result.url).toBe('https://teams.live.com/meet/9385551482824')
+			expect(result.url).toBe('https://teams.live.com/meet/9385551482824?p=Nqcc5j3c06vlEOa23P')
 		}
 	})
 
@@ -108,6 +108,18 @@ ________________________________________________________________________________
 		if (result) {
 			expect(result.platform).toBe('ZOOM')
 			expect(result.url).toBe('https://zoom.us/j/123456789')
+		}
+	})
+
+	test('should preserve query parameters in Microsoft Teams links', () => {
+		const description = `Meeting link: https://teams.live.com/meet/9310127214559?p=H8GuIR6ZQOunkOppkT`
+		const location = 'Microsoft Teams Meeting'
+		const result = extractMeetingLink(description, location)
+
+		expect(result).not.toBeNull()
+		if (result) {
+			expect(result.platform).toBe('MICROSOFT_TEAMS')
+			expect(result.url).toBe('https://teams.live.com/meet/9310127214559?p=H8GuIR6ZQOunkOppkT')
 		}
 	})
 })
