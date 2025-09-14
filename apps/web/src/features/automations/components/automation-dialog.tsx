@@ -1,14 +1,26 @@
+import { zodResolver } from '@hookform/resolvers/zod'
+import {
+	AlertDialog,
+	AlertDialogAction,
+	AlertDialogCancel,
+	AlertDialogContent,
+	AlertDialogDescription,
+	AlertDialogFooter,
+	AlertDialogHeader,
+	AlertDialogTitle,
+	AlertDialogTrigger
+} from '@web/components/ui/alert-dialog'
 import { Button } from '@web/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@web/components/ui/dialog'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@web/components/ui/form'
 import { Input } from '@web/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@web/components/ui/select'
 import { Textarea } from '@web/components/ui/textarea'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { useCreateAutomation, useDeleteAutomation, useUpdateAutomation } from '../queries/use-automation-mutations'
-import type { Automation } from '../types'
+import type { AutomationListItem } from '../queries/use-automations'
 
 const automationSchema = z.object({
 	name: z.string().min(1, 'Name is required'),
@@ -23,10 +35,11 @@ type AutomationFormData = z.infer<typeof automationSchema>
 interface AutomationDialogProps {
 	open: boolean
 	onOpenChange: (open: boolean) => void
-	automation?: Automation | null
+	automation?: AutomationListItem | null
 }
 
 export function AutomationDialog({ open, onOpenChange, automation }: AutomationDialogProps) {
+	const [showDeleteDialog, setShowDeleteDialog] = useState(false)
 	const createAutomation = useCreateAutomation()
 	const updateAutomation = useUpdateAutomation()
 	const deleteAutomation = useDeleteAutomation()
@@ -37,7 +50,7 @@ export function AutomationDialog({ open, onOpenChange, automation }: AutomationD
 		resolver: zodResolver(automationSchema),
 		defaultValues: {
 			name: automation?.name || '',
-			type: automation?.type || 'Generate Post',
+			type: automation?.type || 'GENERATE_POST',
 			platform: automation?.platform || 'LINKEDIN',
 			description: automation?.description || '',
 			example: automation?.example || ''
@@ -55,7 +68,13 @@ export function AutomationDialog({ open, onOpenChange, automation }: AutomationD
 				await createAutomation.mutateAsync(data)
 			}
 			onOpenChange(false)
-			form.reset()
+			form.reset({
+				name: '',
+				type: 'Generate Post',
+				platform: 'LINKEDIN',
+				description: '',
+				example: ''
+			})
 		} catch (error) {
 			console.error('Failed to save automation:', error)
 		}
@@ -63,9 +82,10 @@ export function AutomationDialog({ open, onOpenChange, automation }: AutomationD
 
 	const handleDelete = async () => {
 		if (!automation) return
-		
+
 		try {
 			await deleteAutomation.mutateAsync(automation.id)
+			setShowDeleteDialog(false)
 			onOpenChange(false)
 		} catch (error) {
 			console.error('Failed to delete automation:', error)
@@ -74,7 +94,13 @@ export function AutomationDialog({ open, onOpenChange, automation }: AutomationD
 
 	const handleCancel = () => {
 		onOpenChange(false)
-		form.reset()
+		form.reset({
+			name: '',
+			type: 'GENERATE_POST',
+			platform: 'LINKEDIN',
+			description: '',
+			example: ''
+		})
 	}
 
 	const isLoading = createAutomation.isPending || updateAutomation.isPending || deleteAutomation.isPending
@@ -83,14 +109,11 @@ export function AutomationDialog({ open, onOpenChange, automation }: AutomationD
 		<Dialog open={open} onOpenChange={onOpenChange}>
 			<DialogContent className="max-w-md">
 				<DialogHeader>
-					<DialogTitle>
-						{isEditing ? 'Edit Automation' : 'Create Automation'}
-					</DialogTitle>
+					<DialogTitle>{isEditing ? 'Edit Automation' : 'Create Automation'}</DialogTitle>
 					<DialogDescription>
-						{isEditing 
+						{isEditing
 							? 'Update your automation configuration'
-							: 'Configure how content will be generated from your meetings'
-						}
+							: 'Configure how content will be generated from your meetings'}
 					</DialogDescription>
 				</DialogHeader>
 
@@ -123,9 +146,8 @@ export function AutomationDialog({ open, onOpenChange, automation }: AutomationD
 											</SelectTrigger>
 										</FormControl>
 										<SelectContent>
-											<SelectItem value="Generate Post">Generate Post</SelectItem>
-											<SelectItem value="Generate Summary">Generate Summary</SelectItem>
-											<SelectItem value="Generate Email">Generate Email</SelectItem>
+											<SelectItem value="GENERATE_POST">Generate Post</SelectItem>
+											<SelectItem value="GENERATE_SUMMARY">Generate Summary</SelectItem>
 										</SelectContent>
 									</Select>
 									<FormMessage />
@@ -146,8 +168,8 @@ export function AutomationDialog({ open, onOpenChange, automation }: AutomationD
 											</SelectTrigger>
 										</FormControl>
 										<SelectContent>
-											<SelectItem value="LINKEDIN">LinkedIn Post</SelectItem>
-											<SelectItem value="FACEBOOK">Facebook Post</SelectItem>
+											<SelectItem value="LINKEDIN">LinkedIn</SelectItem>
+											<SelectItem value="FACEBOOK">Facebook</SelectItem>
 										</SelectContent>
 									</Select>
 									<FormMessage />
@@ -162,7 +184,7 @@ export function AutomationDialog({ open, onOpenChange, automation }: AutomationD
 								<FormItem>
 									<FormLabel>Description</FormLabel>
 									<FormControl>
-										<Textarea 
+										<Textarea
 											placeholder="Describe how this automation should work..."
 											className="resize-none"
 											rows={3}
@@ -181,7 +203,7 @@ export function AutomationDialog({ open, onOpenChange, automation }: AutomationD
 								<FormItem>
 									<FormLabel>Example</FormLabel>
 									<FormControl>
-										<Textarea 
+										<Textarea
 											placeholder="Provide an example of the expected output..."
 											className="resize-none"
 											rows={3}
@@ -196,23 +218,35 @@ export function AutomationDialog({ open, onOpenChange, automation }: AutomationD
 						<div className="flex justify-between pt-4">
 							<div>
 								{isEditing && (
-									<Button
-										type="button"
-										variant="destructive"
-										onClick={handleDelete}
-										disabled={isLoading}
-									>
-										Delete
-									</Button>
+									<AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+										<AlertDialogTrigger asChild>
+											<Button type="button" variant="destructive" disabled={isLoading}>
+												Delete
+											</Button>
+										</AlertDialogTrigger>
+										<AlertDialogContent>
+											<AlertDialogHeader>
+												<AlertDialogTitle>Delete Automation</AlertDialogTitle>
+												<AlertDialogDescription>
+													Are you sure you want to delete "{automation?.name}"? This action cannot be undone.
+												</AlertDialogDescription>
+											</AlertDialogHeader>
+											<AlertDialogFooter>
+												<AlertDialogCancel disabled={isLoading}>Cancel</AlertDialogCancel>
+												<AlertDialogAction
+													onClick={handleDelete}
+													disabled={isLoading}
+													className="bg-destructive text-white hover:bg-destructive/80 "
+												>
+													{deleteAutomation.isPending ? 'Deleting...' : 'Delete'}
+												</AlertDialogAction>
+											</AlertDialogFooter>
+										</AlertDialogContent>
+									</AlertDialog>
 								)}
 							</div>
 							<div className="flex gap-2">
-								<Button
-									type="button"
-									variant="outline"
-									onClick={handleCancel}
-									disabled={isLoading}
-								>
+								<Button type="button" variant="outline" onClick={handleCancel} disabled={isLoading}>
 									Cancel
 								</Button>
 								<Button type="submit" disabled={isLoading}>

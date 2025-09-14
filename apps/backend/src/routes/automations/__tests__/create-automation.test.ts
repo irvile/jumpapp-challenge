@@ -68,7 +68,7 @@ describe('Automations CREATE API Tests', () => {
 			}
 		})
 
-		test('should return error when social media account not connected', async () => {
+		test('should create automation without social media account connected', async () => {
 			const user = await testFactory.createUser().save()
 
 			const automationData = {
@@ -84,8 +84,11 @@ describe('Automations CREATE API Tests', () => {
 				}
 			})
 
-			expect(response.status).toBe(500)
-			expect(response.error).toBeDefined()
+			expect(response.status).toBe(200)
+			expect(response.data).toBeDefined()
+			expect(response.data.name).toBe(automationData.name)
+			expect(response.data.platform).toBe(automationData.platform)
+			expect(response.data.socialMediaAccountId).toBe(null)
 		})
 
 		test('should validate required fields', async () => {

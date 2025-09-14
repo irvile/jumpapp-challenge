@@ -182,8 +182,8 @@ model Automation {
     isActive             Boolean              @default(true)
     userId               String
     user                 User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
-    socialMediaAccountId String
-    socialMediaAccount   SocialMediaAccount   @relation(fields: [socialMediaAccountId], references: [id], onDelete: Cascade)
+    socialMediaAccountId String?
+    socialMediaAccount   SocialMediaAccount?  @relation(fields: [socialMediaAccountId], references: [id], onDelete: Cascade)
     aiGeneratedContent   AiGeneratedContent[]
     createdAt            DateTime             @default(now())
     updatedAt            DateTime             @updatedAt
@@ -230,6 +230,7 @@ enum BotStatus {
 
 enum AutomationType {
     GENERATE_POST
+    GENERATE_SUMMARY
 }
 
 enum ContentType {

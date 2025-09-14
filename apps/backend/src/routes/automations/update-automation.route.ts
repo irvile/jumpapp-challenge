@@ -6,6 +6,7 @@ import Elysia, { type Static, t } from 'elysia'
 
 const updateAutomationSchema = t.Object({
 	name: t.Optional(t.String({ minLength: 1, maxLength: 100 })),
+	type: t.Optional(t.String({ minLength: 1, maxLength: 100 })),
 	platform: t.Optional(t.Union([t.Literal('LINKEDIN'), t.Literal('FACEBOOK')])),
 	description: t.Optional(t.String({ minLength: 1, maxLength: 1000 })),
 	example: t.Optional(t.String({ minLength: 1, maxLength: 1000 })),
@@ -15,7 +16,7 @@ const updateAutomationSchema = t.Object({
 export type UpdateAutomationSchema = Static<typeof updateAutomationSchema>
 
 async function updateAutomation(params: { id: string }, body: UpdateAutomationSchema, user: User) {
-	if (!body.name && !body.platform && !body.description && !body.example && body.isActive === undefined) {
+	if (!body.name && !body.type && !body.platform && !body.description && !body.example && body.isActive === undefined) {
 		throw new Error('At least one field must be provided for update')
 	}
 
@@ -29,6 +30,7 @@ async function updateAutomation(params: { id: string }, body: UpdateAutomationSc
 
 	const updateData = {
 		name: body.name || automation.name,
+		type: body.type || automation.type,
 		platform: body.platform || automation.platform,
 		description: body.description || automation.description,
 		example: body.example !== undefined ? body.example : automation.example || undefined,

@@ -1,11 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Badge } from '@web/components/ui/badge'
 import { Button } from '@web/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@web/components/ui/card'
 import { AutomationCard } from '@web/features/automations/components/automation-card'
 import { AutomationDialog } from '@web/features/automations/components/automation-dialog'
-import { useAutomations } from '@web/features/automations/queries/use-automations'
-import type { Automation } from '@web/features/automations/types'
+import { type AutomationListItem, useAutomations } from '@web/features/automations/queries/use-automations'
 import { AlertCircle, Plus, Settings, Zap } from 'lucide-react'
 import { useState } from 'react'
 
@@ -15,7 +13,7 @@ export const Route = createFileRoute('/app/setup/content-automation')({
 
 function RouteComponent() {
 	const [isDialogOpen, setIsDialogOpen] = useState(false)
-	const [selectedAutomation, setSelectedAutomation] = useState<Automation | null>(null)
+	const [selectedAutomation, setSelectedAutomation] = useState<AutomationListItem | null>(null)
 	const { data: automations = [], isLoading } = useAutomations()
 
 	const handleCreateAutomation = () => {
@@ -23,13 +21,13 @@ function RouteComponent() {
 		setIsDialogOpen(true)
 	}
 
-	const handleEditAutomation = (automation: Automation) => {
+	const handleEditAutomation = (automation: AutomationListItem) => {
 		setSelectedAutomation(automation)
 		setIsDialogOpen(true)
 	}
 
-	const activeAutomations = automations.filter(a => a.isActive)
-	const inactiveAutomations = automations.filter(a => !a.isActive)
+	const activeAutomations = automations.filter((a) => a.isActive)
+	const inactiveAutomations = automations.filter((a) => !a.isActive)
 
 	return (
 		<div className="container mx-auto py-8 px-4 max-w-4xl">
@@ -51,11 +49,6 @@ function RouteComponent() {
 						<CardTitle className="flex items-center gap-2">
 							<Zap className="h-5 w-5" />
 							Your Automations
-							{activeAutomations.length > 0 && (
-								<Badge variant="default" className="ml-2">
-									{activeAutomations.length} Active
-								</Badge>
-							)}
 						</CardTitle>
 						<CardDescription>Automations that generate content from your meeting transcripts</CardDescription>
 					</CardHeader>
@@ -79,25 +72,13 @@ function RouteComponent() {
 						) : (
 							<div className="space-y-4">
 								{activeAutomations.map((automation) => (
-									<AutomationCard 
-										key={automation.id} 
-										automation={automation}
-										onEdit={handleEditAutomation}
-									/>
+									<AutomationCard key={automation.id} automation={automation} onEdit={handleEditAutomation} />
 								))}
 								{inactiveAutomations.map((automation) => (
-									<AutomationCard 
-										key={automation.id} 
-										automation={automation}
-										onEdit={handleEditAutomation}
-									/>
+									<AutomationCard key={automation.id} automation={automation} onEdit={handleEditAutomation} />
 								))}
 								<div className="pt-4 border-t">
-									<Button 
-										onClick={handleCreateAutomation} 
-										variant="outline" 
-										className="w-full"
-									>
+									<Button onClick={handleCreateAutomation} variant="outline" className="w-full">
 										<Plus className="h-4 w-4 mr-2" />
 										Add Another Automation
 									</Button>
@@ -119,8 +100,8 @@ function RouteComponent() {
 								<div className="text-sm">
 									<p className="font-medium text-blue-900 mb-1">Automatic Generation</p>
 									<p className="text-blue-700">
-										When a meeting ends and a transcript is available, your active automations will 
-										automatically generate content based on your configurations.
+										When a meeting ends and a transcript is available, your active automations will automatically
+										generate content based on your configurations.
 									</p>
 								</div>
 							</div>
@@ -131,8 +112,8 @@ function RouteComponent() {
 								<div className="text-sm">
 									<p className="font-medium text-amber-900 mb-1">Platform Specific</p>
 									<p className="text-amber-700">
-										Each automation is configured for a specific platform (LinkedIn, Facebook) with 
-										tailored content formats and requirements.
+										Each automation is configured for a specific platform (LinkedIn, Facebook) with tailored content
+										formats and requirements.
 									</p>
 								</div>
 							</div>
@@ -141,11 +122,9 @@ function RouteComponent() {
 				</Card>
 			</div>
 
-			<AutomationDialog
-				open={isDialogOpen}
-				onOpenChange={setIsDialogOpen}
-				automation={selectedAutomation}
-			/>
+			{isDialogOpen ? (
+				<AutomationDialog open={isDialogOpen} onOpenChange={setIsDialogOpen} automation={selectedAutomation} />
+			) : null}
 		</div>
 	)
 }

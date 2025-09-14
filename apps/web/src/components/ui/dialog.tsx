@@ -42,7 +42,7 @@ function DialogContent({
 }) {
 	return (
 		<DialogPortal data-slot="dialog-portal">
-			<DialogOverlay />
+			<DialogOverlay className="fixed inset-0 z-50 bg-gray-100 bg-opacity-10 backdrop-blur" />
 			<DialogPrimitive.Content
 				data-slot="dialog-content"
 				className={cn(

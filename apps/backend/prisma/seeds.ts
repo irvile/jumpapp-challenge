@@ -55,7 +55,7 @@ async function calendarAccountSeeds(user: User) {
 async function meetingSeeds(calendarAccount: CalendarAccount) {
 	const now = dayjs()
 
-	const days = [0, 1, 2]
+	const days = [-1, 0, 1]
 
 	const meetingTemplates = [
 		{

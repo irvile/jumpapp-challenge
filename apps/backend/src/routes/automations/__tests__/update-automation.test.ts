@@ -228,7 +228,7 @@ describe('Automations UPDATE API Tests', () => {
 			}
 		})
 
-		test('should return error when switching to platform without connected account', async () => {
+		test('should allow switching to platform without connected account', async () => {
 			const user = await testFactory.createUser().save()
 			const linkedinAccount = await testFactory.createSocialMediaAccount(user.user.id, 'LINKEDIN').save()
 			const automation = await testFactory.createAutomation(user.user.id, linkedinAccount.id).save()
@@ -243,8 +243,10 @@ describe('Automations UPDATE API Tests', () => {
 				}
 			})
 
-			expect(response.status).toBe(500)
-			expect(response.error).toBeDefined()
+			expect(response.status).toBe(200)
+			expect(response.data).toBeDefined()
+			expect(response.data.platform).toBe('FACEBOOK')
+			expect(response.data.socialMediaAccountId).toBe(null)
 		})
 	})
 })
