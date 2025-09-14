@@ -113,8 +113,14 @@ export const auth = betterAuth({
 		account: {
 			create: {
 				after: async (account, ctx) => {
-					let googleEmail = 'unknown@gmail.com'
-					let googleName = 'Unknown'
+					const user = await db.user.findUnique({
+						where: {
+							id: account.userId
+						}
+					})
+
+					let googleEmail = user?.email || 'unknown@gmail.com'
+					let googleName = user?.name || 'Unknown'
 
 					if (account.providerId === 'google') {
 						try {
