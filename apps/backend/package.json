@@ -25,6 +25,7 @@
 		"@zimic/fetch": "1.0.4",
 		"@zimic/http": "1.0.4",
 		"ai": "^5.0.44",
+		"ai-sdk-provider-gemini-cli": "^1.1.1",
 		"better-auth": "1.3.9",
 		"dayjs": "1.11.18",
 		"elysia": "1.3.21",

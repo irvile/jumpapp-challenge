@@ -12,7 +12,8 @@ const envsSchema = z.object({
 	GOOGLE_CLIENT_ID: z.string(),
 	GOOGLE_CLIENT_SECRET: z.string(),
 
-	RECALL_API_KEY: z.string()
+	RECALL_API_KEY: z.string(),
+	GEMINI_API_KEY: z.string()
 })
 
 // biome-ignore lint/style/noProcessEnv: >

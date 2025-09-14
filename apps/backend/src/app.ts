@@ -2,6 +2,7 @@ import { cors } from '@elysiajs/cors'
 import { swagger } from '@elysiajs/swagger'
 import { Elysia } from 'elysia'
 import { auth } from './libs/auth'
+import { aiRoutes } from './routes/ai/ai.routes'
 import { authRoutes } from './routes/auth/auth.routes'
 import { calendarRoutes } from './routes/calendars/calendar.routes'
 import { transcriptRoutes } from './routes/transcripts/transcript.routes'
@@ -14,6 +15,7 @@ const routes = new Elysia({ prefix: '/api' })
 	.use(transcriptRoutes)
 	.use(usersRoutes)
 	.use(webhookRoutes)
+	.use(aiRoutes)
 
 const app = new Elysia()
 	.use(swagger())

@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { signUp } from '@backend/libs/auth'
 import { BotStatus, type CalendarAccount, Platform, PrismaClient, type User } from '@backend/libs/generated/prisma'
 import { genId } from '@backend/libs/nanoid'
@@ -5,8 +7,6 @@ import { parseTranscript } from '@backend/libs/recall/transcript/parser'
 import type { ParsedTranscript, RecallTranscript } from '@backend/libs/recall/transcript/types'
 import { testFactory } from '@backend/libs/test-utils'
 import dayjs from 'dayjs'
-import { readFileSync } from 'fs'
-import { join } from 'path'
 
 const prisma = new PrismaClient()
 

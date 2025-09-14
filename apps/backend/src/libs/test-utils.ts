@@ -5,6 +5,7 @@ import { app } from '../app'
 import { signIn, signUp } from './auth'
 import { db } from './db'
 import { envs } from './envs'
+import type { Platform } from './generated/prisma'
 import { genId } from './nanoid'
 
 export const apiTest = treaty(app)
@@ -96,7 +97,7 @@ class TestFactory {
 					endTime: data.endTime,
 					description: data.description,
 					meetingUrl: data.meetingUrl,
-					platform: data.platform as any,
+					platform: data.platform as Platform,
 					attendees: data.attendees,
 					location: data.location
 				}
