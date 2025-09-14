@@ -1,4 +1,4 @@
-import { BotIcon, CalendarIcon } from 'lucide-react'
+import { BotIcon, BrainIcon, CalendarIcon, ShieldUserIcon, SmilePlusIcon } from 'lucide-react'
 import type { SidebarData } from '../types'
 
 export const sidebarData: SidebarData = {
@@ -21,6 +21,21 @@ export const sidebarData: SidebarData = {
 					title: 'Meeting Bot Setup',
 					icon: BotIcon,
 					url: '/app/setup/bot'
+				},
+				{
+					title: 'Content Automation',
+					icon: BrainIcon,
+					url: '/app/setup/content-automation'
+				},
+				{
+					title: 'Google Accounts',
+					icon: ShieldUserIcon,
+					url: '/app/setup/google-accounts'
+				},
+				{
+					title: 'Social Media Accounts',
+					icon: SmilePlusIcon,
+					url: '/app/setup/social-media-accounts'
 				}
 			]
 		}

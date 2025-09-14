@@ -8,7 +8,7 @@ export const Route = createFileRoute('/(auth)/login')({
 
 		if (shouldRedirect) {
 			throw redirect({
-				to: '/'
+				to: '/app/meetings'
 			})
 		}
 	}

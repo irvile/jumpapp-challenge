@@ -5,6 +5,7 @@ import { Card, CardContent } from '@web/components/ui/card'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@web/components/ui/form'
 import { Input } from '@web/components/ui/input'
 import { authClient } from '@web/libs/auth'
+import { envs } from '@web/libs/envs'
 import { cn } from '@web/libs/utils'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
@@ -40,10 +41,10 @@ const GoogleIcon = () => (
 )
 
 const formSchema = z.object({
-	email: z.string({ error: 'Obrigatório' }).min(1, { message: 'Obrigatório' }).email({
-		message: 'E-mail inválido'
+	email: z.string({ error: 'Required' }).min(1, { message: 'Required' }).email({
+		message: 'Invalid email'
 	}),
-	password: z.string({ error: 'Obrigatório' }).min(1, 'Obrigatório')
+	password: z.string({ error: 'Required' }).min(1, 'Required')
 })
 
 type LoginFormValues = z.infer<typeof formSchema>
@@ -61,7 +62,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
 		const signInResponse = await authClient.signIn.social({
 			provider: 'google',
 			scopes: ['https://www.googleapis.com/auth/calendar.events.readonly'],
-			callbackURL: '/app'
+			callbackURL: `${envs.VITE_PUBLIC_APP_URL}/app/meetings`
 		})
 
 		if (signInResponse.error) {
@@ -76,7 +77,8 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
 		const signInResponse = await authClient.signIn.email({
 			email: data.email,
 			password: data.password,
-			rememberMe: true
+			rememberMe: true,
+			callbackURL: `${envs.VITE_PUBLIC_APP_URL}/app/meetings`
 		})
 
 		if (signInResponse.error) {
@@ -94,7 +96,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
 						<form onSubmit={form.handleSubmit(onSubmit)} className="p-6 md:p-8">
 							<div className="flex flex-col gap-6">
 								<div className="flex flex-col items-center text-center">
-									<h1 className="text-2xl font-bold">Log in to Jumpapp</h1>
+									<h1 className="text-2xl font-bold">Log in to MeetPost AI</h1>
 									<p className="text-muted-foreground text-balance">Access your account</p>
 								</div>
 

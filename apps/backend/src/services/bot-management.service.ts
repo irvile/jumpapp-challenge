@@ -1,0 +1,222 @@
+import { db } from '@backend/libs/db'
+import type { BotStatus } from '@backend/libs/generated/prisma'
+import { createBot, deleteBot, getBot } from '@backend/libs/recall/recall'
+import { err, ok } from 'neverthrow'
+import { userSettingsService } from './user-settings.service'
+
+export class BotManagementService {
+	async scheduleBotForEvent(eventId: string, userId: string) {
+		const calendarEvent = await db.calendarEvent.findFirst({
+			where: {
+				id: eventId,
+				calendarAccount: {
+					userId: userId
+				}
+			},
+			include: {
+				bot: true
+			}
+		})
+
+		console.log('calendarEvent', JSON.stringify(calendarEvent, null, 2))
+
+		if (!calendarEvent) {
+			return { success: false, error: 'Calendar event not found' }
+		}
+
+		if (new Date(calendarEvent.startTime) <= new Date()) {
+			return { success: false, error: 'Cannot schedule bot for past events' }
+		}
+
+		if (!calendarEvent.meetingUrl) {
+			return { success: false, error: 'No meeting URL available for this event' }
+		}
+
+		if (calendarEvent.bot) {
+			return { success: true, bot: calendarEvent.bot }
+		}
+
+		const userSettings = await userSettingsService.getUserSettings(userId)
+
+		try {
+			const joinTime = new Date(calendarEvent.startTime.getTime() - userSettings.joinMinutesBefore * 60 * 1000)
+
+			if (joinTime <= new Date()) {
+				joinTime.setTime(calendarEvent.startTime.getTime())
+			}
+
+			const recallBot = await createBot({
+				meeting_url: calendarEvent.meetingUrl,
+				bot_name: userSettings.botName || 'MeetPost AI',
+				join_at: joinTime.toISOString(),
+				recording_config: {
+					transcript: {
+						provider: {
+							recallai_streaming: {
+								language_code: 'auto'
+							}
+						}
+					}
+				}
+			})
+
+			const bot = await db.bot.create({
+				data: {
+					botId: `bot_${Date.now()}`,
+					recallBotId: recallBot.id,
+					calendarEventId: calendarEvent.id,
+					status: 'JOINING'
+				}
+			})
+
+			return { success: true, bot }
+		} catch (error) {
+			console.error('Failed to create bot with Recall API', error)
+			const bot = await db.bot.create({
+				data: {
+					botId: `bot_${Date.now()}`,
+					calendarEventId: calendarEvent.id,
+					status: 'FAILED'
+				}
+			})
+
+			return { success: false, error: 'Failed to create bot with Recall API', bot }
+		}
+	}
+
+	async cancelBotForEvent(eventId: string, userId: string) {
+		const calendarEvent = await db.calendarEvent.findFirst({
+			where: {
+				id: eventId,
+				calendarAccount: {
+					userId: userId
+				}
+			},
+			include: {
+				bot: true
+			}
+		})
+
+		if (!calendarEvent) {
+			return { success: false, error: 'Calendar event not found' }
+		}
+
+		if (!calendarEvent.bot) {
+			return { success: true, bot: null }
+		}
+
+		try {
+			if (calendarEvent.bot.recallBotId) {
+				await deleteBot(calendarEvent.bot.recallBotId)
+			}
+
+			await db.bot.delete({
+				where: {
+					id: calendarEvent.bot.id
+				}
+			})
+
+			return { success: true, bot: null }
+		} catch {
+			return { success: false, error: 'Failed to cancel bot' }
+		}
+	}
+
+	async syncBotWithRecall(botId: string) {
+		const bot = await db.bot.findUnique({
+			where: { id: botId }
+		})
+
+		if (!bot || !bot.recallBotId) {
+			return
+		}
+
+		try {
+			const recallBot = await getBot(bot.recallBotId)
+			console.log('recallBot', JSON.stringify(recallBot, null, 2))
+			const latestStatus = recallBot.status_changes[recallBot.status_changes.length - 1]
+
+			if (!latestStatus) {
+				return
+			}
+
+			let newStatus: BotStatus = bot.status
+			const joinedAt = bot.joinedAt
+			const leftAt = bot.leftAt
+
+			switch (latestStatus.code) {
+				case 'joining_call':
+					newStatus = 'JOINING'
+					break
+				case 'in_call_recording':
+					newStatus = 'RECORDING'
+					// if (!joinedAt) {
+					// 	joinedAt = new Date(latestStatus.created_at)
+					// }
+					break
+				case 'call_ended':
+				case 'recording_done':
+				case 'done':
+					newStatus = 'COMPLETED'
+					break
+				default:
+					break
+			}
+
+			await db.bot.update({
+				where: { id: botId },
+				data: {
+					status: newStatus,
+					lastStatusCheck: new Date(),
+					joinedAt: joinedAt,
+					leftAt: leftAt
+				}
+			})
+		} catch (error) {
+			console.error('Failed to sync bot with Recall API', error)
+			await db.bot.update({
+				where: { id: botId },
+				data: {
+					status: 'FAILED',
+					lastStatusCheck: new Date()
+				}
+			})
+		}
+	}
+
+	async getBotStatus(eventId: string, userId: string) {
+		const calendarEvent = await db.calendarEvent.findFirst({
+			where: {
+				id: eventId,
+				calendarAccount: {
+					userId: userId
+				}
+			},
+			include: {
+				bot: true
+			}
+		})
+
+		if (!calendarEvent) {
+			return err('Calendar event not found')
+		}
+
+		if (!calendarEvent.bot) {
+			return ok({ bot: null })
+		}
+
+		if (calendarEvent.bot.recallBotId && !calendarEvent.bot.webhookReceived) {
+			await this.syncBotWithRecall(calendarEvent.bot.id)
+
+			const updatedBot = await db.bot.findUnique({
+				where: { id: calendarEvent.bot.id }
+			})
+
+			return ok({ bot: updatedBot })
+		}
+
+		return ok({ bot: calendarEvent.bot })
+	}
+}
+
+export const botManagementService = new BotManagementService()

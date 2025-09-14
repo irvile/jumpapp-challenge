@@ -7,10 +7,9 @@ interface WeeklyMeetingsProps {
 	currentWeek: dayjs.Dayjs
 	weeklyMeetings: WeeklyMeetingsType
 	workingHours: number[]
-	onMeetingClick?: (meetingId: string) => void
 }
 
-export function WeeklyMeetings({ currentWeek, weeklyMeetings, workingHours, onMeetingClick }: WeeklyMeetingsProps) {
+export function WeeklyMeetings({ currentWeek, weeklyMeetings, workingHours }: WeeklyMeetingsProps) {
 	const weekDays = Array.from({ length: 7 }, (_, i) => currentWeek.add(i, 'day'))
 
 	const isToday = (date: dayjs.Dayjs) => {
@@ -86,7 +85,7 @@ export function WeeklyMeetings({ currentWeek, weeklyMeetings, workingHours, onMe
 											className={`p-2 border-r min-h-[100px] ${isToday(day) ? 'bg-primary/5' : ''}`}
 										>
 											{dayMeetings.map((meeting) => (
-												<MeetingCard key={meeting.id} meeting={meeting} onClick={() => onMeetingClick?.(meeting.id)} />
+												<MeetingCard key={meeting.id} meeting={meeting} />
 											))}
 										</div>
 									)

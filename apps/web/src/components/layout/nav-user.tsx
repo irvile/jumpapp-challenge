@@ -1,4 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@web/components/ui/avatar'
+import { Badge } from '@web/components/ui/badge'
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -61,6 +62,9 @@ export function NavUser() {
 							<DropdownMenuItem>
 								<Sparkles />
 								Subscribe
+								<Badge variant="secondary" className="ml-auto">
+									SOON
+								</Badge>
 							</DropdownMenuItem>
 						</DropdownMenuGroup>
 						<DropdownMenuSeparator />

@@ -12,10 +12,15 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteRouteImport } from './routes/app/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppIndexRouteImport } from './routes/app/index'
-import { Route as AppMeetingsRouteImport } from './routes/app/meetings'
 import { Route as authRegisterRouteImport } from './routes/(auth)/register'
 import { Route as authLoginRouteImport } from './routes/(auth)/login'
+import { Route as AppMeetingsRouteRouteImport } from './routes/app/meetings/route'
+import { Route as AppMeetingsIndexRouteImport } from './routes/app/meetings/index'
+import { Route as AppSetupSocialMediaAccountsRouteImport } from './routes/app/setup/social-media-accounts'
+import { Route as AppSetupGoogleAccountsRouteImport } from './routes/app/setup/google-accounts'
+import { Route as AppSetupContentAutomationRouteImport } from './routes/app/setup/content-automation'
 import { Route as AppSetupBotRouteImport } from './routes/app/setup/bot'
+import { Route as AppMeetingsIdRouteImport } from './routes/app/meetings/$id'
 
 const AppRouteRoute = AppRouteRouteImport.update({
   id: '/app',
@@ -32,11 +37,6 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AppMeetingsRoute = AppMeetingsRouteImport.update({
-  id: '/meetings',
-  path: '/meetings',
-  getParentRoute: () => AppRouteRoute,
-} as any)
 const authRegisterRoute = authRegisterRouteImport.update({
   id: '/(auth)/register',
   path: '/register',
@@ -47,60 +47,126 @@ const authLoginRoute = authLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppMeetingsRouteRoute = AppMeetingsRouteRouteImport.update({
+  id: '/meetings',
+  path: '/meetings',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppMeetingsIndexRoute = AppMeetingsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppMeetingsRouteRoute,
+} as any)
+const AppSetupSocialMediaAccountsRoute =
+  AppSetupSocialMediaAccountsRouteImport.update({
+    id: '/setup/social-media-accounts',
+    path: '/setup/social-media-accounts',
+    getParentRoute: () => AppRouteRoute,
+  } as any)
+const AppSetupGoogleAccountsRoute = AppSetupGoogleAccountsRouteImport.update({
+  id: '/setup/google-accounts',
+  path: '/setup/google-accounts',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppSetupContentAutomationRoute =
+  AppSetupContentAutomationRouteImport.update({
+    id: '/setup/content-automation',
+    path: '/setup/content-automation',
+    getParentRoute: () => AppRouteRoute,
+  } as any)
 const AppSetupBotRoute = AppSetupBotRouteImport.update({
   id: '/setup/bot',
   path: '/setup/bot',
   getParentRoute: () => AppRouteRoute,
 } as any)
+const AppMeetingsIdRoute = AppMeetingsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AppMeetingsRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteRouteWithChildren
+  '/app/meetings': typeof AppMeetingsRouteRouteWithChildren
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
-  '/app/meetings': typeof AppMeetingsRoute
   '/app/': typeof AppIndexRoute
+  '/app/meetings/$id': typeof AppMeetingsIdRoute
   '/app/setup/bot': typeof AppSetupBotRoute
+  '/app/setup/content-automation': typeof AppSetupContentAutomationRoute
+  '/app/setup/google-accounts': typeof AppSetupGoogleAccountsRoute
+  '/app/setup/social-media-accounts': typeof AppSetupSocialMediaAccountsRoute
+  '/app/meetings/': typeof AppMeetingsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
-  '/app/meetings': typeof AppMeetingsRoute
   '/app': typeof AppIndexRoute
+  '/app/meetings/$id': typeof AppMeetingsIdRoute
   '/app/setup/bot': typeof AppSetupBotRoute
+  '/app/setup/content-automation': typeof AppSetupContentAutomationRoute
+  '/app/setup/google-accounts': typeof AppSetupGoogleAccountsRoute
+  '/app/setup/social-media-accounts': typeof AppSetupSocialMediaAccountsRoute
+  '/app/meetings': typeof AppMeetingsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app': typeof AppRouteRouteWithChildren
+  '/app/meetings': typeof AppMeetingsRouteRouteWithChildren
   '/(auth)/login': typeof authLoginRoute
   '/(auth)/register': typeof authRegisterRoute
-  '/app/meetings': typeof AppMeetingsRoute
   '/app/': typeof AppIndexRoute
+  '/app/meetings/$id': typeof AppMeetingsIdRoute
   '/app/setup/bot': typeof AppSetupBotRoute
+  '/app/setup/content-automation': typeof AppSetupContentAutomationRoute
+  '/app/setup/google-accounts': typeof AppSetupGoogleAccountsRoute
+  '/app/setup/social-media-accounts': typeof AppSetupSocialMediaAccountsRoute
+  '/app/meetings/': typeof AppMeetingsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/app'
+    | '/app/meetings'
     | '/login'
     | '/register'
-    | '/app/meetings'
     | '/app/'
+    | '/app/meetings/$id'
     | '/app/setup/bot'
+    | '/app/setup/content-automation'
+    | '/app/setup/google-accounts'
+    | '/app/setup/social-media-accounts'
+    | '/app/meetings/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/register' | '/app/meetings' | '/app' | '/app/setup/bot'
+  to:
+    | '/'
+    | '/login'
+    | '/register'
+    | '/app'
+    | '/app/meetings/$id'
+    | '/app/setup/bot'
+    | '/app/setup/content-automation'
+    | '/app/setup/google-accounts'
+    | '/app/setup/social-media-accounts'
+    | '/app/meetings'
   id:
     | '__root__'
     | '/'
     | '/app'
+    | '/app/meetings'
     | '/(auth)/login'
     | '/(auth)/register'
-    | '/app/meetings'
     | '/app/'
+    | '/app/meetings/$id'
     | '/app/setup/bot'
+    | '/app/setup/content-automation'
+    | '/app/setup/google-accounts'
+    | '/app/setup/social-media-accounts'
+    | '/app/meetings/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -133,13 +199,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
-    '/app/meetings': {
-      id: '/app/meetings'
-      path: '/meetings'
-      fullPath: '/app/meetings'
-      preLoaderRoute: typeof AppMeetingsRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
     '/(auth)/register': {
       id: '/(auth)/register'
       path: '/register'
@@ -154,6 +213,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app/meetings': {
+      id: '/app/meetings'
+      path: '/meetings'
+      fullPath: '/app/meetings'
+      preLoaderRoute: typeof AppMeetingsRouteRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/app/meetings/': {
+      id: '/app/meetings/'
+      path: '/'
+      fullPath: '/app/meetings/'
+      preLoaderRoute: typeof AppMeetingsIndexRouteImport
+      parentRoute: typeof AppMeetingsRouteRoute
+    }
+    '/app/setup/social-media-accounts': {
+      id: '/app/setup/social-media-accounts'
+      path: '/setup/social-media-accounts'
+      fullPath: '/app/setup/social-media-accounts'
+      preLoaderRoute: typeof AppSetupSocialMediaAccountsRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/app/setup/google-accounts': {
+      id: '/app/setup/google-accounts'
+      path: '/setup/google-accounts'
+      fullPath: '/app/setup/google-accounts'
+      preLoaderRoute: typeof AppSetupGoogleAccountsRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/app/setup/content-automation': {
+      id: '/app/setup/content-automation'
+      path: '/setup/content-automation'
+      fullPath: '/app/setup/content-automation'
+      preLoaderRoute: typeof AppSetupContentAutomationRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
     '/app/setup/bot': {
       id: '/app/setup/bot'
       path: '/setup/bot'
@@ -161,19 +255,45 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppSetupBotRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/app/meetings/$id': {
+      id: '/app/meetings/$id'
+      path: '/$id'
+      fullPath: '/app/meetings/$id'
+      preLoaderRoute: typeof AppMeetingsIdRouteImport
+      parentRoute: typeof AppMeetingsRouteRoute
+    }
   }
 }
 
+interface AppMeetingsRouteRouteChildren {
+  AppMeetingsIdRoute: typeof AppMeetingsIdRoute
+  AppMeetingsIndexRoute: typeof AppMeetingsIndexRoute
+}
+
+const AppMeetingsRouteRouteChildren: AppMeetingsRouteRouteChildren = {
+  AppMeetingsIdRoute: AppMeetingsIdRoute,
+  AppMeetingsIndexRoute: AppMeetingsIndexRoute,
+}
+
+const AppMeetingsRouteRouteWithChildren =
+  AppMeetingsRouteRoute._addFileChildren(AppMeetingsRouteRouteChildren)
+
 interface AppRouteRouteChildren {
-  AppMeetingsRoute: typeof AppMeetingsRoute
+  AppMeetingsRouteRoute: typeof AppMeetingsRouteRouteWithChildren
   AppIndexRoute: typeof AppIndexRoute
   AppSetupBotRoute: typeof AppSetupBotRoute
+  AppSetupContentAutomationRoute: typeof AppSetupContentAutomationRoute
+  AppSetupGoogleAccountsRoute: typeof AppSetupGoogleAccountsRoute
+  AppSetupSocialMediaAccountsRoute: typeof AppSetupSocialMediaAccountsRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
-  AppMeetingsRoute: AppMeetingsRoute,
+  AppMeetingsRouteRoute: AppMeetingsRouteRouteWithChildren,
   AppIndexRoute: AppIndexRoute,
   AppSetupBotRoute: AppSetupBotRoute,
+  AppSetupContentAutomationRoute: AppSetupContentAutomationRoute,
+  AppSetupGoogleAccountsRoute: AppSetupGoogleAccountsRoute,
+  AppSetupSocialMediaAccountsRoute: AppSetupSocialMediaAccountsRoute,
 }
 
 const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(

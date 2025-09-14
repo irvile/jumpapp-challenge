@@ -1,4 +1,5 @@
 import type { auth } from '@backend/libs/auth'
+import { backend } from '@web/services/backend-api'
 import { customSessionClient } from 'better-auth/client/plugins'
 import { createAuthClient } from 'better-auth/react'
 import { envs } from './envs'
@@ -82,4 +83,37 @@ export const signInWithGoogle = async () => {
 	}
 
 	return data
+}
+
+export const linkGoogleAccount = async () => {
+	const data = await authClient.linkSocial({
+		provider: 'google',
+		scopes: ['https://www.googleapis.com/auth/calendar.events.readonly']
+	})
+
+	if (data.error) {
+		throw new Error(data.error.message)
+	}
+
+	return data
+}
+
+export const getLinkedAccounts = async () => {
+	const response = await backend.api.v1.auth.linkedAccounts.get()
+
+	if (response.error) {
+		throw new Error('Failed to fetch linked accounts')
+	}
+
+	return response.data
+}
+
+export const unlinkGoogleAccount = async (accountId: string) => {
+	const response = await backend.api.v1.auth.unlinkGoogle({ accountId }).delete()
+
+	if (response.error) {
+		throw new Error('Failed to unlink account')
+	}
+
+	return response.data
 }

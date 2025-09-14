@@ -40,7 +40,7 @@ function InnerApp() {
 	}
 
 	if (!auth.isAuthenticated() && !shouldNonAuthenticatedRedirect.includes(router.state.location.pathname)) {
-		// router.navigate({ to: '/login', search: (prev) => ({ ...prev }) })
+		router.navigate({ to: '/login', search: (prev) => ({ ...prev }) })
 	}
 
 	return <RouterProvider router={router} context={{ auth: auth }} />
