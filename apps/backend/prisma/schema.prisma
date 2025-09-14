@@ -206,7 +206,7 @@ model SocialMediaPost {
 model UserSettings {
     id                String   @id @default(cuid())
     joinMinutesBefore Int      @default(5)
-    botName           String   @default("Meeting Assistant")
+    botName           String   @default("MeetPost AI")
     userId            String   @unique
     user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
     createdAt         DateTime @default(now())

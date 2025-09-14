@@ -2,6 +2,7 @@ import { db } from '@backend/libs/db'
 import type { BotStatus } from '@backend/libs/generated/prisma'
 import { createBot, deleteBot, getBot } from '@backend/libs/recall/recall'
 import { err, ok } from 'neverthrow'
+import { userSettingsService } from './user-settings.service'
 
 export class BotManagementService {
 	async scheduleBotForEvent(eventId: string, userId: string) {
@@ -35,11 +36,19 @@ export class BotManagementService {
 			return { success: true, bot: calendarEvent.bot }
 		}
 
+		const userSettings = await userSettingsService.getUserSettings(userId)
+
 		try {
+			const joinTime = new Date(calendarEvent.startTime.getTime() - userSettings.joinMinutesBefore * 60 * 1000)
+
+			if (joinTime <= new Date()) {
+				joinTime.setTime(calendarEvent.startTime.getTime())
+			}
+
 			const recallBot = await createBot({
 				meeting_url: calendarEvent.meetingUrl,
-				bot_name: `Meeting Bot - ${calendarEvent.title}`,
-				join_at: calendarEvent.startTime.toISOString(),
+				bot_name: userSettings.botName || 'MeetPost AI',
+				join_at: joinTime.toISOString(),
 				recording_config: {
 					transcript: {
 						provider: {
