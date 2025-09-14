@@ -11,6 +11,7 @@ import {
 	DropdownMenuTrigger
 } from '@web/components/ui/dropdown-menu'
 import { backend } from '@web/services/backend-api'
+import { useNavigate } from '@tanstack/react-router'
 import { ChevronDown, Mail, Plus, Trash2 } from 'lucide-react'
 import type { ComponentPropsWithoutRef } from 'react'
 import { useState } from 'react'
@@ -30,23 +31,12 @@ export function GoogleAccountSwitcher({
 	const [isDialogOpen, setIsDialogOpen] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
 	const { data: accounts = [], refetch } = useCalendarAccounts()
+	const navigate = useNavigate()
 
 	const selectedAccount = accounts.find((account) => account.id === selectedAccountId) || accounts[0]
 
-	async function handleLinkNewAccount() {
-		try {
-			setIsLoading(true)
-			// const response = await backend.api.v1.auth.linkGoogle.post()
-
-			// if (response.data?.url) {
-			// 	window.location.href = response.data.url
-			// }
-		} catch (error) {
-			console.error('Failed to initiate Google linking:', error)
-		} finally {
-			setIsLoading(false)
-			setIsDialogOpen(false)
-		}
+	function handleLinkNewAccount() {
+		navigate({ to: '/app/setup/google-accounts' })
 	}
 
 	async function handleUnlinkAccount(accountId: string) {
@@ -74,27 +64,10 @@ export function GoogleAccountSwitcher({
 	if (!selectedAccount) {
 		return (
 			<div className={className} {...props}>
-				<Button variant="outline" className="h-8 gap-2 px-3" onClick={() => setIsDialogOpen(true)}>
+				<Button variant="outline" className="h-8 gap-2 px-3" onClick={handleLinkNewAccount}>
 					<Mail className="h-4 w-4" />
 					<span>Connect Google Account</span>
 				</Button>
-
-				<Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-					<DialogContent className="sm:max-w-[425px]">
-						<DialogHeader>
-							<DialogTitle>Connect Google Account</DialogTitle>
-							<DialogDescription>
-								Link your Google account to access your calendar events and meetings.
-							</DialogDescription>
-						</DialogHeader>
-						<div className="flex flex-col gap-4">
-							<Button onClick={handleLinkNewAccount} disabled={isLoading} className="w-full">
-								<Plus className="h-4 w-4 mr-2" />
-								{isLoading ? 'Connecting...' : 'Connect Google Account'}
-							</Button>
-						</div>
-					</DialogContent>
-				</Dialog>
 			</div>
 		)
 	}
@@ -156,7 +129,7 @@ export function GoogleAccountSwitcher({
 
 						<DropdownMenuSeparator />
 
-						<DropdownMenuItem onClick={() => setIsDialogOpen(true)} className="gap-2 p-3">
+						<DropdownMenuItem onClick={handleLinkNewAccount} className="gap-2 p-3">
 							<div className="flex h-6 w-6 items-center justify-center rounded-md border bg-background">
 								<Plus className="h-3 w-3" />
 							</div>
@@ -166,56 +139,6 @@ export function GoogleAccountSwitcher({
 				</DropdownMenu>
 			</div>
 
-			<Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-				<DialogContent className="sm:max-w-[500px]">
-					<DialogHeader>
-						<DialogTitle>Manage Google Accounts</DialogTitle>
-						<DialogDescription>
-							Add new Google accounts or remove existing ones from your connected accounts.
-						</DialogDescription>
-					</DialogHeader>
-
-					<div className="flex flex-col gap-4">
-						<div className="space-y-2">
-							<h4 className="text-sm font-medium">Connected Accounts</h4>
-							{accounts.map((account) => (
-								<div key={account.id} className="flex items-center justify-between p-3 border rounded-lg">
-									<div className="flex items-center gap-3">
-										<Avatar className="h-8 w-8">
-											<AvatarImage src={account.name} alt={account.email} />
-											<AvatarFallback>{account.email.charAt(0).toUpperCase()}</AvatarFallback>
-										</Avatar>
-										<div className="flex flex-col">
-											<span className="font-medium text-sm">{account.name || account.email}</span>
-											<span className="text-xs text-muted-foreground">{account.email}</span>
-										</div>
-										{account.isExpired && (
-											<Badge variant="destructive" className="text-xs">
-												Expired
-											</Badge>
-										)}
-									</div>
-
-									<Button
-										variant="ghost"
-										size="sm"
-										onClick={() => handleUnlinkAccount(account.id)}
-										disabled={isLoading || accounts.length === 1}
-										className="text-destructive hover:text-destructive"
-									>
-										<Trash2 className="h-4 w-4" />
-									</Button>
-								</div>
-							))}
-						</div>
-
-						<Button onClick={handleLinkNewAccount} disabled={isLoading} className="w-full">
-							<Plus className="h-4 w-4 mr-2" />
-							{isLoading ? 'Connecting...' : 'Add New Google Account'}
-						</Button>
-					</div>
-				</DialogContent>
-			</Dialog>
 		</div>
 	)
 }
