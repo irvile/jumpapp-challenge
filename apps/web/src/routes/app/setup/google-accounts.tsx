@@ -7,7 +7,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { useCalendarAccounts } from '@web/features/calendar-accounts/queries/use-calendar-accounts'
 import { authClient } from '@web/libs/auth'
 import { backend } from '@web/services/backend-api'
-import { AlertCircle, Plus, Settings, Trash2, Users } from 'lucide-react'
+import { AlertCircle, Plus, ShieldUserIcon, Trash2, Users } from 'lucide-react'
 import { useState } from 'react'
 
 export const Route = createFileRoute('/app/setup/google-accounts')({
@@ -57,7 +57,7 @@ function RouteComponent() {
 			<div className="mb-8">
 				<div className="flex items-center gap-3 mb-2">
 					<div className="bg-primary/10 p-2 rounded-lg">
-						<Settings className="h-6 w-6 text-primary" />
+						<ShieldUserIcon className="h-6 w-6 text-primary" />
 					</div>
 					<div>
 						<h1 className="text-3xl font-bold tracking-tight">Google Accounts</h1>

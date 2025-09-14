@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@web/
 import { AutomationCard } from '@web/features/automations/components/automation-card'
 import { AutomationDialog } from '@web/features/automations/components/automation-dialog'
 import { type AutomationListItem, useAutomations } from '@web/features/automations/queries/use-automations'
-import { AlertCircle, Plus, Settings, Zap } from 'lucide-react'
+import { AlertCircle, BrainIcon, Plus, Zap } from 'lucide-react'
 import { useState } from 'react'
 
 export const Route = createFileRoute('/app/setup/content-automation')({
@@ -34,7 +34,7 @@ function RouteComponent() {
 			<div className="mb-8">
 				<div className="flex items-center gap-3 mb-2">
 					<div className="bg-primary/10 p-2 rounded-lg">
-						<Settings className="h-6 w-6 text-primary" />
+						<BrainIcon className="h-6 w-6 text-primary" />
 					</div>
 					<div>
 						<h1 className="text-3xl font-bold tracking-tight">Content Automation</h1>

@@ -5,7 +5,7 @@ import { Input } from '@web/components/ui/input'
 import { Label } from '@web/components/ui/label'
 import { Slider } from '@web/components/ui/slider'
 import { useUpdateUserSettings, useUserSettings } from '@web/features/user-settings/queries/use-user-settings'
-import { AlertCircle, Bot, Clock, RefreshCw, Save, Settings, User } from 'lucide-react'
+import { AlertCircle, Bot, BotIcon, Clock, RefreshCw, Save, User } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 export const Route = createFileRoute('/app/setup/bot')({
@@ -15,7 +15,7 @@ export const Route = createFileRoute('/app/setup/bot')({
 function RouteComponent() {
 	const { data: userSettings, isLoading } = useUserSettings()
 	const updateSettings = useUpdateUserSettings()
-	
+
 	const [joinMinutesBefore, setJoinMinutesBefore] = useState(5)
 	const [botName, setBotName] = useState('Meeting Assistant')
 	const [hasChanges, setHasChanges] = useState(false)
@@ -29,9 +29,7 @@ function RouteComponent() {
 
 	useEffect(() => {
 		if (userSettings) {
-			const changed = 
-				joinMinutesBefore !== userSettings.joinMinutesBefore ||
-				botName !== userSettings.botName
+			const changed = joinMinutesBefore !== userSettings.joinMinutesBefore || botName !== userSettings.botName
 			setHasChanges(changed)
 		}
 	}, [joinMinutesBefore, botName, userSettings])
@@ -78,7 +76,7 @@ function RouteComponent() {
 			<div className="mb-8">
 				<div className="flex items-center gap-3 mb-2">
 					<div className="bg-primary/10 p-2 rounded-lg">
-						<Settings className="h-6 w-6 text-primary" />
+						<BotIcon className="h-6 w-6 text-primary" />
 					</div>
 					<div>
 						<h1 className="text-3xl font-bold tracking-tight">Bot Settings</h1>
@@ -110,9 +108,7 @@ function RouteComponent() {
 									maxLength={50}
 									className="max-w-md"
 								/>
-								<p className="text-xs text-muted-foreground">
-									This name will be displayed when the bot joins meetings
-								</p>
+								<p className="text-xs text-muted-foreground">This name will be displayed when the bot joins meetings</p>
 							</div>
 
 							<div className="space-y-3">
@@ -142,8 +138,8 @@ function RouteComponent() {
 
 						<div className="border-t pt-6">
 							<div className="flex items-center gap-3">
-								<Button 
-									onClick={handleSave} 
+								<Button
+									onClick={handleSave}
 									disabled={!hasChanges || updateSettings.isPending}
 									className="min-w-[100px]"
 								>
@@ -159,23 +155,15 @@ function RouteComponent() {
 										</>
 									)}
 								</Button>
-								
+
 								{hasChanges && (
-									<Button 
-										variant="outline" 
-										onClick={handleReset}
-										disabled={updateSettings.isPending}
-									>
+									<Button variant="outline" onClick={handleReset} disabled={updateSettings.isPending}>
 										<RefreshCw className="h-4 w-4 mr-2" />
 										Reset
 									</Button>
 								)}
 
-								<Button 
-									variant="ghost" 
-									onClick={handleResetToDefaults}
-									disabled={updateSettings.isPending}
-								>
+								<Button variant="ghost" onClick={handleResetToDefaults} disabled={updateSettings.isPending}>
 									Reset to Defaults
 								</Button>
 							</div>
@@ -200,7 +188,8 @@ function RouteComponent() {
 								</div>
 							</div>
 							<div className="text-sm text-muted-foreground">
-								Will join {joinMinutesBefore} minute{joinMinutesBefore !== 1 ? 's' : ''} before the meeting starts to ensure proper recording setup
+								Will join {joinMinutesBefore} minute{joinMinutesBefore !== 1 ? 's' : ''} before the meeting starts to
+								ensure proper recording setup
 							</div>
 						</div>
 					</CardContent>
@@ -218,7 +207,8 @@ function RouteComponent() {
 								<div className="text-sm">
 									<p className="font-medium text-blue-900 mb-1">Early Join Behavior</p>
 									<p className="text-blue-700">
-										The bot joins early to ensure proper audio setup and to avoid missing the beginning of important discussions.
+										The bot joins early to ensure proper audio setup and to avoid missing the beginning of important
+										discussions.
 									</p>
 								</div>
 							</div>
@@ -240,7 +230,8 @@ function RouteComponent() {
 								<div className="text-sm">
 									<p className="font-medium text-amber-900 mb-1">Recording Notice</p>
 									<p className="text-amber-700">
-										The bot will automatically announce its recording capabilities when joining meetings as required by platform policies.
+										The bot will automatically announce its recording capabilities when joining meetings as required by
+										platform policies.
 									</p>
 								</div>
 							</div>

@@ -3,7 +3,7 @@ import { Badge } from '@web/components/ui/badge'
 import { Button } from '@web/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@web/components/ui/card'
 import { authClient } from '@web/libs/auth'
-import { AlertCircle, Facebook, Linkedin, Plus, Settings, Trash2, Users } from 'lucide-react'
+import { AlertCircle, Facebook, Linkedin, SmilePlusIcon, Trash2, Users } from 'lucide-react'
 import { useState } from 'react'
 
 export const Route = createFileRoute('/app/setup/social-media-accounts')({
@@ -70,7 +70,7 @@ function RouteComponent() {
 			<div className="mb-8">
 				<div className="flex items-center gap-3 mb-2">
 					<div className="bg-primary/10 p-2 rounded-lg">
-						<Settings className="h-6 w-6 text-primary" />
+						<SmilePlusIcon className="h-6 w-6 text-primary" />
 					</div>
 					<div>
 						<h1 className="text-3xl font-bold tracking-tight">Social Media Accounts</h1>
@@ -162,7 +162,6 @@ function RouteComponent() {
 													<div className="font-medium">{platform.name}</div>
 													<div className="text-xs text-muted-foreground">{platform.description}</div>
 												</div>
-												{!isConnected && <Plus className="h-4 w-4 ml-auto" />}
 											</div>
 										</Button>
 									)

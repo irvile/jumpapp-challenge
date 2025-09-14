@@ -13,7 +13,13 @@ const envsSchema = z.object({
 	GOOGLE_CLIENT_SECRET: z.string(),
 
 	RECALL_API_KEY: z.string(),
-	GEMINI_API_KEY: z.string()
+	GEMINI_API_KEY: z.string(),
+
+	LINKEDIN_CLIENT_ID: z.string(),
+	LINKEDIN_CLIENT_SECRET: z.string(),
+
+	FACEBOOK_CLIENT_ID: z.string(),
+	FACEBOOK_CLIENT_SECRET: z.string()
 })
 
 // biome-ignore lint/style/noProcessEnv: >

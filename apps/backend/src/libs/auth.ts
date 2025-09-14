@@ -60,6 +60,16 @@ export const auth = betterAuth({
 			clientId: envs.GOOGLE_CLIENT_ID,
 			clientSecret: envs.GOOGLE_CLIENT_SECRET,
 			scope: ['https://www.googleapis.com/auth/calendar.events.readonly']
+		},
+		linkedin: {
+			clientId: envs.LINKEDIN_CLIENT_ID,
+			clientSecret: envs.LINKEDIN_CLIENT_SECRET,
+			scope: []
+		},
+		facebook: {
+			clientId: envs.FACEBOOK_CLIENT_ID,
+			clientSecret: envs.FACEBOOK_CLIENT_SECRET,
+			scope: ['email']
 		}
 	},
 	emailAndPassword: {
