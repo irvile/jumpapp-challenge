@@ -30,7 +30,7 @@ function RouteComponent() {
 	const inactiveAutomations = automations.filter((a) => !a.isActive)
 
 	return (
-		<div className="container mx-auto py-8 px-4 max-w-4xl">
+		<div className="container mx-auto py-8 px-4 max-w-6xl">
 			<div className="mb-8">
 				<div className="flex items-center gap-3 mb-2">
 					<div className="bg-primary/10 p-2 rounded-lg">

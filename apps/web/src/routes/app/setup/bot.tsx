@@ -60,7 +60,7 @@ function RouteComponent() {
 
 	if (isLoading) {
 		return (
-			<div className="container mx-auto py-8 px-4 max-w-4xl">
+			<div className="container mx-auto py-8 px-4 max-w-6xl">
 				<div className="flex items-center justify-center h-64">
 					<div className="text-center">
 						<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
@@ -72,7 +72,7 @@ function RouteComponent() {
 	}
 
 	return (
-		<div className="container mx-auto py-8 px-4 max-w-4xl">
+		<div className="container mx-auto py-8 px-4 max-w-6xl">
 			<div className="mb-8">
 				<div className="flex items-center gap-3 mb-2">
 					<div className="bg-primary/10 p-2 rounded-lg">

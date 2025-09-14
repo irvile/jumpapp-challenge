@@ -159,7 +159,7 @@ export async function syncCalendarEvents(
 		return events
 	} catch (error) {
 		if (error instanceof Error && error.message === 'Token expired') {
-			// throw error
+			throw error
 		}
 
 		return await getEventsFromDatabase(calendarAccountId, startDate, endDate)

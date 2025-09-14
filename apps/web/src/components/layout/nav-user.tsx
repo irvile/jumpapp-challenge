@@ -1,4 +1,3 @@
-import { useNavigate } from '@tanstack/react-router'
 import { Avatar, AvatarFallback, AvatarImage } from '@web/components/ui/avatar'
 import { Badge } from '@web/components/ui/badge'
 import {
@@ -19,7 +18,6 @@ import { ChevronsUpDown, LogOut, Sparkles } from 'lucide-react'
 export function NavUser() {
 	const { isMobile } = useSidebar()
 	const auth = useAuth()
-	const navigate = useNavigate()
 
 	return (
 		<SidebarMenu>
@@ -65,7 +63,7 @@ export function NavUser() {
 								<Sparkles />
 								Subscribe
 								<Badge variant="secondary" className="ml-auto">
-									soon
+									SOON
 								</Badge>
 							</DropdownMenuItem>
 						</DropdownMenuGroup>
@@ -94,7 +92,7 @@ export function NavUser() {
 						<DropdownMenuItem
 							onClick={async () => {
 								await signOut()
-								await navigate({ to: '/login', replace: true })
+								// await navigate({ to: '/login', replace: true })
 							}}
 						>
 							<LogOut />

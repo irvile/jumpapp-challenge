@@ -1,14 +1,14 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { Button } from '@web/components/ui/button'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
-	component: LandingPage
+	component: LandingPage,
+	beforeLoad: () => {
+		throw redirect({
+			to: '/login'
+		})
+	}
 })
 
 function LandingPage() {
-	return (
-		<div className="flex flex-col min-h-screen">
-			<Button>Click me</Button>
-		</div>
-	)
+	return null
 }
