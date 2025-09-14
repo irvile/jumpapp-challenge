@@ -43,12 +43,19 @@ export async function generateContentForMeeting(
 
 	const provider = request.provider || 'gemini'
 
+	console.log('ai.model', provider, aiProviders[provider])
+	console.log('ai.prompt', prompt)
+	console.log('ai.platform', request.platform)
+	console.log('ai.maxOutputTokens', getPlatformTokenLimit(request.platform))
+	console.log('ai.system', getSystemPrompt(request.platform))
+
 	const { text } = await generateText({
 		model: aiProviders[provider],
 		system: getSystemPrompt(request.platform),
-		prompt,
-		maxOutputTokens: getPlatformTokenLimit(request.platform)
+		prompt
 	})
+
+	console.log('ai.generatedContent.text', text)
 
 	return formatGeneratedContent(text, request.platform, provider, request.tone || 'professional')
 }

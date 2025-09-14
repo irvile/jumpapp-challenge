@@ -11,7 +11,7 @@ const geminiProvider = createGeminiProvider({
 export const aiProviders = {
 	openai: openai('gpt-5-nano'),
 	gemini: geminiProvider('gemini-2.5-flash'),
-	anthropic: anthropic('claude-sonnet-4-20250514')
+	anthropic: anthropic('claude-3-5-haiku-latest')
 } as const
 
 export type AIProvider = keyof typeof aiProviders
