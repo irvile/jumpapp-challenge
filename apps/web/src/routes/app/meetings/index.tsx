@@ -121,20 +121,21 @@ function RouteComponent() {
 	}
 
 	return (
-		<div className="flex flex-col h-full">
-			<div className="mb-6 flex flex-wrap items-center justify-between space-y-2 gap-x-4">
-				<div className="flex items-center gap-3">
+		<div className="container mx-auto py-8 px-4 max-w-6xl">
+			<div className="mb-8">
+				<div className="flex items-center gap-3 mb-2">
 					<div className="bg-primary/10 p-2 rounded-lg">
 						<Video className="h-6 w-6 text-primary" />
 					</div>
 					<div>
-						<h1 className="text-2xl font-bold tracking-tight">Meetings</h1>
+						<h1 className="text-3xl font-bold tracking-tight">Meetings</h1>
 						<p className="text-muted-foreground">Your meetings in a weekly format</p>
 					</div>
 				</div>
-				<div className="flex items-center gap-4">
-					<GoogleAccountSwitcher selectedAccountId={activeAccountId} onAccountChange={setSelectedAccountId} />
-				</div>
+			</div>
+
+			<div className="mb-6 flex justify-end">
+				<GoogleAccountSwitcher selectedAccountId={activeAccountId} onAccountChange={setSelectedAccountId} />
 			</div>
 
 			<div className="mb-6">
@@ -146,7 +147,7 @@ function RouteComponent() {
 				/>
 			</div>
 
-			<div className="flex-1 overflow-auto max-h-[calc(100vh-200px)]">
+			<div className="overflow-auto max-h-[calc(100vh-300px)]">
 				{isLoadingEvents ? (
 					<div className="flex items-center justify-center h-64">
 						<div className="text-center">
