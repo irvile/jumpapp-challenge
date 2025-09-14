@@ -4,6 +4,7 @@ import { Elysia } from 'elysia'
 import { auth } from './libs/auth'
 import { aiRoutes } from './routes/ai/ai.routes'
 import { authRoutes } from './routes/auth/auth.routes'
+import { automationsRoutes } from './routes/automations/automations.routes'
 import { calendarRoutes } from './routes/calendars/calendar.routes'
 import { transcriptRoutes } from './routes/transcripts/transcript.routes'
 import { usersRoutes } from './routes/users/users.routes'
@@ -16,6 +17,7 @@ const routes = new Elysia({ prefix: '/api' })
 	.use(usersRoutes)
 	.use(webhookRoutes)
 	.use(aiRoutes)
+	.use(automationsRoutes)
 
 const app = new Elysia()
 	.use(swagger())

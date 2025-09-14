@@ -18,6 +18,7 @@ import { Route as AppMeetingsRouteRouteImport } from './routes/app/meetings/rout
 import { Route as AppMeetingsIndexRouteImport } from './routes/app/meetings/index'
 import { Route as AppSetupSocialMediaAccountsRouteImport } from './routes/app/setup/social-media-accounts'
 import { Route as AppSetupGoogleAccountsRouteImport } from './routes/app/setup/google-accounts'
+import { Route as AppSetupContentAutomationRouteImport } from './routes/app/setup/content-automation'
 import { Route as AppSetupBotRouteImport } from './routes/app/setup/bot'
 import { Route as AppMeetingsIdRouteImport } from './routes/app/meetings/$id'
 
@@ -67,6 +68,12 @@ const AppSetupGoogleAccountsRoute = AppSetupGoogleAccountsRouteImport.update({
   path: '/setup/google-accounts',
   getParentRoute: () => AppRouteRoute,
 } as any)
+const AppSetupContentAutomationRoute =
+  AppSetupContentAutomationRouteImport.update({
+    id: '/setup/content-automation',
+    path: '/setup/content-automation',
+    getParentRoute: () => AppRouteRoute,
+  } as any)
 const AppSetupBotRoute = AppSetupBotRouteImport.update({
   id: '/setup/bot',
   path: '/setup/bot',
@@ -87,6 +94,7 @@ export interface FileRoutesByFullPath {
   '/app/': typeof AppIndexRoute
   '/app/meetings/$id': typeof AppMeetingsIdRoute
   '/app/setup/bot': typeof AppSetupBotRoute
+  '/app/setup/content-automation': typeof AppSetupContentAutomationRoute
   '/app/setup/google-accounts': typeof AppSetupGoogleAccountsRoute
   '/app/setup/social-media-accounts': typeof AppSetupSocialMediaAccountsRoute
   '/app/meetings/': typeof AppMeetingsIndexRoute
@@ -98,6 +106,7 @@ export interface FileRoutesByTo {
   '/app': typeof AppIndexRoute
   '/app/meetings/$id': typeof AppMeetingsIdRoute
   '/app/setup/bot': typeof AppSetupBotRoute
+  '/app/setup/content-automation': typeof AppSetupContentAutomationRoute
   '/app/setup/google-accounts': typeof AppSetupGoogleAccountsRoute
   '/app/setup/social-media-accounts': typeof AppSetupSocialMediaAccountsRoute
   '/app/meetings': typeof AppMeetingsIndexRoute
@@ -112,6 +121,7 @@ export interface FileRoutesById {
   '/app/': typeof AppIndexRoute
   '/app/meetings/$id': typeof AppMeetingsIdRoute
   '/app/setup/bot': typeof AppSetupBotRoute
+  '/app/setup/content-automation': typeof AppSetupContentAutomationRoute
   '/app/setup/google-accounts': typeof AppSetupGoogleAccountsRoute
   '/app/setup/social-media-accounts': typeof AppSetupSocialMediaAccountsRoute
   '/app/meetings/': typeof AppMeetingsIndexRoute
@@ -127,6 +137,7 @@ export interface FileRouteTypes {
     | '/app/'
     | '/app/meetings/$id'
     | '/app/setup/bot'
+    | '/app/setup/content-automation'
     | '/app/setup/google-accounts'
     | '/app/setup/social-media-accounts'
     | '/app/meetings/'
@@ -138,6 +149,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/app/meetings/$id'
     | '/app/setup/bot'
+    | '/app/setup/content-automation'
     | '/app/setup/google-accounts'
     | '/app/setup/social-media-accounts'
     | '/app/meetings'
@@ -151,6 +163,7 @@ export interface FileRouteTypes {
     | '/app/'
     | '/app/meetings/$id'
     | '/app/setup/bot'
+    | '/app/setup/content-automation'
     | '/app/setup/google-accounts'
     | '/app/setup/social-media-accounts'
     | '/app/meetings/'
@@ -228,6 +241,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppSetupGoogleAccountsRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/app/setup/content-automation': {
+      id: '/app/setup/content-automation'
+      path: '/setup/content-automation'
+      fullPath: '/app/setup/content-automation'
+      preLoaderRoute: typeof AppSetupContentAutomationRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
     '/app/setup/bot': {
       id: '/app/setup/bot'
       path: '/setup/bot'
@@ -262,6 +282,7 @@ interface AppRouteRouteChildren {
   AppMeetingsRouteRoute: typeof AppMeetingsRouteRouteWithChildren
   AppIndexRoute: typeof AppIndexRoute
   AppSetupBotRoute: typeof AppSetupBotRoute
+  AppSetupContentAutomationRoute: typeof AppSetupContentAutomationRoute
   AppSetupGoogleAccountsRoute: typeof AppSetupGoogleAccountsRoute
   AppSetupSocialMediaAccountsRoute: typeof AppSetupSocialMediaAccountsRoute
 }
@@ -270,6 +291,7 @@ const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppMeetingsRouteRoute: AppMeetingsRouteRouteWithChildren,
   AppIndexRoute: AppIndexRoute,
   AppSetupBotRoute: AppSetupBotRoute,
+  AppSetupContentAutomationRoute: AppSetupContentAutomationRoute,
   AppSetupGoogleAccountsRoute: AppSetupGoogleAccountsRoute,
   AppSetupSocialMediaAccountsRoute: AppSetupSocialMediaAccountsRoute,
 }

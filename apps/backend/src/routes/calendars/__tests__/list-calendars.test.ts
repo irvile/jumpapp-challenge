@@ -119,7 +119,7 @@ describe('List Calendar Accounts Tests', () => {
 				userId: userCreated.user.id,
 				email: 'first@gmail.com',
 				name: 'First Account',
-				createdAt: new Date(Date.now() - 1000)
+				createdAt: new Date('2025-01-01')
 			})
 			.save()
 
@@ -128,7 +128,7 @@ describe('List Calendar Accounts Tests', () => {
 				userId: userCreated.user.id,
 				email: 'second@gmail.com',
 				name: 'Second Account',
-				createdAt: new Date(Date.now() + 1000)
+				createdAt: new Date('2025-01-02')
 			})
 			.save()
 

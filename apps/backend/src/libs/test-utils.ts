@@ -5,7 +5,7 @@ import { app } from '../app'
 import { signIn, signUp } from './auth'
 import { db } from './db'
 import { envs } from './envs'
-import type { Platform } from './generated/prisma'
+import type { ContentType, Platform, SocialPlatform } from './generated/prisma'
 import { genId } from './nanoid'
 
 export const apiTest = treaty(app)
@@ -134,8 +134,93 @@ class TestFactory {
 		}
 	}
 
+	createSocialMediaAccount(
+		userId: string,
+		platform: SocialPlatform,
+		body?: {
+			externalId?: string
+			username?: string
+			displayName?: string
+		}
+	) {
+		const data = {
+			externalId: body?.externalId ?? `${platform.toLowerCase()}-${genId('random')}`,
+			username: body?.username ?? `user_${genId('random')}`,
+			displayName: body?.displayName ?? `${platform} User`,
+			platform,
+			userId
+		}
+
+		const save = async () => {
+			return await db.socialMediaAccount.create({
+				data: {
+					id: genId('socialMediaAccount'),
+					platform: data.platform,
+					externalId: data.externalId,
+					username: data.username,
+					displayName: data.displayName,
+					accessToken: 'test-access-token',
+					userId: data.userId
+				}
+			})
+		}
+
+		return { data, save }
+	}
+
+	createAutomation(
+		userId: string,
+		socialMediaAccountId: string,
+		body?: {
+			name?: string
+			contentType?: ContentType
+			prompt?: string
+			isActive?: boolean
+			createdAt?: Date
+			description?: string
+			example?: string
+		}
+	) {
+		const data = {
+			name: body?.name ?? 'Test Automation',
+			type: 'GENERATE_POST' as const,
+			platform: (body?.contentType === 'FACEBOOK_POST' ? 'FACEBOOK' : 'LINKEDIN') as SocialPlatform,
+			description: body?.description ?? 'Generate a LinkedIn post from the meeting transcript.',
+			example: body?.example ?? 'Just had an amazing meeting about AI trends...',
+			contentType: body?.contentType ?? ('LINKEDIN_POST' as ContentType),
+			isActive: body?.isActive ?? true,
+			userId,
+			socialMediaAccountId,
+			createdAt: body?.createdAt ?? new Date()
+		}
+
+		const save = async () => {
+			return await db.automation.create({
+				data: {
+					id: genId('automation'),
+					name: data.name,
+					type: data.type,
+					platform: data.platform,
+					description: data.description,
+					example: data.example,
+					contentType: data.contentType,
+					isActive: data.isActive,
+					userId: data.userId,
+					socialMediaAccountId: data.socialMediaAccountId,
+					createdAt: data.createdAt
+				}
+			})
+		}
+
+		return { data, save }
+	}
+
 	async cleanDatabase() {
 		if (envs.NODE_ENV !== 'production') {
+			await db.aiGeneratedContent.deleteMany()
+			await db.socialMediaPost.deleteMany()
+			await db.automation.deleteMany()
+			await db.socialMediaAccount.deleteMany()
 			await db.transcript.deleteMany()
 			await db.bot.deleteMany()
 			await db.calendarEvent.deleteMany()

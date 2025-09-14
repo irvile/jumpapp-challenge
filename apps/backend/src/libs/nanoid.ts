@@ -15,7 +15,8 @@ const idPrefixes = {
 	verification: 'vrfy',
 	random: 'rndm',
 	recallBot: 'bot',
-	userSettings: 'usrs'
+	userSettings: 'usrs',
+	socialMediaAccount: 'sma'
 } as const
 
 export type IdentifierPrefix = keyof typeof idPrefixes

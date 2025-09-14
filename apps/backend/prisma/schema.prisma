@@ -110,7 +110,6 @@ model CalendarEvent {
     @@unique([externalId, googleAccountId])
 }
 
-
 model Bot {
     id              String        @id @default(cuid())
     provider        String        @default("RECALL")
@@ -175,8 +174,11 @@ model SocialMediaAccount {
 model Automation {
     id                   String               @id @default(cuid())
     name                 String
+    type                 AutomationType
+    platform             SocialPlatform
+    description          String
+    example              String?
     contentType          ContentType
-    prompt               String?
     isActive             Boolean              @default(true)
     userId               String
     user                 User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -217,7 +219,6 @@ enum Platform {
     MICROSOFT_TEAMS
 }
 
-
 enum BotStatus {
     SCHEDULED
     JOINING
@@ -225,6 +226,10 @@ enum BotStatus {
     RECORDING
     COMPLETED
     FAILED
+}
+
+enum AutomationType {
+    GENERATE_POST
 }
 
 enum ContentType {

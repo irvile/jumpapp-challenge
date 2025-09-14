@@ -24,10 +24,7 @@ export interface GeneratedContent {
 	}
 }
 
-export async function generateContentForMeeting(
-	request: GenerateContentBody,
-	userId: string
-): Promise<GeneratedContent> {
+export async function generateContentForMeeting(request: GenerateContentBody, userId: string) {
 	const transcriptResult = await transcriptService.getTranscriptByEventId(request.eventId, userId)
 
 	if (transcriptResult.isErr()) {
@@ -41,7 +38,7 @@ export async function generateContentForMeeting(
 		tone: request.tone || 'professional'
 	})
 
-	const provider = request.provider || 'gemini'
+	const provider = request.provider || 'openai'
 
 	console.log('ai.model', provider, aiProviders[provider])
 	console.log('ai.prompt', prompt)
