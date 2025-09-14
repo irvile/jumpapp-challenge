@@ -11,7 +11,7 @@ import { dayjs } from '@web/libs/dayjs'
 import { AlertCircle, Video } from 'lucide-react'
 import { useState } from 'react'
 
-export const Route = createFileRoute('/app/meetings')({
+export const Route = createFileRoute('/app/meetings/')({
 	component: RouteComponent
 })
 
@@ -76,10 +76,6 @@ function RouteComponent() {
 		const maxHour = Math.max(sortedHours[sortedHours.length - 1] || 17, 17)
 
 		return Array.from({ length: maxHour - minHour + 1 }, (_, i) => minHour + i)
-	}
-
-	const handleMeetingClick = (meetingId: string) => {
-		console.log('Clicked meeting:', meetingId)
 	}
 
 	if (isLoadingAccounts) {
@@ -160,7 +156,6 @@ function RouteComponent() {
 						currentWeek={currentWeek}
 						weeklyMeetings={organizeEventsByDayHour()}
 						workingHours={getWorkingHours()}
-						onMeetingClick={handleMeetingClick}
 					/>
 				)}
 			</div>

@@ -36,11 +36,11 @@ export function GoogleAccountSwitcher({
 	async function handleLinkNewAccount() {
 		try {
 			setIsLoading(true)
-			const response = await backend.api.v1.auth.linkGoogle.post()
+			// const response = await backend.api.v1.auth.linkGoogle.post()
 
-			if (response.data?.url) {
-				window.location.href = response.data.url
-			}
+			// if (response.data?.url) {
+			// 	window.location.href = response.data.url
+			// }
 		} catch (error) {
 			console.error('Failed to initiate Google linking:', error)
 		} finally {
