@@ -245,8 +245,8 @@ describe('Automations UPDATE API Tests', () => {
 
 			expect(response.status).toBe(200)
 			expect(response.data).toBeDefined()
-			expect(response.data.platform).toBe('FACEBOOK')
-			expect(response.data.socialMediaAccountId).toBe(null)
+			expect(response.data?.platform).toBe('FACEBOOK')
+			expect(response.data?.socialMediaAccountId).toBe(null)
 		})
 	})
 })

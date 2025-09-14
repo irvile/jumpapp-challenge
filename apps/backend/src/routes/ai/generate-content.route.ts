@@ -6,7 +6,8 @@ const generateContentBodySchema = t.Object({
 	eventId: t.String(),
 	platform: t.Union([t.Literal('linkedin'), t.Literal('facebook'), t.Literal('X'), t.Literal('threads')]),
 	tone: t.Optional(t.Union([t.Literal('professional'), t.Literal('casual'), t.Literal('technical')])),
-	provider: t.Optional(t.Union([t.Literal('openai'), t.Literal('anthropic'), t.Literal('gemini')]))
+	provider: t.Optional(t.Union([t.Literal('openai'), t.Literal('anthropic'), t.Literal('gemini')])),
+	automationId: t.Optional(t.String())
 })
 
 export type GenerateContentBody = Static<typeof generateContentBodySchema>

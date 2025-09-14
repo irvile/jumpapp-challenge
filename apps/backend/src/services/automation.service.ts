@@ -65,6 +65,18 @@ export const automationService = {
 		})
 	},
 
+	async getAutomation(userId: string, automationId: string) {
+		const automation = await db.automation.findFirst({
+			where: { id: automationId, userId, isActive: true }
+		})
+
+		if (!automation) {
+			throw new Error('Automation not found')
+		}
+
+		return automation
+	},
+
 	async deleteAutomation(userId: string, automationId: string) {
 		const automation = await db.automation.findFirst({
 			where: { id: automationId, userId }

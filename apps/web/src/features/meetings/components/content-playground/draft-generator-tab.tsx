@@ -1,8 +1,14 @@
 import { Button } from '@web/components/ui/button'
 import { Textarea } from '@web/components/ui/textarea'
-import { AlertCircle, Copy, Loader2, Sparkles } from 'lucide-react'
+import { AlertCircle, Bot, Copy, Loader2, Sparkles } from 'lucide-react'
 import { useState } from 'react'
-import { type GeneratedContent, type Platform, type Provider, type Tone, useContentGenerator } from '../../hooks/use-content-generator'
+import {
+	type GeneratedContent,
+	type Platform,
+	type Provider,
+	type Tone,
+	useContentGenerator
+} from '../../hooks/use-content-generator'
 import { PlatformSelector } from './platform-selector'
 
 interface DraftGeneratorTabProps {
@@ -13,22 +19,31 @@ interface DraftGeneratorTabProps {
 
 export function DraftGeneratorTab({ transcript, meetingId, onContentGenerated }: DraftGeneratorTabProps) {
 	const [selectedPlatform, setSelectedPlatform] = useState<Platform>('linkedin')
-	const [selectedTone, setSelectedTone] = useState<Tone>('professional')
+	const [selectedTone, setSelectedTone] = useState<Tone | string>('professional')
 	const [selectedProvider, setSelectedProvider] = useState<Provider>('openai')
+	const [selectedAutomationId, setSelectedAutomationId] = useState<string>('')
 	const [socialDraft, setSocialDraft] = useState('')
 
+	// const { data: automations } = useAutomations()
 	const generateContentMutation = useContentGenerator()
+
+	// const selectedAutomation = automations?.find((a) => a.id === selectedAutomationId)
+	const isUsingAutomation = selectedTone === 'use_automation'
 
 	const generateSocialPost = async () => {
 		try {
-			const content = await generateContentMutation.mutateAsync({
-				meetingId,
-				platform: selectedPlatform,
-				tone: selectedTone,
-				provider: selectedProvider
-			})
-			setSocialDraft(content.content)
-			onContentGenerated(content)
+			if (isUsingAutomation && selectedAutomationId) {
+				console.log('Generate with automation:', selectedAutomationId)
+			} else {
+				const content = await generateContentMutation.mutateAsync({
+					meetingId,
+					platform: selectedPlatform,
+					tone: selectedTone as Tone,
+					provider: selectedProvider
+				})
+				setSocialDraft(content.content)
+				onContentGenerated(content)
+			}
 		} catch (error) {
 			console.error('Failed to generate social post:', error)
 		}
@@ -36,6 +51,20 @@ export function DraftGeneratorTab({ transcript, meetingId, onContentGenerated }:
 
 	const copyToClipboard = async (text: string) => {
 		await navigator.clipboard.writeText(text)
+	}
+
+	const handleToneChange = (tone: Tone | string) => {
+		setSelectedTone(tone)
+		if (tone !== 'use_automation') {
+			setSelectedAutomationId('')
+		}
+	}
+
+	const handlePlatformChange = (platform: Platform) => {
+		setSelectedPlatform(platform)
+		if (selectedTone === 'use_automation') {
+			setSelectedAutomationId('')
+		}
 	}
 
 	return (
@@ -51,9 +80,11 @@ export function DraftGeneratorTab({ transcript, meetingId, onContentGenerated }:
 				selectedPlatform={selectedPlatform}
 				selectedTone={selectedTone}
 				selectedProvider={selectedProvider}
-				onPlatformChange={setSelectedPlatform}
-				onToneChange={setSelectedTone}
+				selectedAutomationId={selectedAutomationId}
+				onPlatformChange={handlePlatformChange}
+				onToneChange={handleToneChange}
 				onProviderChange={setSelectedProvider}
+				onAutomationChange={setSelectedAutomationId}
 			/>
 
 			<Textarea
@@ -61,7 +92,9 @@ export function DraftGeneratorTab({ transcript, meetingId, onContentGenerated }:
 				onChange={(e) => setSocialDraft(e.target.value)}
 				placeholder={
 					transcript?.transcript
-						? "Click 'Generate Content' to create AI-powered content based on your meeting transcript"
+						? isUsingAutomation
+							? "Click 'Generate with Automation' to create content using your custom automation settings"
+							: "Click 'Generate Content' to create AI-powered content based on your meeting transcript"
 						: 'Transcript required to generate social media content'
 				}
 				className="min-h-[300px] resize-none"
@@ -82,21 +115,18 @@ export function DraftGeneratorTab({ transcript, meetingId, onContentGenerated }:
 			<div className="space-y-3">
 				<Button
 					onClick={generateSocialPost}
-					disabled={generateContentMutation.isPending || !transcript?.transcript}
+					disabled={
+						generateContentMutation.isPending || !transcript?.transcript || (isUsingAutomation && !selectedAutomationId)
+					}
 					className="w-full"
 				>
 					{generateContentMutation.isPending && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
-					<Sparkles className="h-4 w-4 mr-2" />
-					Generate Content
+					{isUsingAutomation ? <Bot className="h-4 w-4 mr-2" /> : <Sparkles className="h-4 w-4 mr-2" />}
+					{isUsingAutomation ? 'Generate with Automation' : 'Generate Content'}
 				</Button>
 
 				<div className="flex gap-2">
-					<Button
-						onClick={() => copyToClipboard(socialDraft)}
-						disabled={!socialDraft}
-						variant="outline"
-						size="sm"
-					>
+					<Button onClick={() => copyToClipboard(socialDraft)} disabled={!socialDraft} variant="outline" size="sm">
 						<Copy className="h-4 w-4 mr-2" />
 						Copy
 					</Button>

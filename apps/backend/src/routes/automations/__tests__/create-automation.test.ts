@@ -13,6 +13,7 @@ describe('Automations CREATE API Tests', () => {
 
 			const automationData = {
 				name: 'LinkedIn Content Generator',
+				type: 'GENERATE_POST',
 				platform: 'LINKEDIN' as const,
 				description: 'Generate LinkedIn posts from meeting transcripts',
 				example: 'Just had an amazing meeting about AI trends...'
@@ -47,6 +48,7 @@ describe('Automations CREATE API Tests', () => {
 
 			const automationData = {
 				name: 'Facebook Content Generator',
+				type: 'GENERATE_POST',
 				platform: 'FACEBOOK' as const,
 				description: 'Generate Facebook posts from meeting transcripts',
 				example: "Exciting updates from today's meeting..."
@@ -73,6 +75,7 @@ describe('Automations CREATE API Tests', () => {
 
 			const automationData = {
 				name: 'LinkedIn Content Generator',
+				type: 'GENERATE_POST',
 				platform: 'LINKEDIN' as const,
 				description: 'Generate LinkedIn posts from meeting transcripts',
 				example: 'Just had an amazing meeting about AI trends...'
@@ -86,9 +89,9 @@ describe('Automations CREATE API Tests', () => {
 
 			expect(response.status).toBe(200)
 			expect(response.data).toBeDefined()
-			expect(response.data.name).toBe(automationData.name)
-			expect(response.data.platform).toBe(automationData.platform)
-			expect(response.data.socialMediaAccountId).toBe(null)
+			expect(response.data?.name).toBe(automationData.name)
+			expect(response.data?.platform).toBe(automationData.platform)
+			expect(response.data?.socialMediaAccountId).toBe(null)
 		})
 
 		test('should validate required fields', async () => {
@@ -96,6 +99,7 @@ describe('Automations CREATE API Tests', () => {
 
 			const invalidData = {
 				name: '',
+				type: 'GENERATE_POST',
 				platform: 'LINKEDIN' as const,
 				description: 'Description',
 				example: 'Example'
@@ -117,6 +121,7 @@ describe('Automations CREATE API Tests', () => {
 
 			const invalidData = {
 				name: 'a'.repeat(101),
+				type: 'GENERATE_POST',
 				platform: 'LINKEDIN' as const,
 				description: 'Description',
 				example: 'Example'
@@ -137,6 +142,7 @@ describe('Automations CREATE API Tests', () => {
 
 			const invalidData = {
 				name: 'Test Automation',
+				type: 'GENERATE_POST',
 				platform: 'TWITTER' as const,
 				description: 'Description',
 				example: 'Example'
@@ -156,6 +162,7 @@ describe('Automations CREATE API Tests', () => {
 		test('should return 401 when user is not authenticated', async () => {
 			const automationData = {
 				name: 'LinkedIn Content Generator',
+				type: 'GENERATE_POST',
 				platform: 'LINKEDIN' as const,
 				description: 'Generate LinkedIn posts from meeting transcripts',
 				example: 'Just had an amazing meeting about AI trends...'
@@ -174,6 +181,7 @@ describe('Automations CREATE API Tests', () => {
 
 			const automationData = {
 				name: 'LinkedIn Content Generator',
+				type: 'GENERATE_POST',
 				platform: 'LINKEDIN' as const,
 				description: 'a'.repeat(1000),
 				example: 'b'.repeat(1000)
@@ -200,6 +208,7 @@ describe('Automations CREATE API Tests', () => {
 
 			const invalidData = {
 				name: 'LinkedIn Content Generator',
+				type: 'GENERATE_POST',
 				platform: 'LINKEDIN' as const,
 				description: 'a'.repeat(1001),
 				example: 'Example'
