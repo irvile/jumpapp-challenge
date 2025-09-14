@@ -5,6 +5,7 @@ import { MeetingHeader } from '@web/features/meetings/components/meeting-header'
 import { MeetingInfoCard } from '@web/features/meetings/components/meeting-info-card'
 import { MeetingTranscript } from '@web/features/meetings/components/meeting-transcript'
 import { useMeetingDetails } from '@web/features/meetings/hooks/use-meeting-details'
+import { useMeetingTranscript } from '@web/features/meetings/queries/use-meeting-transcript'
 import { dayjs } from '@web/libs/dayjs'
 import { Loader2 } from 'lucide-react'
 
@@ -41,6 +42,10 @@ function MeetingDetailsPage() {
 function MeetingDetailsContent({ meeting }: { meeting: any }) {
 	const startTime = dayjs(meeting.startTime)
 	const isPastEvent = startTime.isBefore(dayjs())
+	
+	const {
+		data: transcript
+	} = useMeetingTranscript(meeting.googleAccountId, meeting.id, isPastEvent && meeting.hasBot)
 
 	return (
 		<div className="min-h-screen bg-background">
@@ -56,7 +61,7 @@ function MeetingDetailsContent({ meeting }: { meeting: any }) {
 
 					{isPastEvent && meeting.hasBot && (
 						<div className="lg:col-span-2">
-							<ContentPlayground transcript={null} meetingId={meeting.id} />
+							<ContentPlayground transcript={transcript} meetingId={meeting.id} />
 						</div>
 					)}
 				</div>
