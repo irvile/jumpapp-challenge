@@ -146,7 +146,7 @@ export class BotManagementService {
 				case 'in_call_recording':
 					newStatus = 'RECORDING'
 					if (!joinedAt) {
-						joinedAt = new Date(latestStatus.timestamp)
+						joinedAt = new Date(latestStatus.created_at)
 					}
 					break
 				case 'call_ended':
@@ -154,7 +154,7 @@ export class BotManagementService {
 				case 'done':
 					newStatus = 'COMPLETED'
 					if (!leftAt) {
-						leftAt = new Date(latestStatus.timestamp)
+						leftAt = new Date(latestStatus.created_at)
 					}
 					break
 				default:
@@ -170,7 +170,8 @@ export class BotManagementService {
 					leftAt: leftAt
 				}
 			})
-		} catch {
+		} catch (error) {
+			console.error('Failed to sync bot with Recall API', error)
 			await db.bot.update({
 				where: { id: botId },
 				data: {

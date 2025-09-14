@@ -31,7 +31,7 @@ export type BotStatusChangeRecall = {
 		| 'recording_done'
 		| 'done'
 	message: string
-	timestamp: string // ISO 8601
+	created_at: string // ISO 8601
 	sub_code: string
 }
 
@@ -141,6 +141,7 @@ export async function getBot(id: string): Promise<BotResponseRecall> {
 	})
 
 	if (!response.ok) {
+		console.error('Failed to get bot with Recall API', response.status, response.statusText)
 		throw new Error(`Failed to get bot: ${response.status} ${response.statusText}`)
 	}
 

@@ -24,18 +24,21 @@ export function useContentGenerator() {
 			meetingId, 
 			platform, 
 			tone, 
-			provider 
+			provider,
+			automationId
 		}: { 
 			meetingId: string
 			platform: Platform
-			tone: Tone
-			provider: Provider 
+			tone?: Tone
+			provider: Provider
+			automationId?: string
 		}) => {
 			const response = await backend.api.v1.ai.generate.post({
 				eventId: meetingId,
 				platform,
 				tone,
-				provider
+				provider,
+				...(automationId && { automationId })
 			})
 
 			if (response.error) {

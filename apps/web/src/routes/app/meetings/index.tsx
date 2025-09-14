@@ -5,9 +5,9 @@ import {
 	type CalendarEventListItem,
 	useCalendarEvents
 } from '@web/features/calendar-accounts/queries/use-calendar-events'
+import { useMultipleBotPolling } from '@web/features/meetings/hooks/use-multiple-bot-polling'
 import { WeekNavigation } from '@web/features/meetings/week-navigation'
 import { WeeklyMeetings } from '@web/features/meetings/weekly-meetings'
-import { useMultipleBotPolling } from '@web/features/meetings/hooks/use-multiple-bot-polling'
 import { dayjs } from '@web/libs/dayjs'
 import { AlertCircle, Video } from 'lucide-react'
 import { useState } from 'react'
@@ -26,7 +26,7 @@ function RouteComponent() {
 	const activeAccountId = selectedAccountId || primaryAccount?.id
 
 	const { data: eventsData, isLoading: isLoadingEvents } = useCalendarEvents(activeAccountId, currentWeek)
-	
+
 	useMultipleBotPolling(eventsData?.events || [], activeAccountId)
 
 	const goToPreviousWeek = () => {
@@ -75,8 +75,8 @@ function RouteComponent() {
 		})
 
 		const sortedHours = Array.from(hours).sort((a, b) => a - b)
-		const minHour = Math.min(sortedHours[0] || 8, 8)
-		const maxHour = Math.max(sortedHours[sortedHours.length - 1] || 17, 17)
+		const minHour = sortedHours[0] || 8
+		const maxHour = sortedHours[sortedHours.length - 1] || 17
 
 		return Array.from({ length: maxHour - minHour + 1 }, (_, i) => minHour + i)
 	}

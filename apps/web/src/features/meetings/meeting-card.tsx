@@ -30,15 +30,38 @@ const platformConfig: Record<string, { color: string; logo: React.ReactNode; nam
 
 const statusConfig: Record<string, { color: string; label: string }> = {
 	'SCHEDULED': { color: 'bg-blue-100 text-blue-800', label: 'Scheduled' },
-	'IN_PROGRESS': { color: 'bg-green-100 text-green-800', label: 'In progress' },
-	'COMPLETED': { color: 'bg-gray-100 text-gray-800', label: 'Completed' },
+	'IN_PROGRESS': { color: 'bg-yellow-100 text-yellow-800', label: 'In progress' },
+	'COMPLETED': { color: 'bg-green-100 text-green-800', label: 'Completed' },
 	'CANCELLED': { color: 'bg-red-100 text-red-800', label: 'Cancelled' }
+}
+
+function getMeetingStatus(meeting: { startTime: string; endTime: string; hasBot: boolean; botStatus: string | null }) {
+	const now = dayjs()
+	const startTime = dayjs(meeting.startTime)
+	const endTime = dayjs(meeting.endTime)
+
+	if (!meeting.hasBot) {
+		if (now.isBefore(startTime)) return 'SCHEDULED'
+		if (now.isAfter(startTime) && now.isBefore(endTime)) return 'IN_PROGRESS'
+		return 'COMPLETED'
+	}
+
+	switch (meeting.botStatus) {
+		case 'JOINING':
+		case 'RECORDING':
+			return 'IN_PROGRESS'
+		case 'COMPLETED':
+			return 'COMPLETED'
+		default:
+			return 'SCHEDULED'
+	}
 }
 
 export function MeetingCard({ meeting, onClick }: MeetingCardProps) {
 	const navigate = useNavigate()
-	const platform = platformConfig[meeting.platform || 'ZOOM'] || platformConfig['ZOOM']
-	const status = statusConfig['SCHEDULED']
+	const platform = platformConfig[meeting.platform || 'ZOOM'] || platformConfig.ZOOM
+	const meetingStatus = getMeetingStatus(meeting)
+	const status = statusConfig[meetingStatus] || statusConfig.SCHEDULED
 
 	const startTime = dayjs(meeting.startTime)
 	const endTime = dayjs(meeting.endTime)

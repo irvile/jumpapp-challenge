@@ -129,7 +129,7 @@ async function generateContentWithAutomation(
 
 	const optimized = optimizeForLLM(transcriptResult.value)
 
-	const customPrompt = `${automation.description}\n\nMeeting Transcript:\n${optimized}`
+	const customPrompt = `${automation.description}\n\nMeeting Transcript:\n${optimized.conversationText}`
 
 	const provider: AIProvider = request.provider ? (request.provider as AIProvider) : 'openai'
 

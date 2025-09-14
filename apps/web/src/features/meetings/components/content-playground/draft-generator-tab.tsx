@@ -32,18 +32,15 @@ export function DraftGeneratorTab({ transcript, meetingId, onContentGenerated }:
 
 	const generateSocialPost = async () => {
 		try {
-			if (isUsingAutomation && selectedAutomationId) {
-				console.log('Generate with automation:', selectedAutomationId)
-			} else {
-				const content = await generateContentMutation.mutateAsync({
-					meetingId,
-					platform: selectedPlatform,
-					tone: selectedTone as Tone,
-					provider: selectedProvider
-				})
-				setSocialDraft(content.content)
-				onContentGenerated(content)
-			}
+			const content = await generateContentMutation.mutateAsync({
+				meetingId,
+				platform: selectedPlatform,
+				tone: isUsingAutomation ? undefined : selectedTone as Tone,
+				provider: selectedProvider,
+				...(isUsingAutomation && selectedAutomationId && { automationId: selectedAutomationId })
+			})
+			setSocialDraft(content.content)
+			onContentGenerated(content)
 		} catch (error) {
 			console.error('Failed to generate social post:', error)
 		}
