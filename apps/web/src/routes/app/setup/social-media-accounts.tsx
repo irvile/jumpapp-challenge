@@ -29,13 +29,15 @@ const socialPlatforms = [
 
 function RouteComponent() {
 	const [isLoading, setIsLoading] = useState(false)
-	const [accounts] = useState<Array<{
-		id: string
-		platform: string
-		username: string
-		displayName: string
-		isExpired: boolean
-	}>>([])
+	const [accounts] = useState<
+		Array<{
+			id: string
+			platform: string
+			username: string
+			displayName: string
+			isExpired: boolean
+		}>
+	>([])
 
 	async function handleConnectPlatform(platform: string) {
 		try {
@@ -143,7 +145,7 @@ function RouteComponent() {
 								{socialPlatforms.map((platform) => {
 									const Icon = platform.icon
 									const isConnected = accounts.some((account) => account.platform === platform.id)
-									
+
 									return (
 										<Button
 											key={platform.id}
@@ -165,48 +167,6 @@ function RouteComponent() {
 										</Button>
 									)
 								})}
-							</div>
-						</div>
-					</CardContent>
-				</Card>
-
-				<Card>
-					<CardHeader>
-						<CardTitle>Integration Information</CardTitle>
-						<CardDescription>How your social media accounts are used</CardDescription>
-					</CardHeader>
-					<CardContent className="space-y-4">
-						<div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
-							<div className="flex items-start gap-3">
-								<AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
-								<div className="text-sm">
-									<p className="font-medium text-blue-900 mb-1">LinkedIn Integration</p>
-									<p className="text-blue-700">
-										Connect LinkedIn to enhance meeting insights and professional networking features.
-									</p>
-								</div>
-							</div>
-						</div>
-						<div className="p-4 bg-purple-50 border border-purple-200 rounded-lg">
-							<div className="flex items-start gap-3">
-								<AlertCircle className="h-5 w-5 text-purple-600 flex-shrink-0 mt-0.5" />
-								<div className="text-sm">
-									<p className="font-medium text-purple-900 mb-1">Facebook Integration</p>
-									<p className="text-purple-700">
-										Connect Facebook for additional meeting context and social features.
-									</p>
-								</div>
-							</div>
-						</div>
-						<div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
-							<div className="flex items-start gap-3">
-								<AlertCircle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
-								<div className="text-sm">
-									<p className="font-medium text-amber-900 mb-1">Privacy & Security</p>
-									<p className="text-amber-700">
-										We only access basic profile information and never post on your behalf without permission.
-									</p>
-								</div>
 							</div>
 						</div>
 					</CardContent>

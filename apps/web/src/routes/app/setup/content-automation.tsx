@@ -87,39 +87,6 @@ function RouteComponent() {
 						)}
 					</CardContent>
 				</Card>
-
-				<Card>
-					<CardHeader>
-						<CardTitle>How It Works</CardTitle>
-						<CardDescription>Understanding content automation</CardDescription>
-					</CardHeader>
-					<CardContent className="space-y-4">
-						<div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
-							<div className="flex items-start gap-3">
-								<AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
-								<div className="text-sm">
-									<p className="font-medium text-blue-900 mb-1">Automatic Generation</p>
-									<p className="text-blue-700">
-										When a meeting ends and a transcript is available, your active automations will automatically
-										generate content based on your configurations.
-									</p>
-								</div>
-							</div>
-						</div>
-						<div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
-							<div className="flex items-start gap-3">
-								<AlertCircle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
-								<div className="text-sm">
-									<p className="font-medium text-amber-900 mb-1">Platform Specific</p>
-									<p className="text-amber-700">
-										Each automation is configured for a specific platform (LinkedIn, Facebook) with tailored content
-										formats and requirements.
-									</p>
-								</div>
-							</div>
-						</div>
-					</CardContent>
-				</Card>
 			</div>
 
 			{isDialogOpen ? (
