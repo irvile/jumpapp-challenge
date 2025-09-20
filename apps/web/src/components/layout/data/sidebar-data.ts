@@ -1,4 +1,4 @@
-import { BotIcon, BrainIcon, CalendarIcon, ShieldUserIcon, SmilePlusIcon } from 'lucide-react'
+import { BotIcon, BrainIcon, CalendarIcon, CreditCardIcon, ShieldUserIcon, SmilePlusIcon } from 'lucide-react'
 import type { SidebarData } from '../types'
 
 export const sidebarData: SidebarData = {
@@ -36,6 +36,16 @@ export const sidebarData: SidebarData = {
 					title: 'Social Media Accounts',
 					icon: SmilePlusIcon,
 					url: '/app/setup/social-media-accounts'
+				}
+			]
+		},
+		{
+			title: 'Account',
+			items: [
+				{
+					title: 'Billing',
+					icon: CreditCardIcon,
+					url: '/app/account/billing'
 				}
 			]
 		}
