@@ -5,6 +5,7 @@ import { BotStatus, type CalendarAccount, Platform, PrismaClient, type User } fr
 import { genId } from '@backend/libs/nanoid'
 import { parseTranscript } from '@backend/libs/recall/transcript/parser'
 import type { ParsedTranscript, RecallTranscript } from '@backend/libs/recall/transcript/types'
+import { stripe } from '@backend/libs/stripe/stripe'
 import { testFactory } from '@backend/libs/test-utils'
 import dayjs from 'dayjs'
 
@@ -31,9 +32,26 @@ async function userSeeds() {
 		}
 	})
 
+	try {
+		const customerStripe = await stripe.customers.list({
+			email: userCreated.email
+		})
+		await stripe.customers.del(customerStripe.data[0].id)
+	} catch (error) {
+		console.error(error)
+	}
+
+	const customerStripeCreated = await stripe.customers.create({
+		email: userCreated.email,
+		name: userCreated.name,
+		metadata: {
+			userId: userCreated.id
+		}
+	})
+
 	await prisma.stripeCustomer.create({
 		data: {
-			stripeCustomerId: 'cus_T5cMh5Ks6JYqgB',
+			stripeCustomerId: customerStripeCreated.id,
 			userId: userCreated.id
 		}
 	})

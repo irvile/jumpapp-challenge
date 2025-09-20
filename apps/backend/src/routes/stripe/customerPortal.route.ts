@@ -1,3 +1,4 @@
+import { db } from '@backend/libs/db'
 import { envs } from '@backend/libs/envs'
 import { stripe } from '@backend/libs/stripe/stripe'
 import { authPlugin } from '@backend/plugins/auth'
@@ -7,15 +8,19 @@ import { Elysia, t } from 'elysia'
 export const customerPortalRoute = new Elysia().use(authPlugin).post(
 	'/customerPortal',
 	async ({ body, user }) => {
-		const customer = await StripeCustomerService.findByUserId(user.id)
+		const userData = await db.user.findUnique({
+			where: { id: user.id }
+		})
 
-		if (!customer) {
-			throw new Error('Customer not found')
+		if (!userData) {
+			throw new Error('User not found')
 		}
+
+		const customer = await StripeCustomerService.createOrGetCustomer(userData)
 
 		const session = await stripe.billingPortal.sessions.create({
 			customer: customer.stripeCustomerId,
-			return_url: body.returnUrl || `${envs.FRONTEND_URL}/dashboard`
+			return_url: body.returnUrl || `${envs.FRONTEND_URL}/app/account/billing`
 		})
 
 		return {
