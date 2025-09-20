@@ -239,7 +239,7 @@ describe('BotManagementService', () => {
 				{
 					code: 'in_call_recording',
 					message: 'Bot is recording',
-					timestamp: '2023-01-01T10:00:00Z',
+					created_at: '2023-01-01T10:00:00Z',
 					sub_code: 'recording'
 				}
 			],
