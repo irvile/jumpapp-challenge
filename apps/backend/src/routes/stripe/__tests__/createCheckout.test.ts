@@ -43,7 +43,7 @@ describe('POST /api/v1/stripe/createCheckout', () => {
 
 		const response = await apiTest.api.v1.stripe.createCheckout.post(
 			{
-				priceId: 'price_test123'
+				planType: 'monthly'
 			},
 			{
 				headers: {
@@ -69,7 +69,7 @@ describe('POST /api/v1/stripe/createCheckout', () => {
 			payment_method_types: ['card'],
 			line_items: [
 				{
-					price: 'price_test123',
+					price: expect.any(String),
 					quantity: 1
 				}
 			],
@@ -90,7 +90,7 @@ describe('POST /api/v1/stripe/createCheckout', () => {
 
 		await apiTest.api.v1.stripe.createCheckout.post(
 			{
-				priceId: 'price_test123',
+				planType: 'monthly',
 				successUrl: 'https://example.com/success',
 				cancelUrl: 'https://example.com/cancel'
 			},
@@ -111,24 +111,21 @@ describe('POST /api/v1/stripe/createCheckout', () => {
 
 	test('should return 401 when user is not authenticated', async () => {
 		const response = await apiTest.api.v1.stripe.createCheckout.post({
-			priceId: 'price_test123'
+			planType: 'monthly'
 		})
 
 		expect(response.status).toBe(401)
 		expect(response.error).toBeDefined()
 	})
 
-	test('should return 422 when priceId is missing', async () => {
+	test('should return 422 when planType is missing', async () => {
 		const user = await testFactory.createUser().save()
 
-		const response = await apiTest.api.v1.stripe.createCheckout.post(
-			{} as any,
-			{
-				headers: {
-					Cookie: user.cookie
-				}
+		const response = await apiTest.api.v1.stripe.createCheckout.post({} as any, {
+			headers: {
+				Cookie: user.cookie
 			}
-		)
+		})
 
 		expect(response.status).toBe(422)
 		expect(response.error).toBeDefined()
@@ -136,17 +133,19 @@ describe('POST /api/v1/stripe/createCheckout', () => {
 
 	test('should use existing stripe customer if already exists', async () => {
 		const user = await testFactory.createUser().save()
-		
-		await testFactory.createStripeCustomer({
-			userId: user.user.id,
-			stripeCustomerId: 'cus_existing123'
-		}).save()
+
+		await testFactory
+			.createStripeCustomer({
+				userId: user.user.id,
+				stripeCustomerId: 'cus_existing123'
+			})
+			.save()
 
 		mockCreateSessionFn.mockResolvedValue(mockCheckoutSession)
 
 		await apiTest.api.v1.stripe.createCheckout.post(
 			{
-				priceId: 'price_test123'
+				planType: 'monthly'
 			},
 			{
 				headers: {
@@ -170,7 +169,7 @@ describe('POST /api/v1/stripe/createCheckout', () => {
 
 		const response = await apiTest.api.v1.stripe.createCheckout.post(
 			{
-				priceId: 'price_test123'
+				planType: 'monthly'
 			},
 			{
 				headers: {

@@ -10,6 +10,7 @@
 		"db:push": "bun --env-file=.env.development.local prisma db push --force-reset --accept-data-loss",
 		"db:seed": "bun --env-file=.env.development.local run prisma/seeds.ts",
 		"deps:up": "bun db:generate && bun compose:up && bun db:push  && bun db:seed",
+		"stripe:webhook": "stripe listen --forward-to http://localhost:3011/api/v1/webhooks/stripe",
 		"compose:up": "docker compose -f dev-ops/docker-compose.yaml up -d",
 		"lint:check": "cd ../.. && bun lint:backend",
 		"check": "bun lint:check && bun typecheck",

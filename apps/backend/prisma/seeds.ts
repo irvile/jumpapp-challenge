@@ -31,6 +31,13 @@ async function userSeeds() {
 		}
 	})
 
+	await prisma.stripeCustomer.create({
+		data: {
+			stripeCustomerId: 'cus_T5cMh5Ks6JYqgB',
+			userId: userCreated.id
+		}
+	})
+
 	return userCreated
 }
 

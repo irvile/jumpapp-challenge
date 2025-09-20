@@ -16,7 +16,7 @@ describe('GET /api/v1/stripe/subscriptionStatus', () => {
 		await testFactory.createSubscription({
 			stripeCustomerId: stripeCustomer.stripeCustomer.id,
 			stripeSubscriptionId: 'sub_test123',
-			status: 'ACTIVE',
+			status: 'active',
 			currentPeriodStart: new Date(),
 			currentPeriodEnd: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
 			cancelAtPeriodEnd: false,
@@ -33,7 +33,7 @@ describe('GET /api/v1/stripe/subscriptionStatus', () => {
 		expect(response.status).toBe(200)
 		expect(response.data).toBeDefined()
 		expect(response.data?.hasActiveSubscription).toBe(true)
-		expect(response.data?.status).toBe('ACTIVE')
+		expect(response.data?.status).toBe('active')
 		expect(response.data?.cancelAtPeriodEnd).toBe(false)
 		expect(response.data?.currentPeriodEnd).toBeDefined()
 	})
@@ -48,7 +48,7 @@ describe('GET /api/v1/stripe/subscriptionStatus', () => {
 		await testFactory.createSubscription({
 			stripeCustomerId: stripeCustomer.stripeCustomer.id,
 			stripeSubscriptionId: 'sub_test123',
-			status: 'TRIALING',
+			status: 'trialing',
 			currentPeriodStart: new Date(),
 			currentPeriodEnd: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000),
 			cancelAtPeriodEnd: false,
@@ -64,7 +64,7 @@ describe('GET /api/v1/stripe/subscriptionStatus', () => {
 
 		expect(response.status).toBe(200)
 		expect(response.data?.hasActiveSubscription).toBe(true)
-		expect(response.data?.status).toBe('TRIALING')
+		expect(response.data?.status).toBe('trialing')
 	})
 
 	test('should return no active subscription when user has no subscription', async () => {
@@ -94,7 +94,7 @@ describe('GET /api/v1/stripe/subscriptionStatus', () => {
 		await testFactory.createSubscription({
 			stripeCustomerId: stripeCustomer.stripeCustomer.id,
 			stripeSubscriptionId: 'sub_test123',
-			status: 'CANCELED',
+			status: 'canceled',
 			currentPeriodStart: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
 			currentPeriodEnd: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
 			cancelAtPeriodEnd: true,
@@ -123,7 +123,7 @@ describe('GET /api/v1/stripe/subscriptionStatus', () => {
 		await testFactory.createSubscription({
 			stripeCustomerId: stripeCustomer.stripeCustomer.id,
 			stripeSubscriptionId: 'sub_old123',
-			status: 'ACTIVE',
+			status: 'active',
 			currentPeriodStart: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000),
 			currentPeriodEnd: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
 			cancelAtPeriodEnd: false,
@@ -134,7 +134,7 @@ describe('GET /api/v1/stripe/subscriptionStatus', () => {
 		await testFactory.createSubscription({
 			stripeCustomerId: stripeCustomer.stripeCustomer.id,
 			stripeSubscriptionId: 'sub_new123',
-			status: 'ACTIVE',
+			status: 'active',
 			currentPeriodStart: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
 			currentPeriodEnd: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
 			cancelAtPeriodEnd: false,
@@ -150,7 +150,7 @@ describe('GET /api/v1/stripe/subscriptionStatus', () => {
 
 		expect(response.status).toBe(200)
 		expect(response.data?.hasActiveSubscription).toBe(true)
-		expect(response.data?.status).toBe('ACTIVE')
+		expect(response.data?.status).toBe('active')
 	})
 
 	test('should return 401 when user is not authenticated', async () => {

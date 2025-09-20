@@ -1,11 +1,11 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@web/components/ui/card'
 import { Skeleton } from '@web/components/ui/skeleton'
 import { AlertCircle } from 'lucide-react'
-import { useBillingStatus } from './hooks/use-billing'
-import { SubscriptionStatus } from './components/subscription-status'
-import { SubscriptionActions } from './components/subscription-actions'
 import { useEffect } from 'react'
 import { toast } from 'sonner'
+import { SubscriptionActions } from './components/subscription-actions'
+import { SubscriptionStatus } from './components/subscription-status'
+import { useBillingStatus } from './hooks/use-billing'
 
 export function BillingPage() {
 	const { data: status, isLoading, error } = useBillingStatus()
@@ -38,14 +38,10 @@ export function BillingPage() {
 							<AlertCircle className="h-5 w-5 text-red-500" />
 							<CardTitle className="text-lg">Error Loading Billing Information</CardTitle>
 						</div>
-						<CardDescription>
-							Unable to load your subscription status. Please try again later.
-						</CardDescription>
+						<CardDescription>Unable to load your subscription status. Please try again later.</CardDescription>
 					</CardHeader>
 					<CardContent>
-						<p className="text-sm text-muted-foreground">
-							If this issue persists, please contact our support team.
-						</p>
+						<p className="text-sm text-muted-foreground">If this issue persists, please contact our support team.</p>
 					</CardContent>
 				</Card>
 			</div>

@@ -215,10 +215,7 @@ class TestFactory {
 		return { data, save }
 	}
 
-	createStripeCustomer(body?: {
-		userId?: string
-		stripeCustomerId?: string
-	}) {
+	createStripeCustomer(body?: { userId?: string; stripeCustomerId?: string }) {
 		const data = {
 			userId: body?.userId ?? genId('user'),
 			stripeCustomerId: body?.stripeCustomerId ?? `cus_${genId('random')}`
@@ -242,7 +239,7 @@ class TestFactory {
 	createSubscription(body: {
 		stripeCustomerId: string
 		stripeSubscriptionId?: string
-		status?: 'ACTIVE' | 'CANCELED' | 'INCOMPLETE' | 'INCOMPLETE_EXPIRED' | 'PAST_DUE' | 'TRIALING' | 'UNPAID'
+		status?: 'active' | 'canceled' | 'incomplete' | 'incomplete_expired' | 'past_due' | 'trialing' | 'unpaid' | 'paused'
 		currentPeriodStart?: Date
 		currentPeriodEnd?: Date
 		cancelAtPeriodEnd?: boolean
@@ -254,7 +251,7 @@ class TestFactory {
 		const data = {
 			stripeCustomerId: body.stripeCustomerId,
 			stripeSubscriptionId: body.stripeSubscriptionId ?? `sub_${genId('random')}`,
-			status: body.status ?? 'ACTIVE',
+			status: body.status ?? 'active',
 			currentPeriodStart: body.currentPeriodStart ?? new Date(),
 			currentPeriodEnd: body.currentPeriodEnd ?? new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
 			cancelAtPeriodEnd: body.cancelAtPeriodEnd ?? false,

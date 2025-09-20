@@ -2,13 +2,22 @@ import { backend } from '@web/services/backend-api'
 
 export interface SubscriptionStatusResponse {
 	hasActiveSubscription: boolean
-	status: 'active' | 'canceled' | 'incomplete' | 'incomplete_expired' | 'past_due' | 'trialing' | 'unpaid' | 'paused' | null
+	status:
+		| 'active'
+		| 'canceled'
+		| 'incomplete'
+		| 'incomplete_expired'
+		| 'past_due'
+		| 'trialing'
+		| 'unpaid'
+		| 'paused'
+		| null
 	currentPeriodEnd: Date | null
 	cancelAtPeriodEnd: boolean
 }
 
 export interface CreateCheckoutRequest {
-	priceId: string
+	planType: 'monthly' | 'yearly'
 	successUrl?: string
 	cancelUrl?: string
 }

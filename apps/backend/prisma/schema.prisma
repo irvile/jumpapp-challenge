@@ -252,13 +252,13 @@ enum PostStatus {
 }
 
 model StripeCustomer {
-    id                String        @id @default(cuid())
-    stripeCustomerId  String        @unique
-    userId            String        @unique
-    user              User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-    subscriptions     Subscription[]
-    createdAt         DateTime      @default(now())
-    updatedAt         DateTime      @updatedAt
+    id               String         @id @default(cuid())
+    stripeCustomerId String         @unique
+    userId           String         @unique
+    user             User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+    subscriptions    Subscription[]
+    createdAt        DateTime       @default(now())
+    updatedAt        DateTime       @updatedAt
 }
 
 model Subscription {
@@ -279,11 +279,20 @@ model Subscription {
 }
 
 enum SubscriptionStatus {
-    ACTIVE
-    CANCELED
-    INCOMPLETE
-    INCOMPLETE_EXPIRED
-    PAST_DUE
-    TRIALING
-    UNPAID
+    active
+    canceled
+    incomplete
+    incomplete_expired
+    past_due
+    trialing
+    unpaid
+    paused
+}
+
+model WebhookEvent {
+    id        String   @id @default(cuid())
+    eventId   String   @unique
+    eventType String
+    processed Boolean  @default(false)
+    createdAt DateTime @default(now())
 }

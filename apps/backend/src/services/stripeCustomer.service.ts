@@ -1,6 +1,6 @@
-import type { User } from '@backend/libs/generated/prisma'
 import { db } from '@backend/libs/db'
-import { stripe } from '@backend/libs/stripe'
+import type { User } from '@backend/libs/generated/prisma'
+import { stripe } from '@backend/libs/stripe/stripe'
 
 export const StripeCustomerService = {
 	async createOrGetCustomer(user: User) {

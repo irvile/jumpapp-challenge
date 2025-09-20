@@ -24,6 +24,8 @@ const envsSchema = z.object({
 	STRIPE_SECRET_KEY: z.string(),
 	STRIPE_PUBLISHABLE_KEY: z.string(),
 	STRIPE_WEBHOOK_SECRET: z.string(),
+	STRIPE_PRICE_ID_MONTHLY: z.string(),
+	STRIPE_PRICE_ID_YEARLY: z.string(),
 	FRONTEND_URL: z.string().default('http://localhost:3000')
 })
 

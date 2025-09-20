@@ -1,6 +1,6 @@
-import type { SubscriptionStatus } from '../libs/generated/prisma'
-import { db } from '../libs/db'
-import type { SubscriptionStatusResponse } from '../libs/stripe/types'
+import { db } from '@backend/libs/db'
+import type { Prisma, SubscriptionStatus } from '@backend/libs/generated/prisma'
+import type { SubscriptionStatusResponse } from '@backend/libs/stripe/types'
 
 export const SubscriptionService = {
 	async getUserSubscriptionStatus(userId: string): Promise<SubscriptionStatusResponse> {
@@ -10,7 +10,7 @@ export const SubscriptionService = {
 				subscriptions: {
 					where: {
 						status: {
-							in: ['ACTIVE', 'TRIALING']
+							in: ['active', 'trialing']
 						}
 					},
 					orderBy: {
@@ -74,7 +74,7 @@ export const SubscriptionService = {
 				canceledAt: data.canceledAt,
 				priceId: data.priceId,
 				productId: data.productId,
-				metadata: data.metadata as any
+				metadata: data.metadata as Prisma.InputJsonValue
 			},
 			update: {
 				status: data.status,
@@ -84,7 +84,7 @@ export const SubscriptionService = {
 				canceledAt: data.canceledAt,
 				priceId: data.priceId,
 				productId: data.productId,
-				metadata: data.metadata as any
+				metadata: data.metadata as Prisma.InputJsonValue
 			}
 		})
 	},
