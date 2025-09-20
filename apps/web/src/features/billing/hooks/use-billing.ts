@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { billingService } from '../billing.service'
-import type { CreateCheckoutRequest, CustomerPortalRequest } from '../billing.service'
+import type { CreateCheckoutRequest, CustomerPortalRequest } from '@web/features/billing/billing.service'
+import { billingService } from '@web/features/billing/billing.service'
 
 export function useBillingStatus() {
 	return useQuery({

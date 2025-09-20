@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { Link } from '@tanstack/react-router'
 import { Avatar, AvatarFallback, AvatarImage } from '@web/components/ui/avatar'
 import { Badge } from '@web/components/ui/badge'
 import { Button } from '@web/components/ui/button'
@@ -7,6 +8,8 @@ import { Label } from '@web/components/ui/label'
 import { Switch } from '@web/components/ui/switch'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@web/components/ui/tabs'
 import { Textarea } from '@web/components/ui/textarea'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@web/components/ui/tooltip'
+import { useBillingStatus } from '@web/features/billing/hooks/use-billing'
 import { dayjs } from '@web/libs/dayjs'
 import { genereateFrontendId } from '@web/libs/utils'
 import { backend } from '@web/services/backend-api'
@@ -16,6 +19,7 @@ import {
 	Calendar,
 	Clock,
 	Copy,
+	Crown,
 	ExternalLink,
 	FileText,
 	LinkedinIcon,
@@ -38,6 +42,10 @@ interface MeetingDialogProps {
 export function MeetingDialog({ googleAccountId, event, open, onOpenChange }: MeetingDialogProps) {
 	const queryClient = useQueryClient()
 	const [botEnabled, setBotEnabled] = useState(event.hasBot)
+	const { data: billingStatus } = useBillingStatus()
+	
+	const hasActiveSubscription = billingStatus?.hasActiveSubscription ?? false
+	const canUseFeatures = hasActiveSubscription
 
 	const startTime = dayjs(event.startTime)
 	const endTime = dayjs(event.endTime)
@@ -91,7 +99,7 @@ export function MeetingDialog({ googleAccountId, event, open, onOpenChange }: Me
 		'MICROSOFT_TEAMS': { name: 'Microsoft Teams', color: 'bg-purple-500' }
 	}
 
-	const platform = platformConfig[event.platform || 'ZOOM'] || platformConfig['ZOOM']
+	const platform = platformConfig[event.platform || 'ZOOM'] || platformConfig.ZOOM
 
 	return (
 		<Dialog open={open} onOpenChange={onOpenChange}>
@@ -176,20 +184,36 @@ export function MeetingDialog({ googleAccountId, event, open, onOpenChange }: Me
 									<Label htmlFor="bot-toggle" className="flex items-center gap-2">
 										<Bot className="h-4 w-4" />
 										Request Notetaker
+										{!hasActiveSubscription && <Crown className="h-3 w-3 text-yellow-500" />}
 									</Label>
 									<div className="text-sm text-muted-foreground">
-										{isPastEvent
-											? 'Cannot add notetaker to past events'
-											: 'Add an AI notetaker to record and transcribe this meeting'}
+										{!hasActiveSubscription
+											? 'Premium feature - upgrade to add AI notetaker'
+											: isPastEvent
+												? 'Cannot add notetaker to past events'
+												: 'Add an AI notetaker to record and transcribe this meeting'}
 									</div>
 								</div>
 								<div className="flex items-center gap-2">
 									{botToggleMutation.isPending && <div className="text-xs text-muted-foreground">Updating...</div>}
-									<Switch
-										checked={botEnabled}
-										onCheckedChange={handleBotToggle}
-										disabled={isPastEvent || botToggleMutation.isPending}
-									/>
+									<TooltipProvider>
+										<Tooltip>
+											<TooltipTrigger asChild>
+												<div>
+													<Switch
+														checked={botEnabled}
+														onCheckedChange={handleBotToggle}
+														disabled={isPastEvent || botToggleMutation.isPending || !canUseFeatures}
+													/>
+												</div>
+											</TooltipTrigger>
+											{!canUseFeatures && (
+												<TooltipContent>
+													<p>Premium subscription required</p>
+												</TooltipContent>
+											)}
+										</Tooltip>
+									</TooltipProvider>
 								</div>
 							</div>
 
@@ -203,6 +227,19 @@ export function MeetingDialog({ googleAccountId, event, open, onOpenChange }: Me
 									</div>
 									<div className="text-xs text-muted-foreground mt-1">
 										A notetaker bot will join this meeting to record and provide transcripts.
+									</div>
+								</div>
+							)}
+
+							{!hasActiveSubscription && (
+								<div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+									<div className="flex items-center justify-between">
+										<div className="text-sm text-blue-800">
+											Upgrade to Premium to unlock AI notetaker and advanced meeting features.
+										</div>
+										<Button asChild size="sm" className="bg-blue-600 hover:bg-blue-700">
+											<Link to="/app/account/billing">Upgrade</Link>
+										</Button>
 									</div>
 								</div>
 							)}

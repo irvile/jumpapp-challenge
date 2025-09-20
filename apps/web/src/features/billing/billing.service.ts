@@ -35,30 +35,37 @@ export interface CustomerPortalResponse {
 }
 
 export const billingService = {
-	async getSubscriptionStatus(): Promise<SubscriptionStatusResponse> {
+	async getSubscriptionStatus() {
 		const response = await backend.api.v1.stripe.subscriptionStatus.get()
+
 		if (response.error) {
 			throw new Error('Failed to get subscription status')
 		}
+
 		return response.data
 	},
 
-	async createCheckoutSession(request: CreateCheckoutRequest): Promise<CheckoutResponse> {
+	async createCheckoutSession(request: CreateCheckoutRequest) {
 		const response = await backend.api.v1.stripe.createCheckout.post(request)
+
 		if (response.error) {
 			throw new Error('Failed to create checkout session')
 		}
+
 		if (!response.data.url) {
 			throw new Error('Checkout session URL is null')
 		}
+
 		return response.data
 	},
 
-	async getCustomerPortal(request: CustomerPortalRequest = {}): Promise<CustomerPortalResponse> {
+	async getCustomerPortal(request: CustomerPortalRequest = {}) {
 		const response = await backend.api.v1.stripe.customerPortal.post(request)
+
 		if (response.error) {
 			throw new Error('Failed to get customer portal')
 		}
+
 		return response.data
 	}
 }

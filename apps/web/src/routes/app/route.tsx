@@ -1,5 +1,6 @@
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 import { AppSidebar } from '@web/components/layout/app-sidebar'
+import { SubscriptionBanner } from '@web/components/layout/subscription-banner'
 import { SidebarProvider } from '@web/components/ui/sidebar'
 import { cn } from '@web/libs/utils'
 
@@ -33,6 +34,7 @@ function RouteComponent() {
 					'has-[main.fixed-main]:group-data-[scroll-locked=1]/body:h-svh'
 				)}
 			>
+				<SubscriptionBanner />
 				<Outlet />
 			</div>
 		</SidebarProvider>
