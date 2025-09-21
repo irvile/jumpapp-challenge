@@ -1,46 +1,42 @@
 import { Link } from '@tanstack/react-router'
 import { Button } from '@web/components/ui/button'
 import { useBillingStatus } from '@web/features/billing/hooks/use-billing'
-import { ArrowRight, Crown, X } from 'lucide-react'
-import { useState } from 'react'
+import { Crown } from 'lucide-react'
 
 export function SubscriptionBanner() {
-	const [isDismissed, setIsDismissed] = useState(false)
 	const { data: status, isLoading } = useBillingStatus()
 
 	const hasActiveSubscription = status?.hasActiveSubscription ?? false
 
-	if (isLoading || hasActiveSubscription || isDismissed) {
+	if (isLoading || hasActiveSubscription) {
 		return null
 	}
 
 	return (
-		<div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-3 relative">
-			<div className="flex items-center justify-between max-w-7xl mx-auto">
+		<div className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-center px-6 pb-5">
+			<div className="pointer-events-auto flex items-center justify-between gap-x-6 bg-white dark:bg-black border border-border-subtle rounded-xl px-6 py-2.5 shadow-lg">
 				<div className="flex items-center gap-3">
-					<Crown className="h-5 w-5 text-yellow-300" />
+					<Crown className="h-5 w-5 text-violet-600" />
 					<div className="flex items-center gap-2">
-						<span className="font-medium">Unlock Premium Features</span>
-						<span className="text-blue-100">•</span>
-						<span className="text-sm text-blue-100">Subscribe to access AI meeting bots and advanced features</span>
+						<span className="font-medium text-content-emphasis">Unlock Pro Features</span>
+						<span className="text-content-subtle">•</span>
+						<span className="text-sm text-content-subtle">
+							Subscribe to access AI meeting bots and advanced features
+						</span>
 					</div>
 				</div>
-				<div className="flex items-center gap-3">
-					<Button asChild variant="secondary" size="sm" className="bg-white text-blue-600 hover:bg-blue-50">
-						<Link to="/app/account/billing">
-							Upgrade Now
-							<ArrowRight className="h-4 w-4 ml-1" />
-						</Link>
-					</Button>
-					<Button
-						variant="ghost"
-						size="sm"
-						onClick={() => setIsDismissed(true)}
-						className="text-white hover:bg-white/10 p-1"
-					>
-						<X className="h-4 w-4" />
-					</Button>
-				</div>
+				<Button
+					asChild
+					variant="outline"
+					size="sm"
+					className="ml-6 transition-all border-border-subtle bg-white dark:bg-black hover:bg-bg-muted focus-visible:border-border-emphasis outline-none h-8 rounded-md border px-4"
+				>
+					<Link to="/app/account/billing">
+						<span className="bg-gradient-to-r from-violet-600 to-pink-600 bg-clip-text text-transparent">
+							Upgrade to Pro
+						</span>
+					</Link>
+				</Button>
 			</div>
 		</div>
 	)

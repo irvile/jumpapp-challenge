@@ -45,12 +45,12 @@ export function SubscriptionActions({ status }: SubscriptionActionsProps) {
 
 	if (!status.hasActiveSubscription) {
 		return (
-			<Card>
+			<Card className="flex-1 flex flex-col">
 				<CardHeader>
 					<CardTitle className="text-lg">Get Started</CardTitle>
 					<CardDescription>Subscribe to unlock all features and continue using our platform.</CardDescription>
 				</CardHeader>
-				<CardContent>
+				<CardContent className="flex-1">
 					<Button
 						onClick={() => handleSubscribe('monthly')}
 						disabled={createCheckout.isPending}
@@ -67,12 +67,12 @@ export function SubscriptionActions({ status }: SubscriptionActionsProps) {
 	}
 
 	return (
-		<Card>
+		<Card className="flex-1 flex flex-col">
 			<CardHeader>
 				<CardTitle className="text-lg">Manage Subscription</CardTitle>
 				<CardDescription>Update payment methods, download invoices, or change your plan.</CardDescription>
 			</CardHeader>
-			<CardContent className="space-y-3">
+			<CardContent className="space-y-3 flex-1">
 				<Button
 					onClick={handleManageBilling}
 					disabled={customerPortal.isPending}

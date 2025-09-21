@@ -12,6 +12,7 @@
 		"deps:up": "bun db:generate && bun compose:up && bun db:push  && bun db:seed",
 		"stripe:webhook": "stripe listen --forward-to http://localhost:3011/api/v1/webhooks/stripe",
 		"compose:up": "docker compose -f dev-ops/docker-compose.yaml up -d",
+		"start:dev": "bun run scripts/start-dev.ts",
 		"lint:check": "cd ../.. && bun lint:backend",
 		"check": "bun lint:check && bun typecheck",
 		"typecheck": "tsc --noEmit"

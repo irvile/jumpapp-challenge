@@ -1,10 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@web/components/ui/card'
-import { Skeleton } from '@web/components/ui/skeleton'
 import { AlertCircle } from 'lucide-react'
 import { useEffect } from 'react'
 import { toast } from 'sonner'
-import { SubscriptionActions } from './components/subscription-actions'
-import { SubscriptionStatus } from './components/subscription-status'
+import { BillingContent } from './components/billing-content'
 import { useBillingStatus } from './hooks/use-billing'
 
 export function BillingPage() {
@@ -55,60 +53,7 @@ export function BillingPage() {
 				<p className="text-muted-foreground">Manage your subscription and billing information</p>
 			</div>
 
-			<div className="grid gap-6 md:grid-cols-2">
-				<div className="space-y-6">
-					{isLoading ? (
-						<Card>
-							<CardHeader>
-								<Skeleton className="h-6 w-48" />
-								<Skeleton className="h-4 w-64" />
-							</CardHeader>
-							<CardContent>
-								<div className="space-y-3">
-									<Skeleton className="h-4 w-full" />
-									<Skeleton className="h-4 w-3/4" />
-								</div>
-							</CardContent>
-						</Card>
-					) : (
-						status && <SubscriptionStatus status={status} isLoading={isLoading} />
-					)}
-				</div>
-
-				<div className="space-y-6">
-					{isLoading ? (
-						<Card>
-							<CardHeader>
-								<Skeleton className="h-6 w-32" />
-								<Skeleton className="h-4 w-48" />
-							</CardHeader>
-							<CardContent>
-								<Skeleton className="h-10 w-full" />
-							</CardContent>
-						</Card>
-					) : (
-						status && <SubscriptionActions status={status} />
-					)}
-				</div>
-			</div>
-
-			{!isLoading && status && (
-				<div className="mt-8">
-					<Card>
-						<CardHeader>
-							<CardTitle className="text-lg">Need Help?</CardTitle>
-							<CardDescription>
-								If you have any questions about your subscription or billing, please don't hesitate to reach out.
-							</CardDescription>
-						</CardHeader>
-						<CardContent>
-							<p className="text-sm text-muted-foreground">
-								Contact our support team for assistance with your account or subscription changes.
-							</p>
-						</CardContent>
-					</Card>
-				</div>
-			)}
+			<BillingContent status={status} isLoading={isLoading} />
 		</div>
 	)
 }

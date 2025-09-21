@@ -113,7 +113,7 @@ export function SubscriptionStatus({ status, isLoading }: SubscriptionStatusProp
 	const { badge, icon, title, description } = getStatusConfig()
 
 	return (
-		<Card>
+		<Card className="flex-1 flex flex-col">
 			<CardHeader>
 				<div className="flex items-center justify-between">
 					<div className="flex items-center gap-3">
@@ -126,8 +126,8 @@ export function SubscriptionStatus({ status, isLoading }: SubscriptionStatusProp
 					{badge}
 				</div>
 			</CardHeader>
-			{status.currentPeriodEnd && status.hasActiveSubscription && (
-				<CardContent>
+			<CardContent className="flex-1">
+				{status.currentPeriodEnd && status.hasActiveSubscription ? (
 					<div className="flex items-center gap-2 text-sm text-muted-foreground">
 						<Calendar className="h-4 w-4" />
 						<span>
@@ -135,8 +135,10 @@ export function SubscriptionStatus({ status, isLoading }: SubscriptionStatusProp
 							{new Date(status.currentPeriodEnd).toLocaleDateString()}
 						</span>
 					</div>
-				</CardContent>
-			)}
+				) : (
+					<div className="h-6" />
+				)}
+			</CardContent>
 		</Card>
 	)
 }
