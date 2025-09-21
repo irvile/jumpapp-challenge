@@ -16,7 +16,7 @@ const webhookBodySchema = t.Object({
 			t.Literal('done')
 		]),
 		message: t.String(),
-		timestamp: t.String(),
+		created_at: t.String(),
 		sub_code: t.String()
 	})
 })
@@ -44,13 +44,13 @@ async function handleBotStatusWebhook(botId: string, statusChange: BotStatusChan
 		case 'in_call_not_recording':
 			newStatus = 'JOINED'
 			if (!joinedAt) {
-				joinedAt = new Date(statusChange.timestamp)
+				joinedAt = new Date(statusChange.created_at)
 			}
 			break
 		case 'in_call_recording':
 			newStatus = 'RECORDING'
 			if (!joinedAt) {
-				joinedAt = new Date(statusChange.timestamp)
+				joinedAt = new Date(statusChange.created_at)
 			}
 			break
 		case 'call_ended':
@@ -58,7 +58,7 @@ async function handleBotStatusWebhook(botId: string, statusChange: BotStatusChan
 		case 'done':
 			newStatus = 'COMPLETED'
 			if (!leftAt) {
-				leftAt = new Date(statusChange.timestamp)
+				leftAt = new Date(statusChange.created_at)
 			}
 			break
 		default:

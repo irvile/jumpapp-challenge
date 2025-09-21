@@ -42,10 +42,8 @@ function MeetingDetailsPage() {
 function MeetingDetailsContent({ meeting }: { meeting: any }) {
 	const startTime = dayjs(meeting.startTime)
 	const isPastEvent = startTime.isBefore(dayjs())
-	
-	const {
-		data: transcript
-	} = useMeetingTranscript(meeting.googleAccountId, meeting.id, isPastEvent && meeting.hasBot)
+
+	const { data: transcript } = useMeetingTranscript(meeting.googleAccountId, meeting.id, isPastEvent && meeting.hasBot)
 
 	return (
 		<div className="min-h-screen bg-background">
@@ -60,9 +58,9 @@ function MeetingDetailsContent({ meeting }: { meeting: any }) {
 					</div>
 
 					<div className="lg:col-span-2">
-						<ContentPlayground 
-							transcript={transcript} 
-							meetingId={meeting.id} 
+						<ContentPlayground
+							transcript={transcript}
+							meetingId={meeting.id}
 							disabled={!isPastEvent || !meeting.hasBot}
 						/>
 					</div>

@@ -52,7 +52,22 @@ export const auth = betterAuth({
 	database: prismaAdapter(db, {
 		provider: 'postgresql'
 	}),
-	trustedOrigins: isProduction ? [] : ['http://localhost:5173', 'http://192.168.15.3:5173', 'http://192.168.15.3:6173'],
+
+	trustedOrigins: isProduction
+		? ['https://jumpapp-production.fly.dev', 'https://jumpapp-challenge.vercel.app']
+		: ['http://localhost:5173', 'http://192.168.15.3:5173', 'http://192.168.15.3:6173'],
+	advanced: {
+		cookies: {
+			session_token: {
+				attributes: {
+					sameSite: 'none',
+					secure: true,
+					httpOnly: true,
+					maxAge: 60 * 60 * 8
+				}
+			}
+		}
+	},
 	socialProviders: {
 		google: {
 			accessType: 'offline',

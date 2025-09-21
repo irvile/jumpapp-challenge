@@ -15,12 +15,14 @@ import { Route as AppIndexRouteImport } from './routes/app/index'
 import { Route as authRegisterRouteImport } from './routes/(auth)/register'
 import { Route as authLoginRouteImport } from './routes/(auth)/login'
 import { Route as AppMeetingsRouteRouteImport } from './routes/app/meetings/route'
+import { Route as AppAccountRouteRouteImport } from './routes/app/account/route'
 import { Route as AppMeetingsIndexRouteImport } from './routes/app/meetings/index'
 import { Route as AppSetupSocialMediaAccountsRouteImport } from './routes/app/setup/social-media-accounts'
 import { Route as AppSetupGoogleAccountsRouteImport } from './routes/app/setup/google-accounts'
 import { Route as AppSetupContentAutomationRouteImport } from './routes/app/setup/content-automation'
 import { Route as AppSetupBotRouteImport } from './routes/app/setup/bot'
 import { Route as AppMeetingsIdRouteImport } from './routes/app/meetings/$id'
+import { Route as AppAccountBillingRouteImport } from './routes/app/account/billing'
 
 const AppRouteRoute = AppRouteRouteImport.update({
   id: '/app',
@@ -50,6 +52,11 @@ const authLoginRoute = authLoginRouteImport.update({
 const AppMeetingsRouteRoute = AppMeetingsRouteRouteImport.update({
   id: '/meetings',
   path: '/meetings',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppAccountRouteRoute = AppAccountRouteRouteImport.update({
+  id: '/account',
+  path: '/account',
   getParentRoute: () => AppRouteRoute,
 } as any)
 const AppMeetingsIndexRoute = AppMeetingsIndexRouteImport.update({
@@ -84,14 +91,21 @@ const AppMeetingsIdRoute = AppMeetingsIdRouteImport.update({
   path: '/$id',
   getParentRoute: () => AppMeetingsRouteRoute,
 } as any)
+const AppAccountBillingRoute = AppAccountBillingRouteImport.update({
+  id: '/billing',
+  path: '/billing',
+  getParentRoute: () => AppAccountRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteRouteWithChildren
+  '/app/account': typeof AppAccountRouteRouteWithChildren
   '/app/meetings': typeof AppMeetingsRouteRouteWithChildren
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
   '/app/': typeof AppIndexRoute
+  '/app/account/billing': typeof AppAccountBillingRoute
   '/app/meetings/$id': typeof AppMeetingsIdRoute
   '/app/setup/bot': typeof AppSetupBotRoute
   '/app/setup/content-automation': typeof AppSetupContentAutomationRoute
@@ -101,9 +115,11 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app/account': typeof AppAccountRouteRouteWithChildren
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
   '/app': typeof AppIndexRoute
+  '/app/account/billing': typeof AppAccountBillingRoute
   '/app/meetings/$id': typeof AppMeetingsIdRoute
   '/app/setup/bot': typeof AppSetupBotRoute
   '/app/setup/content-automation': typeof AppSetupContentAutomationRoute
@@ -115,10 +131,12 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app': typeof AppRouteRouteWithChildren
+  '/app/account': typeof AppAccountRouteRouteWithChildren
   '/app/meetings': typeof AppMeetingsRouteRouteWithChildren
   '/(auth)/login': typeof authLoginRoute
   '/(auth)/register': typeof authRegisterRoute
   '/app/': typeof AppIndexRoute
+  '/app/account/billing': typeof AppAccountBillingRoute
   '/app/meetings/$id': typeof AppMeetingsIdRoute
   '/app/setup/bot': typeof AppSetupBotRoute
   '/app/setup/content-automation': typeof AppSetupContentAutomationRoute
@@ -131,10 +149,12 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/app'
+    | '/app/account'
     | '/app/meetings'
     | '/login'
     | '/register'
     | '/app/'
+    | '/app/account/billing'
     | '/app/meetings/$id'
     | '/app/setup/bot'
     | '/app/setup/content-automation'
@@ -144,9 +164,11 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/app/account'
     | '/login'
     | '/register'
     | '/app'
+    | '/app/account/billing'
     | '/app/meetings/$id'
     | '/app/setup/bot'
     | '/app/setup/content-automation'
@@ -157,10 +179,12 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/app'
+    | '/app/account'
     | '/app/meetings'
     | '/(auth)/login'
     | '/(auth)/register'
     | '/app/'
+    | '/app/account/billing'
     | '/app/meetings/$id'
     | '/app/setup/bot'
     | '/app/setup/content-automation'
@@ -220,6 +244,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppMeetingsRouteRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/app/account': {
+      id: '/app/account'
+      path: '/account'
+      fullPath: '/app/account'
+      preLoaderRoute: typeof AppAccountRouteRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
     '/app/meetings/': {
       id: '/app/meetings/'
       path: '/'
@@ -262,8 +293,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppMeetingsIdRouteImport
       parentRoute: typeof AppMeetingsRouteRoute
     }
+    '/app/account/billing': {
+      id: '/app/account/billing'
+      path: '/billing'
+      fullPath: '/app/account/billing'
+      preLoaderRoute: typeof AppAccountBillingRouteImport
+      parentRoute: typeof AppAccountRouteRoute
+    }
   }
 }
+
+interface AppAccountRouteRouteChildren {
+  AppAccountBillingRoute: typeof AppAccountBillingRoute
+}
+
+const AppAccountRouteRouteChildren: AppAccountRouteRouteChildren = {
+  AppAccountBillingRoute: AppAccountBillingRoute,
+}
+
+const AppAccountRouteRouteWithChildren = AppAccountRouteRoute._addFileChildren(
+  AppAccountRouteRouteChildren,
+)
 
 interface AppMeetingsRouteRouteChildren {
   AppMeetingsIdRoute: typeof AppMeetingsIdRoute
@@ -279,6 +329,7 @@ const AppMeetingsRouteRouteWithChildren =
   AppMeetingsRouteRoute._addFileChildren(AppMeetingsRouteRouteChildren)
 
 interface AppRouteRouteChildren {
+  AppAccountRouteRoute: typeof AppAccountRouteRouteWithChildren
   AppMeetingsRouteRoute: typeof AppMeetingsRouteRouteWithChildren
   AppIndexRoute: typeof AppIndexRoute
   AppSetupBotRoute: typeof AppSetupBotRoute
@@ -288,6 +339,7 @@ interface AppRouteRouteChildren {
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
+  AppAccountRouteRoute: AppAccountRouteRouteWithChildren,
   AppMeetingsRouteRoute: AppMeetingsRouteRouteWithChildren,
   AppIndexRoute: AppIndexRoute,
   AppSetupBotRoute: AppSetupBotRoute,

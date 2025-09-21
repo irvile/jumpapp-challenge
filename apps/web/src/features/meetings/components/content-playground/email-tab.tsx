@@ -78,7 +78,6 @@ export function EmailTab({ transcript, meetingId }: EmailTabProps) {
 						Content
 					</Label>
 					<Textarea
-						id="email-content"
 						value={emailContent}
 						onChange={(e) => setEmailContent(e.target.value)}
 						placeholder={

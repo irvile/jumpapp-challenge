@@ -1,7 +1,7 @@
+import { useNavigate } from '@tanstack/react-router'
 import { Avatar, AvatarFallback, AvatarImage } from '@web/components/ui/avatar'
 import { Badge } from '@web/components/ui/badge'
 import { Button } from '@web/components/ui/button'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@web/components/ui/dialog'
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -10,11 +10,8 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger
 } from '@web/components/ui/dropdown-menu'
-import { backend } from '@web/services/backend-api'
-import { useNavigate } from '@tanstack/react-router'
-import { ChevronDown, Mail, Plus, Trash2 } from 'lucide-react'
+import { ChevronDown, Mail, Plus } from 'lucide-react'
 import type { ComponentPropsWithoutRef } from 'react'
-import { useState } from 'react'
 import { useCalendarAccounts } from './queries/use-calendar-accounts'
 
 interface GoogleAccountSwitcherProps extends ComponentPropsWithoutRef<'div'> {
@@ -28,37 +25,13 @@ export function GoogleAccountSwitcher({
 	className,
 	...props
 }: GoogleAccountSwitcherProps) {
-	const [isDialogOpen, setIsDialogOpen] = useState(false)
-	const [isLoading, setIsLoading] = useState(false)
-	const { data: accounts = [], refetch } = useCalendarAccounts()
+	const { data: accounts = [] } = useCalendarAccounts()
 	const navigate = useNavigate()
 
 	const selectedAccount = accounts.find((account) => account.id === selectedAccountId) || accounts[0]
 
 	function handleLinkNewAccount() {
 		navigate({ to: '/app/setup/google-accounts' })
-	}
-
-	async function handleUnlinkAccount(accountId: string) {
-		try {
-			setIsLoading(true)
-			const response = await backend.api.v1.auth.unlinkGoogle({ accountId }).delete()
-
-			if (response.data?.success) {
-				await refetch()
-
-				if (selectedAccountId === accountId && accounts.length > 1) {
-					const remainingAccount = accounts.find((acc) => acc.id !== accountId)
-					if (remainingAccount && onAccountChange) {
-						onAccountChange(remainingAccount.id)
-					}
-				}
-			}
-		} catch (error) {
-			console.error('Failed to unlink Google account:', error)
-		} finally {
-			setIsLoading(false)
-		}
 	}
 
 	if (!selectedAccount) {
@@ -138,7 +111,6 @@ export function GoogleAccountSwitcher({
 					</DropdownMenuContent>
 				</DropdownMenu>
 			</div>
-
 		</div>
 	)
 }

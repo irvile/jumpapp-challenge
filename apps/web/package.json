@@ -11,7 +11,7 @@
 		"start": "vite",
 		"lint:check": "cd ../.. && bun lint:web",
 		"check": "bun run typecheck && bun run lint:check",
-		"deps:up": "cd ../backend && bun deps:up && bun dev"
+		"deps:up": "cd ../backend && bun deps:up && bun start:dev"
 	},
 	"devDependencies": {
 		"@tanstack/router-plugin": "1.131.41",

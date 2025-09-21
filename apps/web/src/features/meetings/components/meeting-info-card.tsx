@@ -1,8 +1,8 @@
+import { PlatformBadge } from '@web/components/platform-badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@web/components/ui/avatar'
 import { Button } from '@web/components/ui/button'
 import { dayjs } from '@web/libs/dayjs'
-import { Clock, ExternalLink, Users } from 'lucide-react'
-import { PlatformBadge } from '../../../components/platform-badge'
+import { Clock, ExternalLink } from 'lucide-react'
 
 interface MeetingInfoCardProps {
 	meeting: {

@@ -1,5 +1,5 @@
+import { Link } from '@tanstack/react-router'
 import { Avatar, AvatarFallback, AvatarImage } from '@web/components/ui/avatar'
-import { Badge } from '@web/components/ui/badge'
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -13,7 +13,7 @@ import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@we
 import { useAuth } from '@web/contexts/auth.context'
 import { signOut } from '@web/libs/auth'
 import { getInitials } from '@web/libs/utils'
-import { ChevronsUpDown, LogOut, Sparkles } from 'lucide-react'
+import { ChevronsUpDown, LogOut, CreditCard } from 'lucide-react'
 
 export function NavUser() {
 	const { isMobile } = useSidebar()
@@ -59,35 +59,13 @@ export function NavUser() {
 						</DropdownMenuLabel>
 						<DropdownMenuSeparator />
 						<DropdownMenuGroup>
-							<DropdownMenuItem>
-								<Sparkles />
-								Subscribe
-								<Badge variant="secondary" className="ml-auto">
-									SOON
-								</Badge>
-							</DropdownMenuItem>
-						</DropdownMenuGroup>
-						<DropdownMenuSeparator />
-						{/* <DropdownMenuGroup>
 							<DropdownMenuItem asChild>
-								<Link to="/settings/account">
-									<BadgeCheck />
-									Account
-								</Link>
-							</DropdownMenuItem>
-							<DropdownMenuItem asChild>
-								<Link to="/settings">
+								<Link to="/app/account/billing">
 									<CreditCard />
 									Billing
 								</Link>
 							</DropdownMenuItem>
-							<DropdownMenuItem asChild>
-								<Link to="/settings/notifications">
-									<Bell />
-									Notifications
-								</Link>
-							</DropdownMenuItem>
-						</DropdownMenuGroup> */}
+						</DropdownMenuGroup>
 						<DropdownMenuSeparator />
 						<DropdownMenuItem
 							onClick={async () => {

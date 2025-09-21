@@ -215,6 +215,73 @@ class TestFactory {
 		return { data, save }
 	}
 
+	createStripeCustomer(body?: { userId?: string; stripeCustomerId?: string }) {
+		const data = {
+			userId: body?.userId ?? genId('user'),
+			stripeCustomerId: body?.stripeCustomerId ?? `cus_${genId('random')}`
+		}
+
+		const save = async () => {
+			return {
+				stripeCustomer: await db.stripeCustomer.create({
+					data: {
+						id: genId('stripeCustomer'),
+						userId: data.userId,
+						stripeCustomerId: data.stripeCustomerId
+					}
+				})
+			}
+		}
+
+		return { data, save }
+	}
+
+	createSubscription(body: {
+		stripeCustomerId: string
+		stripeSubscriptionId?: string
+		status?: 'active' | 'canceled' | 'incomplete' | 'incomplete_expired' | 'past_due' | 'trialing' | 'unpaid' | 'paused'
+		currentPeriodStart?: Date
+		currentPeriodEnd?: Date
+		cancelAtPeriodEnd?: boolean
+		canceledAt?: Date | null
+		priceId?: string
+		productId?: string
+		metadata?: Record<string, unknown>
+	}) {
+		const data = {
+			stripeCustomerId: body.stripeCustomerId,
+			stripeSubscriptionId: body.stripeSubscriptionId ?? `sub_${genId('random')}`,
+			status: body.status ?? 'active',
+			currentPeriodStart: body.currentPeriodStart ?? new Date(),
+			currentPeriodEnd: body.currentPeriodEnd ?? new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+			cancelAtPeriodEnd: body.cancelAtPeriodEnd ?? false,
+			canceledAt: body.canceledAt ?? null,
+			priceId: body.priceId ?? `price_${genId('random')}`,
+			productId: body.productId ?? `prod_${genId('random')}`,
+			metadata: body.metadata ?? {}
+		}
+
+		const save = async () => {
+			return await db.subscription.create({
+				data: {
+					id: genId('subscription'),
+					stripeSubscriptionId: data.stripeSubscriptionId,
+					stripeCustomerId: data.stripeCustomerId,
+					status: data.status,
+					currentPeriodStart: data.currentPeriodStart,
+					currentPeriodEnd: data.currentPeriodEnd,
+					cancelAtPeriodEnd: data.cancelAtPeriodEnd,
+					canceledAt: data.canceledAt,
+					priceId: data.priceId,
+					productId: data.productId,
+					metadata: data.metadata as any
+				}
+			})
+		}
+
+		return { data, save }
+	}
+
 	async cleanDatabase() {
 		if (envs.NODE_ENV !== 'production') {
 			await db.aiGeneratedContent.deleteMany()
@@ -225,6 +292,8 @@ class TestFactory {
 			await db.bot.deleteMany()
 			await db.calendarEvent.deleteMany()
 			await db.calendarAccount.deleteMany()
+			await db.subscription.deleteMany()
+			await db.stripeCustomer.deleteMany()
 			await db.user.deleteMany()
 		}
 	}

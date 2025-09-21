@@ -23,7 +23,7 @@ describe('Recall Client', () => {
 				{
 					code: 'joining_call',
 					message: 'Bot is joining the call',
-					timestamp: '2025-09-13T12:00:00Z',
+					created_at: '2025-09-13T12:00:00Z',
 					sub_code: 'joining'
 				}
 			],
@@ -109,19 +109,19 @@ describe('Recall Client', () => {
 			{
 				code: 'joining_call',
 				message: 'Bot is joining the call',
-				timestamp: '2025-09-13T12:00:00Z',
+				created_at: '2025-09-13T12:00:00Z',
 				sub_code: 'joining'
 			},
 			{
 				code: 'in_call_recording',
 				message: 'Bot is recording',
-				timestamp: '2025-09-13T12:01:00Z',
+				created_at: '2025-09-13T12:01:00Z',
 				sub_code: 'recording'
 			},
 			{
 				code: 'done',
 				message: 'Bot has finished recording',
-				timestamp: '2025-09-13T12:30:00Z',
+				created_at: '2025-09-13T12:30:00Z',
 				sub_code: 'completed'
 			}
 		]
@@ -252,37 +252,37 @@ describe('Recall Client', () => {
 			{
 				code: 'joining_call',
 				message: 'Bot is joining the call',
-				timestamp: '2025-09-13T12:00:00Z',
+				created_at: '2025-09-13T12:00:00Z',
 				sub_code: 'joining'
 			},
 			{
 				code: 'in_waiting_room',
 				message: 'Bot is waiting in room',
-				timestamp: '2025-09-13T12:00:30Z',
+				created_at: '2025-09-13T12:00:30Z',
 				sub_code: 'waiting'
 			},
 			{
 				code: 'in_call_recording',
 				message: 'Bot is recording the call',
-				timestamp: '2025-09-13T12:01:00Z',
+				created_at: '2025-09-13T12:01:00Z',
 				sub_code: 'recording'
 			},
 			{
 				code: 'call_ended',
 				message: 'Call has ended',
-				timestamp: '2025-09-13T12:29:00Z',
+				created_at: '2025-09-13T12:29:00Z',
 				sub_code: 'ended'
 			},
 			{
 				code: 'recording_done',
 				message: 'Recording processing complete',
-				timestamp: '2025-09-13T12:29:30Z',
+				created_at: '2025-09-13T12:29:30Z',
 				sub_code: 'processed'
 			},
 			{
 				code: 'done',
 				message: 'Bot workflow complete',
-				timestamp: '2025-09-13T12:30:00Z',
+				created_at: '2025-09-13T12:30:00Z',
 				sub_code: 'completed'
 			}
 		]
@@ -323,7 +323,7 @@ describe('Recall Client', () => {
 
 		const lastStatus = bot.status_changes[bot.status_changes.length - 1]
 		expect(lastStatus.code).toBe('done')
-		expect(lastStatus.timestamp).toBe('2025-09-13T12:30:00Z')
+		expect(lastStatus.created_at).toBe('2025-09-13T12:30:00Z')
 	})
 
 	test('should validate recording with transcript data', async () => {

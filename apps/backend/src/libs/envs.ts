@@ -19,7 +19,14 @@ const envsSchema = z.object({
 	LINKEDIN_CLIENT_SECRET: z.string(),
 
 	FACEBOOK_CLIENT_ID: z.string(),
-	FACEBOOK_CLIENT_SECRET: z.string()
+	FACEBOOK_CLIENT_SECRET: z.string(),
+
+	STRIPE_SECRET_KEY: z.string(),
+	STRIPE_PUBLISHABLE_KEY: z.string(),
+	STRIPE_WEBHOOK_SECRET: z.string(),
+	STRIPE_PRICE_ID_MONTHLY: z.string(),
+	STRIPE_PRICE_ID_YEARLY: z.string(),
+	FRONTEND_URL: z.string().default('http://localhost:3000')
 })
 
 // biome-ignore lint/style/noProcessEnv: >

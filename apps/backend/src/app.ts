@@ -9,6 +9,7 @@ import { calendarRoutes } from './routes/calendars/calendar.routes'
 import { transcriptRoutes } from './routes/transcripts/transcript.routes'
 import { usersRoutes } from './routes/users/users.routes'
 import { webhookRoutes } from './routes/webhooks/webhook.routes'
+import { stripeRoutes } from './routes/stripe/stripe.routes'
 
 const routes = new Elysia({ prefix: '/api' })
 	.use(calendarRoutes)
@@ -18,6 +19,7 @@ const routes = new Elysia({ prefix: '/api' })
 	.use(webhookRoutes)
 	.use(aiRoutes)
 	.use(automationsRoutes)
+	.use(stripeRoutes)
 
 const app = new Elysia()
 	.use(swagger())
